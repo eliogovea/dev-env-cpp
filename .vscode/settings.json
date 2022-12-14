@@ -2,6 +2,12 @@
     "C_Cpp.clang_format_path": "/usr/bin/clang-format",
     "C_Cpp.clang_format_style": "file",
     "C_Cpp.clang_format_fallbackStyle": "Google",
+    "editor.fontSize": 16,
+    "editor.formatOnSave": true,
+    "editor.lineNumbers": "on",
+    "editor.minimap.enabled": false,
+    "editor.renderLineHighlight": "all",
+    "editor.tabCompletion": "on",
     "files.associations": {
         "iostream": "cpp",
         "any": "cpp",

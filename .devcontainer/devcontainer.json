@@ -3,12 +3,12 @@
 {
 	"name": "C++",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "Dockerfile"
 	},
 	"runArgs": [
 		"--cap-add=SYS_PTRACE",
 		"--security-opt",
-		"seccomp=unconfined",
+		"seccomp=unconfined"
 	],
 	// Set *default* container specific settings.json values on container create.
 	"settings": {
@@ -17,7 +17,7 @@
 				"path": "bash"
 			}
 		},
-		"terminal.integrated.defaultProfile.linux": "bash",
+		"terminal.integrated.defaultProfile.linux": "bash"
 	},
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
@@ -32,7 +32,8 @@
 		"donjayamanne.githistory",
 		"mhutchie.git-graph",
 		"coenraads.bracket-pair-colorizer-2",
-	],
+		"cschlosser.doxdocgen"
+	]
 	// Comment out this line to run as root instead.
 	// "remoteUser": "user"
 }
