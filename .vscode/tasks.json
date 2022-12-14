@@ -1,12 +1,57 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
     "tasks": [
         {
-            "label": "echo",
             "type": "shell",
-            "command": "echo Hello"
+            "label": "Configure",
+            "linux": {
+                "command": "cmake",
+                "args": [
+                    "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON",
+                    "-S",
+                    "${workspaceFolder}",
+                    "-B",
+                    "${workspaceFolder}/build"
+                ]
+            },
+            "group": "build",
+            "detail": "configure cmake"
+        },
+        {
+            "type": "shell",
+            "label": "Build",
+            "linux": {
+                "command": "cmake --build ."
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "dependsOn": [
+                "Configure"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Test",
+            "linux": {
+                "command": "ctest --extra-verbose"
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "dependsOn": [
+                "Build"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "test",
+            "detail": "test"
         }
-    ]
+    ],
+    "version": "2.0.0"
 }
