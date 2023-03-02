@@ -5,35 +5,59 @@
 	"build": {
 		"dockerfile": "Dockerfile"
 	},
-	"runArgs": [
-		"--cap-add=SYS_PTRACE",
-		"--security-opt",
-		"seccomp=unconfined"
-	],
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"terminal.integrated.profiles.linux": {
-			"bash": {
-				"path": "bash"
+	"capAdd": ["SYS_PTRACE"],
+	"securityOpt": ["seccomp=unconfined"],
+	"customizations": {
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"ms-vscode.cpptools",
+				"ms-vscode.cpptools-themes",
+				"aaron-bond.better-comments",
+				"esbenp.prettier-vscode",
+				"twxs.cmake",
+				"ms-vscode.cmake-tools",
+				"jeff-hykin.better-cpp-syntax",
+				"eamodio.gitlens",
+				"donjayamanne.githistory",
+				"mhutchie.git-graph",
+				"cschlosser.doxdocgen"
+			],
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"terminal.integrated.profiles.linux": {
+					"bash": {
+						"path": "bash"
+					}
+				},
+				"terminal.integrated.defaultProfile.linux": "bash",
+				"C_Cpp.clang_format_path": "/usr/bin/clang-format-15",
+				"C_Cpp.clang_format_style": "file",
+				"C_Cpp.clang_format_fallbackStyle": "Google",
+				"C_Cpp.default.compilerPath": "/usr/bin/clang++-15",
+				"C_Cpp.default.defines": [],
+				"C_Cpp.default.cStandard": "c17",
+				"C_Cpp.default.cppStandard": "c++20",
+				"C_Cpp.default.intelliSenseMode": "linux-clang-x64",
+				"C_Cpp.default.includePath": [
+					"${workspaceFolder}/**",
+                	"/usr/include/c++/11"
+				],
+				"editor.fontSize": 14,
+				"editor.formatOnSave": true,
+				"editor.lineNumbers": "on",
+				"editor.minimap.enabled": false,
+				"editor.renderLineHighlight": "all",
+				"editor.tabCompletion": "on",
+				"editor.rulers": [
+					120
+				],
+				"files.trimTrailingWhitespace": true,
+				"files.insertFinalNewline": true,
+				"files.trimFinalNewlines": true
 			}
-		},
-		"terminal.integrated.defaultProfile.linux": "bash"
-	},
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"ms-vscode.cpptools",
-		"ms-vscode.cpptools-themes",
-		"aaron-bond.better-comments",
-		"esbenp.prettier-vscode",
-		"twxs.cmake",
-		"ms-vscode.cmake-tools",
-		"jeff-hykin.better-cpp-syntax",
-		"eamodio.gitlens",
-		"donjayamanne.githistory",
-		"mhutchie.git-graph",
-		"coenraads.bracket-pair-colorizer-2",
-		"cschlosser.doxdocgen"
-	]
+		}
+	}
 	// Comment out this line to run as root instead.
 	// "remoteUser": "user"
 }
