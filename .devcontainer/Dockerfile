@@ -11,6 +11,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update -qq \
     && apt-get install -y --no-install-recommends \
         build-essential \
+        bash-completion \
         ccache \
         cppcheck \
         gcovr \
