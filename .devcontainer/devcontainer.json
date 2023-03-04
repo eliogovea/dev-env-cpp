@@ -3,7 +3,14 @@
 {
 	"name": "C++",
 	"build": {
-		"dockerfile": "Dockerfile"
+		"dockerfile": "Dockerfile",
+		"args": {
+			"USERNAME": "vscode",
+			"USER_UID": "1000",
+			"USER_GID": "1000",
+			"GCC_VERSION": "12",
+			"LLVM_VERSION": "15"
+		}
 	},
 	"capAdd": ["SYS_PTRACE"],
 	"securityOpt": ["seccomp=unconfined"],
