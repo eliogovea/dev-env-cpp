@@ -26,7 +26,7 @@ target_include_directories(
 
 target_compile_features(
     ${PROJECT_NAME}_static
-    PRIVATE cxx_std_20
+    PUBLIC cxx_std_20
 )
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME}_static)
