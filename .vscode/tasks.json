@@ -2,52 +2,45 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "Configure",
+            "label": "configure",
             "linux": {
                 "command": "cmake",
-                "args": [
-                    "-DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON",
-                    "-S",
-                    "${workspaceFolder}",
-                    "-B",
-                    "${workspaceFolder}/build"
-                ]
+                "args": ["--preset", "gcc"]
+            },
+            "options": {
+                "cwd": "${workspaceFolder}"
             },
             "group": "build",
-            "detail": "configure cmake"
+            "detail": "cmake configure project"
         },
         {
             "type": "shell",
-            "label": "Build",
+            "label": "build project",
             "linux": {
-                "command": "cmake --build ."
+                "command": "cmake",
+                "args": ["--build", "--preset", "gcc"]
             },
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "dependsOn": [
-                "Configure"
-            ],
-            "problemMatcher": [
-                "$gcc"
+                "configure"
             ],
             "group": "build",
-            "detail": "build"
+            "detail": "cmake buidl project"
         },
         {
             "type": "shell",
-            "label": "Test",
+            "label": "run unit test",
             "linux": {
-                "command": "ctest --extra-verbose"
+                "command": "cmake",
+                "args": ["--workflow", "--preset", "gcc"]
             },
             "options": {
-                "cwd": "${workspaceFolder}/build"
+                "cwd": "${workspaceFolder}"
             },
             "dependsOn": [
-                "Build"
-            ],
-            "problemMatcher": [
-                "$gcc"
+                "build"
             ],
             "group": "test",
             "detail": "test"

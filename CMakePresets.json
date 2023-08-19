@@ -1,0 +1,163 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 23,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "gcc",
+      "displayName": "${presetName}",
+      "description": "${presetName}",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "${sourceDir}/cmake/toolchain/${presetName}.cmake",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    },
+    {
+      "name": "gcc-coverage",
+      "displayName": "${presetName}",
+      "description": "${presetName}",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "${sourceDir}/cmake/toolchain/${presetName}.cmake",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    },
+    {
+      "name": "llvm",
+      "displayName": "${presetName}",
+      "description": "${presetName}",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "toolchainFile": "${sourceDir}/cmake/toolchain/${presetName}.cmake",
+      "cacheVariables": {
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "gcc",
+      "configurePreset": "gcc",
+      "jobs": 0
+    },
+    {
+      "name": "gcc-coverage",
+      "configurePreset": "gcc-coverage",
+      "jobs": 0
+    },
+    {
+      "name": "llvm",
+      "configurePreset": "llvm",
+      "jobs": 0
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "gcc",
+      "configurePreset": "gcc",
+      "output": {
+        "verbosity": "extra",
+        "outputOnFailure": true
+      },
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    },
+    {
+      "name": "gcc-coverage",
+      "configurePreset": "gcc-coverage",
+      "output": {
+        "verbosity": "extra",
+        "outputOnFailure": true
+      },
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    },
+    {
+      "name": "llvm",
+      "configurePreset": "llvm",
+      "output": {
+        "verbosity": "extra",
+        "outputOnFailure": true
+      },
+      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "gcc-package-TGZ",
+      "configurePreset": "gcc",
+      "generators": ["TGZ"]
+    },
+    {
+      "name": "gcc-package-DEB",
+      "configurePreset": "gcc",
+      "generators": ["DEB"]
+    },
+    {
+      "name": "gcc-package-ALL",
+      "configurePreset": "gcc",
+      "generators": ["TGZ", "DEB"]
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "gcc",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "gcc"
+        },
+        {
+          "type": "build",
+          "name": "gcc"
+        },
+        {
+          "type": "test",
+          "name": "gcc"
+        },
+        {
+          "type": "package",
+          "name": "gcc-package-ALL"
+        }
+      ]
+    },
+    {
+      "name": "gcc-coverage",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "gcc-coverage"
+        },
+        {
+          "type": "build",
+          "name": "gcc-coverage"
+        },
+        {
+          "type": "test",
+          "name": "gcc-coverage"
+        }
+      ]
+    },
+    {
+      "name": "llvm",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "llvm"
+        },
+        {
+          "type": "build",
+          "name": "llvm"
+        },
+        {
+          "type": "test",
+          "name": "llvm"
+        }
+      ]
+    }
+  ]
+}

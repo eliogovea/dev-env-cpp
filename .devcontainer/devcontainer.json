@@ -27,7 +27,9 @@
 				"eamodio.gitlens",
 				"donjayamanne.githistory",
 				"mhutchie.git-graph",
-				"cschlosser.doxdocgen"
+				"cschlosser.doxdocgen",
+				"ms-azuretools.vscode-docker",
+				"ms-vscode.cpptools-extension-pack"
 			],
 			// Set *default* container specific settings.json values on container create.
 			"settings": {
@@ -37,10 +39,10 @@
 					}
 				},
 				"terminal.integrated.defaultProfile.linux": "bash",
-				"C_Cpp.clang_format_path": "/usr/bin/clang-format-15",
+				"C_Cpp.clang_format_path": "/usr/bin/clang-format-17",
 				"C_Cpp.clang_format_style": "file",
 				"C_Cpp.clang_format_fallbackStyle": "Google",
-				"C_Cpp.default.compilerPath": "/usr/bin/clang++-15",
+				"C_Cpp.default.compilerPath": "/usr/bin/clang++-17",
 				"C_Cpp.default.defines": [],
 				"C_Cpp.default.cStandard": "c17",
 				"C_Cpp.default.cppStandard": "c++20",
@@ -69,6 +71,4 @@
 			}
 		}
 	}
-	// Comment out this line to run as root instead.
-	// "remoteUser": "user"
 }

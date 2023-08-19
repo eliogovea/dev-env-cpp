@@ -9,23 +9,24 @@ ARG LLVM_VERSION="17"
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update -qq \
     && apt-get install -y --no-install-recommends \
-        bash-completion \
-        build-essential \
-        ca-certificates \
-        ccache \
-        cppcheck \
-        file \
-        gcovr \
-        gdb \
-        git \
-        gpg-agent \
-        python3 \
-        python3-pip \
-        software-properties-common \
-        ssh \
-        sudo \
-        valgrind \
-        wget
+    bash-completion \
+    build-essential \
+    ca-certificates \
+    ccache \
+    cppcheck \
+    file \
+    gcovr \
+    gdb \
+    git \
+    gpg-agent \
+    libgtest-dev \
+    python3 \
+    python3-pip \
+    software-properties-common \
+    ssh \
+    sudo \
+    valgrind \
+    wget
 
 RUN export DEBIAN_FRONTEND=noninteractive \
     && wget https://apt.llvm.org/llvm.sh \
@@ -35,13 +36,13 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 # https://apt.kitware.com/
 RUN export DEBIAN_FRONTEND=noninteractive \
     && wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
-        | gpg --dearmor - \
-        | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null \
+    | gpg --dearmor - \
+    | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null \
     && echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ jammy main' \
-        | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null \
+    | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null \
     && apt-get update -qq \
     && apt-get install -y --no-install-recommends \
-        cmake
+    cmake
 
 # Clean
 RUN export DEBIAN_FRONTEND=noninteractive \
