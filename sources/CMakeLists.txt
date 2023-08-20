@@ -6,30 +6,26 @@ project(
     LANGUAGES CXX
 )
 
-add_library(
-    ${PROJECT_NAME}_static STATIC
-    power.cpp
-    power.hpp
-)
+add_library(${PROJECT_NAME} INTERFACE)
 
 set_target_properties(
-    ${PROJECT_NAME}_static
+    ${PROJECT_NAME}
     PROPERTIES OUTPUT_NAME ${PROJECT_NAME}
                PUBLIC_HEADER power.hpp
 )
 
 target_include_directories(
-    ${PROJECT_NAME}_static
-    PUBLIC $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-           $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
+    ${PROJECT_NAME}
+    INTERFACE $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+              $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>
 )
 
 target_compile_features(
-    ${PROJECT_NAME}_static
-    PUBLIC cxx_std_20
+    ${PROJECT_NAME}
+    INTERFACE cxx_std_20
 )
 
-add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME}_static)
+add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
 # test
 
@@ -76,12 +72,12 @@ target_link_libraries(
 include(GNUInstallDirs)
 
 install(
-    TARGETS ${PROJECT_NAME}_static
-    EXPORT ${PROJECT_NAME}
-    COMPONENT ${PROJECT_NAME}
+    TARGETS                   ${PROJECT_NAME}
+    EXPORT                    ${PROJECT_NAME}
+    COMPONENT                 ${PROJECT_NAME}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    LIBRARY       DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    RUNTIME       DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
 install(
