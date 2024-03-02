@@ -4,8 +4,6 @@ ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=${USER_UID}
 
-ARG LLVM_VERSION="17"
-
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get update -qq \
     && apt-get install -y --no-install-recommends \
@@ -31,7 +29,12 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 RUN export DEBIAN_FRONTEND=noninteractive \
     && wget https://apt.llvm.org/llvm.sh \
     && chmod +x llvm.sh \
-    && ./llvm.sh ${LLVM_VERSION} all
+    && ./llvm.sh 18 all
+
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && wget https://apt.llvm.org/llvm.sh \
+    && chmod +x llvm.sh \
+    && ./llvm.sh 19 all
 
 # https://apt.kitware.com/
 RUN export DEBIAN_FRONTEND=noninteractive \
