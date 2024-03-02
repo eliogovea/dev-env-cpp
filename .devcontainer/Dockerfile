@@ -47,6 +47,16 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get install -y --no-install-recommends \
     cmake
 
+# Set locale
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && apt-get install -y \
+    locales \
+    locales-all
+
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
 # Clean
 RUN export DEBIAN_FRONTEND=noninteractive \
     && apt-get clean \
