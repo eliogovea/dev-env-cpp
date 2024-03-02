@@ -23,89 +23,45 @@ Template for a `CMake` based `C++` projects using `vscode`'s `devcontainer` to h
 
 ## CMake Project
 
-### Toolchains
-
-`cmake/toolchain` directory includes a set of [`cmake` `toolchain` files](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html) to define all parameters you want to use while building a `CMake` project.
-
-- `cmake/toolchain/gcc.cmake`
-  - Use the system `gcc` to compile
-  - Enable warnings for all build types
-    - `-Wall`
-    - `-Wextra`
-    - `-Wpedantic`
-  - Enable warnings as errors for all build types
-  - Set flags for differetn build types ``
-    - `CMAKE_BUILD_TYPE=Debug`
-      - -O0
-      - -g
-    - `CMAKE_BUILD_TYPE=Release`
-      - -O2
-    - `CMAKE_BUILD_TYPE=RelWithDebInfo`
-      - -O2
-      - -g
-    - `CMAKE_BUILD_TYPE=RelMinSize`
-      - Os
-- `cmake/toolchain/llvm.cmake`
-  - Use the system `clang++` to compile
-  - Enable warnings for all build types
-    - `-Wall`
-    - `-Wextra`
-    - `-Wpedantic`
-  - Enable warnings as errors for all build types
-  - Set flags for differetn build types ``
-    - `CMAKE_BUILD_TYPE=Debug`
-      - -O0
-      - -g
-    - `CMAKE_BUILD_TYPE=Release`
-      - -O2
-    - `CMAKE_BUILD_TYPE=RelWithDebInfo`
-      - -O2
-      - -g
-    - `CMAKE_BUILD_TYPE=RelMinSize`
-      - Os
-- `cmake/toolchain/gcc-coverage.cmake`
-  - generage code coverage
-
 ### Presets
 
-`CMakePresets.json` includes definitions for several [`CMake presets`](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html). Each preset is named after the toolchain file used in the config step
+`CMakePresets.json` includes definitions for several [`CMake presets`](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)
 
-- `gcc`
-- `llvm`
-- `gcc-coverage`
+- `make-gcc-debug`
+- `make-gcc-release`
+- `make-gcc-debug-coverage`
+- `make-clang-debug`
+- `make-clang-debug-sanitize-address`
+- `make-clang-debug-sanitize-leak`
+- `make-clang-debug-sanitize-memory`
+- `make-clang-debug-sanitize-thread`
+- `make-clang-debug-sanitize-undefined`
+- `make-clang-release`
 
-Each `preset` creates a directory in `build`, example: `build/gcc` has the build using `gcc` toolchain
+Each `preset` creates a directory inside `build`, example: `build/make-gcc-debug`
 
 #### Example
 
 - Configure
-  - `cmake --preset gcc`
+  - `cmake --preset make-gcc-debug`
 - Build
-  - `cmake --build --preset gcc`
+  - `cmake --build --preset make-gcc-debug`
 - Test
-  - `ctest --preset gcc`
+  - `ctest --preset make-gcc-debug`
 - Workflow
-  - `cmake --workflow --preset gcc`
+  - `cmake --workflow --preset make-gcc-debug`
 
 #### Coverage report
 
 ```bash
-cmake --workflow --preset gcc-coverage
+cmake --workflow --preset make-gcc-debug-coverage
 gcovr --verbose \
       --root . \
-      --object-directory ./build/gcc-coverage/ \
+      --object-directory ./build/make-gcc-debug-coverage/ \
       --filter sources/ \
       --exclude sources/.*_app.cpp \
       --exclude sources/.*_test.cpp \
       --html \
       --html-details \
-      --output ./build/gcc-coverage/coverage.html
+      --output ./build/make-gcc-debug-coverage/coverage.html
 ```
-
-#### Package
-
-Example using `gcc` preset
-
-- `cpack --preset gcc-package-TGZ`
-- `cpack --preset gcc-package-DEB`
-- `cpack --preset gcc-package-ALL`
