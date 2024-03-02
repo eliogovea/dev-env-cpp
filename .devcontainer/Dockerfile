@@ -36,6 +36,14 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && chmod +x llvm.sh \
     && ./llvm.sh 19 all
 
+# https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
+RUN export DEBIAN_FRONTEND=noninteractive \
+    && add-apt-repository ppa:ubuntu-toolchain-r/test \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+    gcc-13 \
+    g++-13
+
 # https://apt.kitware.com/
 RUN export DEBIAN_FRONTEND=noninteractive \
     && wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
