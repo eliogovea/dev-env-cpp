@@ -39,10 +39,10 @@
 					}
 				},
 				"terminal.integrated.defaultProfile.linux": "bash",
-				"C_Cpp.clang_format_path": "/usr/bin/clang-format-17",
+				"C_Cpp.clang_format_path": "/usr/bin/clang-format-18",
 				"C_Cpp.clang_format_style": "file",
-				"C_Cpp.clang_format_fallbackStyle": "Google",
-				"C_Cpp.default.compilerPath": "/usr/bin/clang++-17",
+				"C_Cpp.clang_format_fallbackStyle": "Visual Studio",
+				"C_Cpp.default.compilerPath": "/usr/bin/clang++-18",
 				"C_Cpp.default.defines": [],
 				"C_Cpp.default.cStandard": "c17",
 				"C_Cpp.default.cppStandard": "c++20",
