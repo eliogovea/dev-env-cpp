@@ -1,17 +1,29 @@
 cmake_minimum_required(VERSION 3.11)
 
 project(
-    power
+    math
     VERSION 0.0.1
     LANGUAGES CXX
 )
 
 add_library(${PROJECT_NAME} INTERFACE)
 
+set(
+    PROJECT_PUBLIC_HEADERS
+    geometry_line.hpp
+    geometry_point.hpp
+    geometry_point_operations.hpp
+    geometry_point_traits.hpp
+    geometry_polygon_convex.hpp
+    geometry_segment.hpp
+    geometry_segment_traits.hpp
+    power.hpp
+)
+
 set_target_properties(
     ${PROJECT_NAME}
     PROPERTIES OUTPUT_NAME ${PROJECT_NAME}
-               PUBLIC_HEADER power.hpp
+               PUBLIC_HEADER "${PROJECT_PUBLIC_HEADERS}"
 )
 
 target_include_directories(
@@ -27,7 +39,26 @@ target_compile_features(
 
 add_library(${PROJECT_NAME}::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
 
-# test
+# Target to check all headers
+add_library(${PROJECT_NAME}_objects STATIC)
+
+target_sources(
+    ${PROJECT_NAME}_objects
+    PRIVATE geometry_point.cpp
+            geometry_point_operations.cpp
+            geometry_point_test.cpp
+            geometry_point_traits.cpp
+            geometry_polygon_convex.cpp
+            geometry_segment.cpp
+            geometry_segment_traits.cpp
+)
+
+target_link_libraries(
+    ${PROJECT_NAME}_objects
+    PRIVATE ${PROJECT_NAME}::${PROJECT_NAME}
+)
+
+# tests
 
 include(CTest)
 enable_testing()
@@ -36,7 +67,15 @@ find_package(GTest)
 
 add_executable(
     ${PROJECT_NAME}_test
-    power_test.cpp
+)
+
+target_sources(
+    ${PROJECT_NAME}_test
+    PRIVATE geometry_point_operations_test.cpp
+            geometry_point_test.cpp
+            geometry_point_traits_test.cpp
+            geometry_segment_traits_test.cpp
+            power_test.cpp
 )
 
 target_link_libraries(
@@ -50,10 +89,10 @@ add_test(
     COMMAND ${PROJECT_NAME}_test
 )
 
-# app
+# apps
 
 add_executable(
-    ${PROJECT_NAME}_app
+    power_app
     power_app.cpp
 )
 
@@ -73,7 +112,6 @@ include(GNUInstallDirs)
 
 install(
     TARGETS                   ${PROJECT_NAME}
-                              ${PROJECT_NAME}_app
     EXPORT                    ${PROJECT_NAME}
     COMPONENT                 ${PROJECT_NAME}
     LIBRARY       DESTINATION ${CMAKE_INSTALL_LIBDIR}

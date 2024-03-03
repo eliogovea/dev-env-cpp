@@ -78,13 +78,13 @@ BraceWrapping:
   AfterCaseLabel: false
   AfterClass: true
   AfterControlStatement: Never
-  AfterEnum: false
+  AfterEnum: true
   AfterExternBlock: false
-  AfterFunction: false
+  AfterFunction: true
   AfterNamespace: false
   AfterObjCDeclaration: false
   AfterStruct: true
-  AfterUnion: false
+  AfterUnion: true
   BeforeCatch: false
   BeforeElse: false
   BeforeLambdaBody: false
@@ -100,7 +100,7 @@ BreakAfterReturnType: None
 BreakArrays: true
 BreakBeforeBinaryOperators: All
 BreakBeforeConceptDeclarations: Always
-BreakBeforeBraces: Linux
+BreakBeforeBraces: Custom
 BreakBeforeInlineASMColon: OnlyMultiline
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeComma
