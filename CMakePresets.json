@@ -7,36 +7,40 @@
   },
   "configurePresets": [
     {
-      "name": "make-gcc-debug",
+      "name": "make-gcc-base",
       "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "g++-13",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      },
+      "hidden": true
+    },
+    {
+      "name": "make-gcc-debug",
+      "inherits": ["make-gcc-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "g++-13",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
-      }
-    },
-    {
-      "name": "make-gcc-release",
-      "generator": "Unix Makefiles",
-      "binaryDir": "${sourceDir}/build/${presetName}",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "g++-13",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0"
       }
     },
     {
       "name": "make-gcc-debug-coverage",
-      "generator": "Unix Makefiles",
+      "inherits": ["make-gcc-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror -fprofile-arcs -ftest-coverage"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -fprofile-arcs -ftest-coverage"
+      }
+    },
+    {
+      "name": "make-gcc-release",
+      "inherits": ["make-gcc-base"],
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2"
       }
     },
     {
