@@ -22,7 +22,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_CXX_FLAGS_DEBUG": "-O0"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g"
       }
     },
     {
@@ -31,7 +31,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -fprofile-arcs -ftest-coverage"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fprofile-arcs -ftest-coverage"
       }
     },
     {
@@ -44,80 +44,78 @@
       }
     },
     {
-      "name": "make-clang-debug",
+      "name": "make-clang-base",
       "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "CMAKE_CXX_COMPILER": "clang++-19",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      },
+      "hidden": true
+    },
+    {
+      "name": "make-clang-debug",
+      "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g"
       }
     },
     {
       "name": "make-clang-debug-sanitize-address",
-      "generator": "Unix Makefiles",
+      "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror -fsanitize=address -fno-omit-frame-pointer"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=address -fno-omit-frame-pointer"
       }
     },
     {
       "name": "make-clang-debug-sanitize-leak",
-      "generator": "Unix Makefiles",
+      "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror -fsanitize=leak -fno-omit-frame-pointer"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=leak -fno-omit-frame-pointer"
       }
     },
     {
       "name": "make-clang-debug-sanitize-memory",
-      "generator": "Unix Makefiles",
+      "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror -fsanitize=memory -fno-omit-frame-pointer"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=memory -fno-omit-frame-pointer"
       }
     },
     {
       "name": "make-clang-debug-sanitize-thread",
-      "generator": "Unix Makefiles",
+      "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror -fsanitize=thread -fno-omit-frame-pointer"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=thread -fno-omit-frame-pointer"
       }
     },
     {
       "name": "make-clang-debug-sanitize-undefined",
-      "generator": "Unix Makefiles",
+      "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror -fsanitize=undefined -fno-omit-frame-pointer"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=undefined -fno-omit-frame-pointer"
       }
     },
     {
       "name": "make-clang-release",
-      "generator": "Unix Makefiles",
+      "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2"
       }
     }
   ],
