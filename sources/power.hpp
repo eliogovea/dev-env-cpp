@@ -13,15 +13,15 @@ concept Multipliable = requires(T lhs, T rhs) {
 template <Multipliable Base>
 constexpr auto Power(Base base, std::uint64_t exponent) -> Base
 {
-    Base result = {1};
+    auto power = Base{1};
     while (exponent > 0) {
         if (exponent & std::uint64_t{1}) {
-            result = result * base;
+            power = power * base;
         }
-        base = base * base;
-        exponent >>= std::uint64_t{1};
+        base     = base * base;
+        exponent = exponent >> std::uint64_t{1};
     }
-    return result;
+    return power;
 }
 
 }  // namespace Math
