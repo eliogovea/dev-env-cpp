@@ -1,8 +1,7 @@
 #include <concepts>
 #include <cstdint>
 
-namespace Math
-{
+namespace Math {
 
 /// @concept Multipliable
 /// @brief A concept to check if a type supports multiplication operations.
