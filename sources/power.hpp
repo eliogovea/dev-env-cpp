@@ -1,23 +1,25 @@
 #include <cstdint>
 
-namespace Math {
+namespace Math
+{
 
 template <typename T>
 concept Multipliable = requires(T lhs, T rhs) {
     // clang-format off
     lhs * rhs;
-    // clang-foramt on
+    // clang-format on
 };
 
 template <Multipliable Base>
-constexpr auto Power(Base base, std::uint64_t exponent) -> Base {
+constexpr auto Power(Base base, std::uint64_t exponent) -> Base
+{
     Base result = {1};
     while (exponent > 0) {
-        if (exponent & std::uint64_t {1}) {
+        if (exponent & std::uint64_t{1}) {
             result = result * base;
         }
         base = base * base;
-        exponent >>= std::uint64_t {1};
+        exponent >>= std::uint64_t{1};
     }
     return result;
 }

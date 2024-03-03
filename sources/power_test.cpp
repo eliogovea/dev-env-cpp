@@ -2,7 +2,8 @@
 
 #include <gtest/gtest.h>
 
-TEST(Math, Power) {
+TEST(Math, Power)
+{
     static_assert(Math::Power(2, 0) == 1);  // NOLINT
     static_assert(Math::Power(2, 1) == 2);  // NOLINT
     static_assert(Math::Power(2, 2) == 4);  // NOLINT

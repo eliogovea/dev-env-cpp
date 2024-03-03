@@ -36,6 +36,7 @@
         "editor.tabSize": 4,
         "editor.insertSpaces": true,
         "editor.detectIndentation": true,
+        "editor.indentSize": "tabSize",
         "editor.fontSize": 14,
         "editor.formatOnSave": true,
         "editor.lineNumbers": "on",

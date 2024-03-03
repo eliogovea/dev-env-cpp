@@ -13,7 +13,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "g++"
+        "CMAKE_CXX_COMPILER": "g++-13"
       }
     },
     {
@@ -23,7 +23,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "g++"
+        "CMAKE_CXX_COMPILER": "g++-13"
       }
     },
     {
@@ -44,7 +44,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-18"
+        "CMAKE_CXX_COMPILER": "clang++-19"
       }
     },
     {
@@ -54,7 +54,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-18",
+        "CMAKE_CXX_COMPILER": "clang++-19",
         "CMAKE_CXX_FLAGS": "-fsanitize=address -fno-omit-frame-pointer"
       }
     },
@@ -65,7 +65,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-18",
+        "CMAKE_CXX_COMPILER": "clang++-19",
         "CMAKE_CXX_FLAGS": "-fsanitize=leak -fno-omit-frame-pointer"
       }
     },
@@ -76,7 +76,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-18",
+        "CMAKE_CXX_COMPILER": "clang++-19",
         "CMAKE_CXX_FLAGS": "-fsanitize=memory -fno-omit-frame-pointer"
       }
     },
@@ -87,7 +87,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-18",
+        "CMAKE_CXX_COMPILER": "clang++-19",
         "CMAKE_CXX_FLAGS": "-fsanitize=thread -fno-omit-frame-pointer"
       }
     },
@@ -98,7 +98,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-18",
+        "CMAKE_CXX_COMPILER": "clang++-19",
         "CMAKE_CXX_FLAGS": "-fsanitize=undefined -fno-omit-frame-pointer"
       }
     },
@@ -109,7 +109,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-18"
+        "CMAKE_CXX_COMPILER": "clang++-19"
       }
     }
   ],
@@ -173,7 +173,7 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": { "noTestsAction": "error", "stopOnFailure": true }
     },
     {
       "name": "make-gcc-release",
@@ -182,7 +182,7 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": { "noTestsAction": "error", "stopOnFailure": true }
     },
     {
       "name": "make-gcc-debug-coverage",
@@ -191,7 +191,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     },
     {
       "name": "make-clang-debug",
@@ -200,7 +203,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     },
     {
       "name": "make-clang-debug-sanitize-address",
@@ -209,7 +215,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     },
     {
       "name": "make-clang-debug-sanitize-leak",
@@ -218,7 +227,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     },
     {
       "name": "make-clang-debug-sanitize-memory",
@@ -227,7 +239,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     },
     {
       "name": "make-clang-debug-sanitize-thread",
@@ -236,7 +251,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     },
     {
       "name": "make-clang-debug-sanitize-undefined",
@@ -245,7 +263,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     },
     {
       "name": "make-clang-release",
@@ -254,7 +275,10 @@
         "verbosity": "extra",
         "outputOnFailure": true
       },
-      "execution": {"noTestsAction": "error", "stopOnFailure": true}
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      }
     }
   ],
   "packagePresets": [
