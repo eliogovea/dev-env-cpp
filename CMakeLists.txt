@@ -69,3 +69,18 @@ if (ENABLE_COVERAGE)
         DEPENDS coverage_lcov
     )
 endif(ENABLE_COVERAGE)
+
+if (ENABLE_STATIC_ANALYSIS)
+    if ("${STATIC_ANALYSIS_RUN_CLANG_TIDY}" STREQUAL "")
+        find_program(STATIC_ANALYSIS_RUN_CLANG_TIDY run-clang-tidy)
+    endif()
+
+    if ("${STATIC_ANALYSIS_RUN_CLANG_TIDY}" STREQUAL "STATIC_ANALYSIS_RUN_CLANG_TIDY-NOTFOUND")
+        message(FATAL_ERROR "run-clang-tidy not found")
+    endif()
+
+    add_custom_target(
+        static-analysis-clang-tidy
+        COMMAND ${STATIC_ANALYSIS_RUN_CLANG_TIDY} -p ${CMAKE_BINARY_DIR}
+    )
+endif(ENABLE_STATIC_ANALYSIS)

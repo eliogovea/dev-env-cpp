@@ -51,6 +51,12 @@ Each `preset` creates a directory inside `build`, example: `build/make-gcc-debug
 - Workflow
   - `cmake --workflow --preset make-gcc-debug`
 
+#### Static analysis
+
+`cmake --workflow --preset static-analysis` runs:
+
+- `clang-tidy`
+
 #### Coverage report
 
 `cmake --workflow --preset make-gcc-debug-coverage` generates:

@@ -67,6 +67,17 @@
       }
     },
     {
+      "name": "make-clang-debug-static-analysis",
+      "inherits": ["make-clang-base"],
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
+        "ENABLE_STATIC_ANALYSIS": true,
+        "STATIC_ANALYSIS_RUN_CLANG_TIDY": "/usr/lib/llvm-19/bin/run-clang-tidy"
+      }
+    },
+    {
       "name": "make-clang-debug-sanitize-address",
       "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
@@ -148,6 +159,12 @@
     {
       "name": "make-clang-debug",
       "configurePreset": "make-clang-debug",
+      "jobs": 0
+    },
+    {
+      "name": "make-clang-debug-static-analysis",
+      "configurePreset": "make-clang-debug-static-analysis",
+      "targets": ["static-analysis-clang-tidy"],
       "jobs": 0
     },
     {
@@ -426,6 +443,19 @@
         {
           "type": "package",
           "name": "make-clang-debug"
+        }
+      ]
+    },
+    {
+      "name": "static-analysis",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "make-clang-debug-static-analysis"
+        },
+        {
+          "type": "build",
+          "name": "make-clang-debug-static-analysis"
         }
       ]
     },
