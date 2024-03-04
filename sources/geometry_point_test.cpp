@@ -2,9 +2,11 @@
 
 #include <gtest/gtest.h>
 
-TEST(GeometryPoint, CheckPointCreate)
+template struct Geometry::Point<int>;
+
+TEST(GeometryPoint, CheckPointConstructor)
 {
-    auto const point = Geometry::Point<int>{1, 2};
+    auto const point = Geometry::Point<int>(1, 2);
     EXPECT_EQ(point.x, 1);
     EXPECT_EQ(point.y, 2);
 }
@@ -54,6 +56,7 @@ TEST(GeometryPoint, CheckPointScaleUp)
     auto const rhs    = int{2};
     auto const scaled = Geometry::Point<int>{2, 4};
     EXPECT_EQ(lhs * rhs, scaled);
+    EXPECT_EQ(rhs * lhs, scaled);
 }
 
 TEST(GeometryPoint, CheckPointScaleDown)
