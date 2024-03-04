@@ -53,15 +53,7 @@ Each `preset` creates a directory inside `build`, example: `build/make-gcc-debug
 
 #### Coverage report
 
-```bash
-cmake --workflow --preset make-gcc-debug-coverage
-gcovr --verbose \
-      --root . \
-      --object-directory ./build/make-gcc-debug-coverage/ \
-      --filter sources/ \
-      --exclude sources/.*_app.cpp \
-      --exclude sources/.*_test.cpp \
-      --html \
-      --html-details \
-      --output ./build/make-gcc-debug-coverage/coverage.html
-```
+`cmake --workflow --preset make-gcc-debug-coverage` generates:
+
+- `LCOV` coverage file in `build/make-gcc-debug-coverage/lcov.info`
+- `HTML` coverage report in `build/make-gcc-debug-coverage/lcov/index.html`

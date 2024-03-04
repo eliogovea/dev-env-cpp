@@ -17,6 +17,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     gdb \
     git \
     gpg-agent \
+    lcov \
     libgtest-dev \
     python3 \
     python3-pip \

@@ -31,7 +31,11 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fprofile-arcs -ftest-coverage"
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fprofile-arcs -ftest-coverage",
+        "ENABLE_COVERAGE": "ON",
+        "COVERAGE_LCOV": "lcov",
+        "COVERAGE_GCOV": "gcov-13",
+        "COVERAGE_GENHTML": "genhtml"
       }
     },
     {
@@ -131,8 +135,14 @@
       "jobs": 0
     },
     {
-      "name": "make-gcc-debug-coverage",
+      "name": "make-gcc-debug-coverage-build-tests",
       "configurePreset": "make-gcc-debug-coverage",
+      "jobs": 0
+    },
+    {
+      "name": "make-gcc-debug-coverage-generate-report",
+      "configurePreset": "make-gcc-debug-coverage",
+      "targets": ["coverage_lcov", "coverage_html"],
       "jobs": 0
     },
     {
@@ -386,11 +396,15 @@
         },
         {
           "type": "build",
-          "name": "make-gcc-debug-coverage"
+          "name": "make-gcc-debug-coverage-build-tests"
         },
         {
           "type": "test",
           "name": "make-gcc-debug-coverage"
+        },
+        {
+          "type": "build",
+          "name": "make-gcc-debug-coverage-generate-report"
         }
       ]
     },
