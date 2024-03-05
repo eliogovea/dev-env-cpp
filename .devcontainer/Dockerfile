@@ -30,12 +30,13 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 RUN export DEBIAN_FRONTEND=noninteractive \
     && wget https://apt.llvm.org/llvm.sh \
     && chmod +x llvm.sh \
-    && ./llvm.sh 18 all
+    && ./llvm.sh 19 all
 
 RUN export DEBIAN_FRONTEND=noninteractive \
-    && wget https://apt.llvm.org/llvm.sh \
-    && chmod +x llvm.sh \
-    && ./llvm.sh 19 all
+    && find /usr/lib/llvm-19/bin \( -type f -o -type l \) -print0 \
+    | xargs -0 -I %% \
+    bash -c 'update-alternatives --install /usr/bin/$(basename "${1}") $(basename "${1}") "${1}" 100' \
+    -- '%%'
 
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/test
 RUN export DEBIAN_FRONTEND=noninteractive \

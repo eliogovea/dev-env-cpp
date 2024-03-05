@@ -10,8 +10,8 @@
       "name": "make-base",
       "generator": "Unix Makefiles",
       "cacheVariables": {
-        "ENABLE_FORMATTING": true,
-        "CLANG_FORMAT": "/usr/lib/llvm-19/bin/clang-format"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "ENABLE_FORMATTING": true
       },
       "hidden": true
     },
@@ -21,8 +21,7 @@
       "generator": "Unix Makefiles",
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "g++-13",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
       },
       "hidden": true
     },
@@ -62,9 +61,8 @@
       "inherits": ["make-base"],
       "generator": "Unix Makefiles",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "clang++-19",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
       },
       "hidden": true
     },
@@ -85,7 +83,7 @@
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
         "ENABLE_STATIC_ANALYSIS": true,
-        "STATIC_ANALYSIS_RUN_CLANG_TIDY": "/usr/lib/llvm-19/bin/run-clang-tidy"
+        "STATIC_ANALYSIS_RUN_CLANG_TIDY": "run-clang-tidy"
       }
     },
     {
@@ -121,8 +119,6 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_CXX_COMPILER": "clang++-19",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=thread -fno-omit-frame-pointer"
       }
     },
