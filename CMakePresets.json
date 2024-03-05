@@ -7,7 +7,17 @@
   },
   "configurePresets": [
     {
+      "name": "make-base",
+      "generator": "Unix Makefiles",
+      "cacheVariables": {
+        "ENABLE_FORMATTING": true,
+        "CLANG_FORMAT": "/usr/lib/llvm-19/bin/clang-format"
+      },
+      "hidden": true
+    },
+    {
       "name": "make-gcc-base",
+      "inherits": ["make-base"],
       "generator": "Unix Makefiles",
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "g++-13",
@@ -49,6 +59,7 @@
     },
     {
       "name": "make-clang-base",
+      "inherits": ["make-base"],
       "generator": "Unix Makefiles",
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "clang++-19",

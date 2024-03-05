@@ -8,6 +8,12 @@ project(
     LANGUAGES    CXX
 )
 
+
+option(ENABLE_COVERAGE        "Enable coverage"        OFF)
+option(ENABLE_FORMATTING      "Enable formatting"      OFF)
+option(ENABLE_STATIC_ANALYSIS "Enable static analysis" OFF)
+
+
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_LIST_DIR}/cmake/modules)
 
 include(GNUInstallDirs)
@@ -69,6 +75,26 @@ if (ENABLE_COVERAGE)
         DEPENDS coverage_lcov
     )
 endif(ENABLE_COVERAGE)
+
+if (ENABLE_FORMATTING)
+    if ("${CLANG_FORMAT}" STREQUAL "")
+        find_program(CLANG_FORMAT clang-format)
+    endif()
+
+    if ("${CLANG_FORMAT}" STREQUAL "CLANG_FORMAT-NOTFOUND")
+        message(FATAL_ERROR "clang-format not found")
+    endif()
+
+    add_custom_target(
+        format
+        COMMAND find ${CMAKE_CURRENT_LIST_DIR}/sources
+                     -type f
+                     -regextype posix-egrep
+                     -regex "\".+\\\.(h|c|hh|cc|hpp|cpp|hxx|cxx|h++|c++|H|C)$$\""
+                     -exec ${CLANG_FORMAT} -i --verbose {} \\\;
+    )
+endif(ENABLE_FORMATTING)
+
 
 if (ENABLE_STATIC_ANALYSIS)
     if ("${STATIC_ANALYSIS_RUN_CLANG_TIDY}" STREQUAL "")
