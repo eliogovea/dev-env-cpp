@@ -77,8 +77,15 @@ struct Segment
                     == SegmentRelativeHalfPlaneIdentifier::Up;
             }
 
-            return PointCross(lhs - segment.from, rhs - segment.from)
-                 > PointCoordinateZeroValue<Point>;
+            auto const cross
+                = PointCross(lhs - segment.from, rhs - segment.from);
+
+            if (cross != PointCoordinateZeroValue<Point>) {
+                return cross > PointCoordinateZeroValue<Point>;
+            }
+
+            return PointDot(lhs - segment.from, lhs - segment.from)
+                 < PointDot(rhs - segment.from, rhs - segment.from);
         }
     };
 };
