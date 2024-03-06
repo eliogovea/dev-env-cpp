@@ -35,29 +35,25 @@ using PointCoordinateType = typename PointCoordinate<Point>::Type;
 
 template <typename Point>
     requires PointCheckValue<Point>
-struct PointCoordinateZero
-    : public std::integral_constant<PointCoordinateType<Point>,
-                                    PointCoordinateType<Point>{0}>
-{
-};
+inline constexpr auto PointCoordinateZero = PointCoordinateType<Point>{0};
 
 template <typename Point>
     requires PointCheckValue<Point>
-inline constexpr auto PointCoordinateZeroValue
-    = PointCoordinateZero<Point>::value;
+inline constexpr auto PointCoordinateOne = PointCoordinateType<Point>{1};
 
 template <typename Point>
     requires PointCheckValue<Point>
-struct PointCoordinateOrigin
-    : public std::integral_constant<Point,
-                                    Point{PointCoordinateZeroValue<Point>,
-                                          PointCoordinateZeroValue<Point>}>
-{
-};
+inline constexpr auto PointCoordinateOrigin
+    = Point{PointCoordinateZero<Point>, PointCoordinateZero<Point>};
 
 template <typename Point>
     requires PointCheckValue<Point>
-inline constexpr auto PointCoordinateOriginValue
-    = PointCoordinateOrigin<Point>::value;
+inline constexpr auto PointUnitaryVectorXAxis
+    = Point{PointCoordinateOne<Point>, PointCoordinateZero<Point>};
+
+template <typename Point>
+    requires PointCheckValue<Point>
+inline constexpr auto PointUnitaryVectorYAxis
+    = Point{PointCoordinateZero<Point>, PointCoordinateOne<Point>};
 
 }  // namespace Geometry

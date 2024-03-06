@@ -22,7 +22,7 @@ struct Line
 
     auto Normalize() -> Line&
     {
-        if (direction < PointCoordinateOriginValue<Point>) {
+        if (direction < PointCoordinateOrigin<Point>) {
             direction.x = -direction.x;
             direction.y = -direction.y;
             cross       = -cross;

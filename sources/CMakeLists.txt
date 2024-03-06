@@ -74,6 +74,7 @@ target_sources(
     PRIVATE geometry_point_operations_test.cpp
             geometry_point_test.cpp
             geometry_point_traits_test.cpp
+            geometry_segment_test.cpp
             geometry_segment_traits_test.cpp
             power_test.cpp
 )

@@ -8,8 +8,8 @@
 namespace Geometry {
 
 static_assert(PointCheckValue<Point<int>>);
-static_assert(PointCoordinateZeroValue<Point<int>> == 0);
-static_assert(PointCoordinateOriginValue<Point<int>> == Point<int>{0, 0});
+static_assert(PointCoordinateZero<Point<int>> == 0);
+static_assert(PointCoordinateOrigin<Point<int>> == Point<int>{0, 0});
 static_assert(std::is_same_v<PointCoordinateType<Point<int>>, int>);
 
 }  // namespace Geometry
