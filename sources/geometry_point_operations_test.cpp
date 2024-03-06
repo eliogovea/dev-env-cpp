@@ -59,3 +59,40 @@ TEST(GeometryPoint, CheckPointComparatorYX)
     // compare equal points
     EXPECT_FALSE(comparator_yx(Point{0, 0}, Point{0, 0}));
 }
+
+TEST(GeometryPoint, CheckDefaultPointAngleComparator)
+{
+    using Point                = Geometry::Point<int>;
+    using PointAngleComparator = Geometry::PointAngleComparator<Point>;
+
+    auto const comparator_angle = PointAngleComparator{};
+
+    EXPECT_EQ(comparator_angle.GetRelativePosition(Point{0, 0}),
+              PointAngleComparator::PointRelativeDirection::CounterClockWise);
+
+    EXPECT_EQ(comparator_angle.GetRelativePosition(Point{1, 0}),
+              PointAngleComparator::PointRelativeDirection::CounterClockWise);
+
+    EXPECT_EQ(comparator_angle.GetRelativePosition(Point{0, 1}),
+              PointAngleComparator::PointRelativeDirection::CounterClockWise);
+
+    EXPECT_EQ(comparator_angle.GetRelativePosition(Point{-1, 0}),
+              PointAngleComparator::PointRelativeDirection::ClockWise);
+
+    EXPECT_EQ(comparator_angle.GetRelativePosition(Point{0, -1}),
+              PointAngleComparator::PointRelativeDirection::ClockWise);
+
+    // compare points on different half planes
+    EXPECT_TRUE(comparator_angle(Point{0, 1}, Point{0, -1}));
+    EXPECT_FALSE(comparator_angle(Point{0, -1}, Point{0, 1}));
+
+    // compare points on the same half plane
+    EXPECT_TRUE(comparator_angle(Point{1, 0}, Point{0, 1}));
+    EXPECT_FALSE(comparator_angle(Point{0, 1}, Point{1, 0}));
+    EXPECT_TRUE(comparator_angle(Point{-1, 0}, Point{0, -1}));
+    EXPECT_FALSE(comparator_angle(Point{0, -1}, Point{-1, 0}));
+
+    // compare collinear points with the "origin" of the comparator
+    EXPECT_TRUE(comparator_angle(Point{0, 1}, Point{0, 2}));
+    EXPECT_FALSE(comparator_angle(Point{0, 2}, Point{0, 1}));
+}
