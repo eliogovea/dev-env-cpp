@@ -8,9 +8,9 @@ namespace Geometry {
 
 enum class LineRelativePositionIdentifier
 {
-    Down = -1,
-    On   = 0,
-    Up   = +1
+    Left  = +1,
+    On    = 0,
+    Right = +1
 };
 
 template <typename Point>
@@ -31,20 +31,32 @@ struct Line
         return *this;
     }
 
+    auto Normalize() const -> Line
+    {
+        auto line = *this;
+        return line.Normalize();
+    }
+
     auto GetRelativePosition(Point const& rhs) const
         -> LineRelativePositionIdentifier
     {
         auto const rhs_cross = PointCross(direction, rhs);
 
         if (rhs_cross < cross) {
-            return LineRelativePositionIdentifier::Down;
+            return LineRelativePositionIdentifier::Left;
         }
 
         if (cross < rhs_cross) {
-            return LineRelativePositionIdentifier::Up;
+            return LineRelativePositionIdentifier::Right;
         }
 
         return LineRelativePositionIdentifier::On;
+    }
+
+    auto CheckLineParallel(Line const& line) const -> bool
+    {
+        return PointCross(direction, line.direction)
+            == PointCoordinateZero<Point>;
     }
 };
 

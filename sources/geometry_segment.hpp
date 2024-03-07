@@ -6,12 +6,6 @@
 
 namespace Geometry {
 
-enum class SegmentRelativeHalfPlaneIdentifier
-{
-    Up   = -1,
-    Down = +1
-};
-
 template <typename Point>
     requires PointCheckValue<Point>
 struct Segment
