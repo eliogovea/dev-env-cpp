@@ -11,6 +11,7 @@ add_library(${PROJECT_NAME} INTERFACE)
 set(
     PROJECT_PUBLIC_HEADERS
     geometry_line.hpp
+    geometry_line_traits.hpp
     geometry_point.hpp
     geometry_point_operations.hpp
     geometry_point_traits.hpp
@@ -44,7 +45,9 @@ add_library(${PROJECT_NAME}_objects STATIC)
 
 target_sources(
     ${PROJECT_NAME}_objects
-    PRIVATE geometry_point.cpp
+    PRIVATE geometry_line.cpp
+            geometry_line_traits.cpp
+            geometry_point.cpp
             geometry_point_operations.cpp
             geometry_point_test.cpp
             geometry_point_traits.cpp
@@ -71,7 +74,9 @@ add_executable(
 
 target_sources(
     ${PROJECT_NAME}_test
-    PRIVATE geometry_point_operations_test.cpp
+    PRIVATE geometry_line_test.cpp
+            geometry_line_traits_test.cpp
+            geometry_point_operations_test.cpp
             geometry_point_test.cpp
             geometry_point_traits_test.cpp
             geometry_segment_test.cpp
