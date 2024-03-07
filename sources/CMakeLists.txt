@@ -18,6 +18,7 @@ set(
     geometry_polygon_convex.hpp
     geometry_segment.hpp
     geometry_segment_traits.hpp
+    geometry_value_sign.hpp
     power.hpp
 )
 
@@ -54,6 +55,7 @@ target_sources(
             geometry_polygon_convex.cpp
             geometry_segment.cpp
             geometry_segment_traits.cpp
+            geometry_value_sign.cpp
 )
 
 target_link_libraries(
@@ -79,8 +81,10 @@ target_sources(
             geometry_point_operations_test.cpp
             geometry_point_test.cpp
             geometry_point_traits_test.cpp
+            geometry_polygon_convex_test.cpp
             geometry_segment_test.cpp
             geometry_segment_traits_test.cpp
+            geometry_value_sign_test.cpp
             power_test.cpp
 )
 
