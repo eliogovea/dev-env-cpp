@@ -1,0 +1,29 @@
+name: CMake
+
+on:
+  push:
+    branches: ["dev"]
+
+env:
+  BRANCH_NAME: ${{ github.ref_name }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt install ccache libgtest-dev lcov
+
+      - name: Generate coverage report
+        run: cmake --workflow --preset make-gcc-debug-coverage
+
+      - name: Deploy coverage report
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: coverage
+          target-folder: coverage/${{ github.ref_name }}
+          folder: build/make-gcc-debug-coverage/lcov
+          clean: true
