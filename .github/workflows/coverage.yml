@@ -2,7 +2,7 @@ name: CMake
 
 on:
   push:
-    branches: ["dev"]
+    branches: ["master", "dev"]
 
 env:
   BRANCH_NAME: ${{ github.ref_name }}
