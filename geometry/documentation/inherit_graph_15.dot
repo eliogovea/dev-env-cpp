@@ -1,0 +1,8 @@
+digraph "Graphical Class Hierarchy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node0 [label="Geometry::SegmentPoint\l\< Segment\< Point \> \>",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structGeometry_1_1SegmentPoint_3_01Segment_3_01Point_01_4_01_4.html",tooltip=" "];
+}
