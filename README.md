@@ -64,4 +64,17 @@ Each `preset` creates a directory inside `build`, example: `build/make-gcc-debug
 - `LCOV` coverage file in `build/make-gcc-debug-coverage/lcov.info`
 - `HTML` coverage report in `build/make-gcc-debug-coverage/lcov/index.html`
 
-`git push` to `master` branch deploys the `HTML` coverage to [github pages](https://eliogovea.github.io/dev-env-cpp/coverage/master/)
+changes to `master` branch triggers an action to deploy the coverage report to [github pages](https://eliogovea.github.io/dev-env-cpp/master/coverage/index.html)
+
+changes to `dev` branch triggers an action to deploy the coverage report to [github pages](https://eliogovea.github.io/dev-env-cpp/dev/coverage/index.html)
+
+#### Documentation
+
+```
+mkdir -p build
+doxygen Doxyfile
+```
+
+changes to `master` branch triggers an action to deploy the documentation to [github pages](https://eliogovea.github.io/dev-env-cpp/master/documentation/index.html)
+
+changes to `dev` branch triggers an action to deploy the documentation to [github pages](https://eliogovea.github.io/dev-env-cpp/dev/documentation/index.html)
