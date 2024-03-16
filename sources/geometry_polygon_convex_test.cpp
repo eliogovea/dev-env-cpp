@@ -60,3 +60,38 @@ TEST(GeometryPolygonConvex, CheckNoConvexCW)
 
     EXPECT_FALSE(Geometry::CheckConvex(std::span{points}));
 }
+
+TEST(GeometryPolygonConvex, NormalizeThreePointsLine)
+{
+    Geometry::Point<int> points[] = {
+        {0, 0},
+        {1, 1},
+        {2, 2}
+    };
+
+    EXPECT_TRUE(Geometry::CheckConvex(std::span{points}));
+
+    auto points_normalized
+        = Geometry::NormalizeConvexPolygon(std::span{points});
+
+    EXPECT_EQ(points_normalized.size(), 2);
+    EXPECT_EQ(points_normalized[0], Geometry::Point(0, 0));
+    EXPECT_EQ(points_normalized[1], Geometry::Point(2, 2));
+}
+
+TEST(GeometryPolygonConvex, NormalizeThreePoints)
+{
+    Geometry::Point<int> points[] = {
+        {1, 0},
+        {0, 1},
+        {0, 0}
+    };
+
+    auto points_normalized
+        = Geometry::NormalizeConvexPolygon(std::span{points});
+
+    EXPECT_EQ(points_normalized.size(), 3);
+    EXPECT_EQ(points_normalized[0], Geometry::Point(0, 0));
+    EXPECT_EQ(points_normalized[1], Geometry::Point(1, 0));
+    EXPECT_EQ(points_normalized[2], Geometry::Point(0, 1));
+}
