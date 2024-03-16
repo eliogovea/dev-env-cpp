@@ -95,3 +95,69 @@ TEST(GeometryPolygonConvex, NormalizeThreePoints)
     EXPECT_EQ(points_normalized[1], Geometry::Point(1, 0));
     EXPECT_EQ(points_normalized[2], Geometry::Point(0, 1));
 }
+
+TEST(GeometryPolygonConvex, CheckConvexHullGrahamScanOnePoint)
+{
+    Geometry::Point<int> points[] = {
+        {0, 0},
+    };
+
+    auto points_convex_hull
+        = Geometry::GetConvexHulGrahamScan(std::span{points});
+
+    EXPECT_EQ(points_convex_hull.size(), 1);
+    EXPECT_EQ(points_convex_hull[0], Geometry::Point(0, 0));
+}
+
+TEST(GeometryPolygonConvex, CheckConvexHullGrahamScanTwoEqualPoints)
+{
+    Geometry::Point<int> points[] = {
+        {0, 0},
+        {0, 0},
+    };
+
+    auto points_convex_hull
+        = Geometry::GetConvexHulGrahamScan(std::span{points});
+
+    EXPECT_EQ(points_convex_hull.size(), 1);
+    EXPECT_EQ(points_convex_hull[0], Geometry::Point(0, 0));
+}
+
+TEST(GeometryPolygonConvex, CheckConvexHullGrahamScanThreeEqualPoints)
+{
+    Geometry::Point<int> points[] = {
+        {0, 0},
+        {0, 0},
+        {0, 0},
+    };
+
+    auto points_convex_hull
+        = Geometry::GetConvexHulGrahamScan(std::span{points});
+
+    EXPECT_EQ(points_convex_hull.size(), 1);
+    EXPECT_EQ(points_convex_hull[0], Geometry::Point(0, 0));
+}
+
+TEST(GeometryPolygonConvex, CheckConvexHullGrahamScan)
+{
+    Geometry::Point<int> points[] = {
+        {0, 2},
+        {1, 2},
+        {2, 2},
+        {0, 0},
+        {1, 0},
+        {2, 0},
+        {0, 1},
+        {1, 1},
+        {2, 1},
+    };
+
+    auto const convex_hull
+        = Geometry::GetConvexHulGrahamScan(std::span{points});
+
+    EXPECT_EQ(convex_hull.size(), 4);
+    EXPECT_EQ(convex_hull[0], Geometry::Point(0, 0));
+    EXPECT_EQ(convex_hull[1], Geometry::Point(2, 0));
+    EXPECT_EQ(convex_hull[2], Geometry::Point(2, 2));
+    EXPECT_EQ(convex_hull[3], Geometry::Point(0, 2));
+}
