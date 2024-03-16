@@ -11,10 +11,10 @@
 namespace Geometry {
 
 template <typename Point, std::size_t Size>
-    requires PointCheckValue<Point>
-auto CheckConvex(std::span<Point const, Size> points) -> bool
+    requires PointCheckValue<std::remove_cvref_t<Point>>
+auto CheckConvex(std::span<Point, Size> points) -> bool
 {
-    if (points.size() <= 3) {
+    if (points.size() <= 3U) {
         return true;
     }
 
@@ -51,33 +51,31 @@ auto CheckConvex(std::span<Point const, Size> points) -> bool
     return true;
 }
 
-template <typename Point>
+template <typename Point, std::size_t Size>
     requires PointCheckValue<Point>
-auto NormalizeConvexPolygon(std::span<Point> points) -> std::span<Point>
+auto NormalizeConvexPolygon(std::span<Point, Size> points) -> std::span<Point>
 {
-    auto points_begin = std::begin(points);
-    auto points_end   = std::end(points);
+    std::rotate(std::begin(points),
+                std::min_element(std::begin(points), std::end(points)),
+                std::end(points));
 
-    // Remove duplicates
-    points_end = std::unique(points_begin, points_end, points_end);
+    auto const unique_end  = std::unique(std::begin(points), std::end(points));
+    auto const unique_size = static_cast<std::size_t>(
+        std::distance(std::cbegin(points), unique_end));
 
-    // Remove duplicates
-    points_end
-        = std::find_if(std::next(points_begin), points_end, *points_begin);
+    std::size_t normalized_size = 2U;
 
-    // Get an iterator to the minimum point
-    auto points_min  = std::min_element(points_begin, points_end);
-    auto points_size = std::distance(points_begin, points_end);
+    for (std::size_t index = normalized_size; index < unique_size; index++) {
+        auto const cross
+            = PointCross(points[index] - points[normalized_size - 1],
+                         points[index] - points[normalized_size - 2]);
+        if (cross == PointCoordinateZero<Point>) {
+            normalized_size--;
+        }
+        points[normalized_size++] = points[index];
+    }
 
-    // Move `points_min` to the begining
-    std::rotate(points_begin, points_min, points_end);
-    points_begin = std::begin(points);
-    points_min   = points_begin;
-    points_end   = std::next(points_begin, points_size);
-
-    // TODO
-
-    return std::span<Point>{points_begin, points_size};
+    return points.subspan(0U, normalized_size);
 }
 
 }  // namespace Geometry
