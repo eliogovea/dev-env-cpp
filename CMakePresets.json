@@ -63,7 +63,8 @@
       "generator": "Unix Makefiles",
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror",
+        "ENABLE_FUZZ_TESTING": true
       },
       "hidden": true
     },

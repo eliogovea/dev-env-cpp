@@ -161,3 +161,104 @@ TEST(GeometryPolygonConvex, CheckConvexHullGrahamScan)
     EXPECT_EQ(convex_hull[2], Geometry::Point(2, 2));
     EXPECT_EQ(convex_hull[3], Geometry::Point(0, 2));
 }
+
+TEST(GeometryPolygonConvex, CheckPointVsConvexZeroPoints)
+{
+    Geometry::Point<int> convex[] = {
+        {0, 0}
+    };
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex, 0U}, {0, 0}),
+              Geometry::PointRelativePosition::Out);
+}
+
+TEST(GeometryPolygonConvex, CheckPointVsConvexOnePoint)
+{
+    Geometry::Point<int> convex[] = {
+        {0, 0},
+    };
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, 0}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {1, 0}),
+              Geometry::PointRelativePosition::Out);
+}
+
+TEST(GeometryPolygonConvex, CheckPointVsConvexTwoPoints)
+{
+    Geometry::Point<int> convex[] = {
+        {0, 0},
+        {2, 0},
+    };
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {-1, 0}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, 0}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {1, 0}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {2, 0}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {3, 0}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, -1}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, 1}),
+              Geometry::PointRelativePosition::Out);
+}
+
+TEST(GeometryPolygonConvex, CheckPointVsConvex)
+{
+    Geometry::Point<int> convex[] = {
+        {0, 0},
+        {2, 0},
+        {2, 2},
+        {0, 2},
+    };
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {-1, 0}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, -1}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, 0}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {1, 0}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {2, 2}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {3, 2}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {1, 1}),
+              Geometry::PointRelativePosition::In);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {2, 2}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {3, 3}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, 1}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, 2}),
+              Geometry::PointRelativePosition::On);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {0, 3}),
+              Geometry::PointRelativePosition::Out);
+
+    EXPECT_EQ(Geometry::PointVsConvexPolygon(std::span{convex}, {-1, 1}),
+              Geometry::PointRelativePosition::Out);
+}

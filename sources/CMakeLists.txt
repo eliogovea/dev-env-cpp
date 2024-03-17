@@ -116,6 +116,36 @@ target_link_libraries(
     ${PROJECT_NAME}::${PROJECT_NAME}
 )
 
+if (ENABLE_FUZZ_TESTING)
+    function(add_fuzz_test fuzzer_name fuzzer_source)
+        add_executable(${fuzzer_name})
+
+        target_sources(
+            ${fuzzer_name}
+            PRIVATE ${fuzzer_source}
+        )
+
+        target_link_libraries(
+            ${fuzzer_name}
+            PRIVATE ${PROJECT_NAME}
+                    -coverage
+                    -fsanitize=fuzzer,undefined,address
+        )
+
+        target_compile_features(
+            ${fuzzer_name}
+            PRIVATE cxx_std_20
+        )
+
+        target_compile_options(
+            ${fuzzer_name}
+            PRIVATE -fsanitize=fuzzer,undefined,address
+        )
+    endfunction()
+
+    add_fuzz_test(geometry_fuzzer_convex geometry_fuzzer_convex.cpp)
+endif()
+
 # install
 
 include(GNUInstallDirs)
