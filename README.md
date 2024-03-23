@@ -1,80 +1,146 @@
-# C++ development environment
+# C++ Development Environment Template
 
-Template for a `CMake` based `C++` projects using `vscode`'s `devcontainer` to have a reproducible development environment
+## Overview
 
-## Devcontainer
+C++ development environment for seting up a consistent and reproducible experience across different machines. It uses Docker to encapsulate standard development tools, including C++ compilers and debugging tools, within a container
 
-`.devcontainer/Dockerfile` includes a set tools to compile, debug and test the project, for example:
+## Getting Started
 
-- gcc
-- g++
-- gdb
-- clang
-- clang++
-- clang-format
-- clang-tidy
-- cmake
-- ccache
-- git
-- python3
-- valgrind
+1. **Prerequisites:**
 
-`devcontainer.json` configures `vscode` settings and plugins
+- Install [Docker](https://docs.docker.com/get-docker/)
+- Install [Visual Studio Code](https://code.visualstudio.com/).
+- Install [Remote - Containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers).
 
-## CMake Project
+2. **Clone the repository:**
 
-### Presets
+- ```bash
+  git clone https://github.com/eliogovea/dev-env-cpp.git
+  ```
 
-`CMakePresets.json` includes definitions for several [`CMake presets`](https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html)
+3. **Open in a DevContainer:**
+
+- Open VSCode,
+- Open the cloned project directory.
+- Accept VSCode's prompt to reopen the project in a container.
+
+## Tools
+
+### Docker
+
+The Docker container comes equipped with essential tools:
+
+- GCC
+- Clang
+- Python3
+- Git
+- Make
+- CMake
+- Ccache
+- Lcov
+- Valgrind
+
+These tools support a wide range of development tasks from compiling and building to code analysis and version control.
+
+### VSCode Settings and Extensions
+
+Includes a pre-defined settings and extensions for C++ development with features like auto-formatting, linting, and intelligent code completion.
+
+## Sample Project Structure with CMake Integration
+
+A sample project structure is provided, demonstrating best practices and facilitating immediate productivity. It uses CMake for project configuration, supporting various build types and targets, and includes workflows for tasks like library creation and unit testing.
+
+### CMake presets
+
+This project defines a set of presets, in most cases using the following name pattern: `generator-compiler-type[-details]`
+
+#### Configure
+
+```bash
+cmake --preset make-gcc-debug
+```
+
+To list all presets use:
+
+```bash
+cmake --list-presets
+```
+
+#### Build
+
+```bash
+cmake --build --preset make-gcc-debug
+```
+
+To list all presets use:
+
+```bash
+cmake --build --list-presets
+```
+
+#### Test
+
+```bash
+ctest --preset make-gcc-debug
+```
+
+To list all presets use:
+
+```bash
+ctest --list-presets
+```
+
+#### Package
+
+```bash
+cpack --preset make-gcc-debug
+```
+
+To list all presets use:
+
+```bash
+cpack --list-presets
+```
+
+#### Workflow
+
+CMake workflows presets allow running multiple steps (configure, build, test, package) with a single command using: `cmake --workflow PRESET_NAME`
 
 - `make-gcc-debug`
-- `make-gcc-release`
-- `make-gcc-debug-coverage`
 - `make-clang-debug`
 - `make-clang-debug-sanitize-address`
 - `make-clang-debug-sanitize-leak`
 - `make-clang-debug-sanitize-memory`
 - `make-clang-debug-sanitize-thread`
 - `make-clang-debug-sanitize-undefined`
+- `make-gcc-release`
 - `make-clang-release`
+- `make-gcc-debug-coverage`
+- `static-analysis`
 
-Each `preset` creates a directory inside `build`, example: `build/make-gcc-debug`
-
-#### Example
-
-- Configure
-  - `cmake --preset make-gcc-debug`
-- Build
-  - `cmake --build --preset make-gcc-debug`
-- Test
-  - `ctest --preset make-gcc-debug`
-- Workflow
-  - `cmake --workflow --preset make-gcc-debug`
-
-#### Static analysis
-
-`cmake --workflow --preset static-analysis` runs:
-
-- `clang-tidy`
-
-#### Coverage report
-
-`cmake --workflow --preset make-gcc-debug-coverage` generates:
-
-- `LCOV` coverage file in `build/make-gcc-debug-coverage/lcov.info`
-- `HTML` coverage report in `build/make-gcc-debug-coverage/lcov/index.html`
-
-changes to `master` branch triggers an action to deploy the coverage report to [github pages](https://eliogovea.github.io/dev-env-cpp/master/coverage/index.html)
-
-changes to `dev` branch triggers an action to deploy the coverage report to [github pages](https://eliogovea.github.io/dev-env-cpp/dev/coverage/index.html)
-
-#### Documentation
-
-```
-mkdir -p build
-doxygen Doxyfile
+```bash
+cmake --workflow --preset make-clang-debug
 ```
 
-changes to `master` branch triggers an action to deploy the documentation to [github pages](https://eliogovea.github.io/dev-env-cpp/master/documentation/index.html)
+To list all presets use:
 
-changes to `dev` branch triggers an action to deploy the documentation to [github pages](https://eliogovea.github.io/dev-env-cpp/dev/documentation/index.html)
+```bash
+cmake --workflow --list-presets
+```
+
+## GitHub Workflows
+
+This template includes pre-configured GitHub Actions workflows to automate various development and maintenance tasks.
+
+### Unit Test Code Coverage Report and Deployment to GitHub Pages
+
+The workflow for generating and deploying code coverage reports is defined in `.github/workflows/coverage.yml`. It automates the following tasks:
+
+1. **Setup Environment:** Initializes the environment with necessary dependencies for building the project and generating the coverage report.
+2. **Build and Test:** Compiles the project, runs unit tests, and generates a code coverage report.
+3. **Deploy to GitHub Pages:** Deploys the generated code coverage report to GitHub Pages, making it accessible to reviewers and contributors.
+
+### Documentation Generation and Deployment with Doxygen
+
+This template facilitates the automatic generation and deployment of your project's documentation using Doxygen and GitHub Actions.
+
