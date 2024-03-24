@@ -1,7 +1,7 @@
 #include <concepts>
 #include <cstdint>
 
-namespace Math {
+namespace Power {
 
 /// @concept Multipliable
 /// @brief A concept to check if a type supports multiplication operations.
@@ -34,4 +34,4 @@ constexpr auto Power(Base base, Exponent exponent) -> Base
     return power;
 }
 
-}  // namespace Math
+}  // namespace Power

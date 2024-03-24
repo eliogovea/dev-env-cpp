@@ -2,8 +2,6 @@
 
 #include <sstream>
 
-#include "geometry_segment.hpp"
-
 namespace SVG {
 
 struct Svg
