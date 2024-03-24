@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
     try {
         std::uint64_t const base     = std::stoll(argv[1]);  // NOLINT
         std::uint64_t const exponent = std::stoll(argv[2]);  // NOLINT
-        std::cout << Math::Power(base, exponent) << "\n";
+        std::cout << Power::Power(base, exponent) << "\n";
     } catch (std::exception& e) {
         std::cout << "error: " << e.what() << "\n";
         return EXIT_FAILURE;
