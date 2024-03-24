@@ -1,16 +1,16 @@
 var searchData=
 [
-  ['on_57',['On',['../namespaceGeometry.html#ab297de21f50307e1e9e83171b00ce2b2a521c36a31c2762741cf0f8890cbe05e3',1,'Geometry']]],
-  ['operator_28_29_58',['operator()',['../structGeometry_1_1PointComparatorYX.html#a363abad2d7fa0596d1a04a7713280932',1,'Geometry::PointComparatorYX::operator()()'],['../structGeometry_1_1PointAngleComparator.html#a527dd1665d16dc092eb453c0f9d48107',1,'Geometry::PointAngleComparator::operator()()'],['../structGeometry_1_1PointComparatorXY.html#a059a491632558b58ace8891673c64e61',1,'Geometry::PointComparatorXY::operator()()']]],
-  ['operator_2a_59',['operator*',['../namespaceGeometry.html#a69dc776a7598913e0f8dc0ddb579f585',1,'Geometry::operator*()'],['../structGeometry_1_1Point.html#ac59e131af5e889855381135af3422b86',1,'Geometry::Point::operator*()'],['../structGeometry_1_1Point.html#a3058765de452b23f8ab302683bc28373',1,'Geometry::Point::operator*()']]],
-  ['operator_2a_3d_60',['operator*=',['../structGeometry_1_1Point.html#a6eba50cf7ef81a8abc5cf5f63534ca7d',1,'Geometry::Point']]],
-  ['operator_2b_61',['operator+',['../structGeometry_1_1Point.html#ae4a831d5763b8964decdeca8bb98e05e',1,'Geometry::Point']]],
-  ['operator_2b_3d_62',['operator+=',['../structGeometry_1_1Point.html#a26b2a5f9512b5305e5e4062e36576c18',1,'Geometry::Point']]],
-  ['operator_2d_63',['operator-',['../structGeometry_1_1Point.html#a1716f0e2a184b5f41c462246aff56de6',1,'Geometry::Point']]],
-  ['operator_2d_3d_64',['operator-=',['../structGeometry_1_1Point.html#a7fac4953832b59a7b4e6a2484843c1d9',1,'Geometry::Point']]],
-  ['operator_2f_65',['operator/',['../structGeometry_1_1Point.html#affc699fcc21a80378c5362349a097387',1,'Geometry::Point']]],
-  ['operator_2f_3d_66',['operator/=',['../structGeometry_1_1Point.html#a2fb8eba540ae5e346664941620bf625c',1,'Geometry::Point']]],
-  ['operator_3c_67',['operator&lt;',['../structGeometry_1_1Point.html#a103f344e632e0d8b900c9971dbd35190',1,'Geometry::Point']]],
-  ['operator_3d_3d_68',['operator==',['../structGeometry_1_1Point.html#a22433ba841973b137bf59b7b35f8c14a',1,'Geometry::Point']]],
-  ['origin_69',['origin',['../structGeometry_1_1PointAngleComparator.html#a9975b1f983e1d63685c187d7a42571fe',1,'Geometry::PointAngleComparator']]]
+  ['left_50',['Left',['../namespaceGeometry.html#ab297de21f50307e1e9e83171b00ce2b2a945d5e233cf7d6240f6b783b36a374ff',1,'Geometry']]],
+  ['line_51',['Line',['../structGeometry_1_1Line.html',1,'Geometry::Line&lt; Point &gt;'],['../structSVG_1_1Line.html',1,'SVG::Line']]],
+  ['linecheck_52',['LineCheck',['../structGeometry_1_1LineCheck.html',1,'Geometry']]],
+  ['linecheck_3c_20line_3c_20point_20_3e_20_3e_53',['LineCheck&lt; Line&lt; Point &gt; &gt;',['../structGeometry_1_1LineCheck_3_01Line_3_01Point_01_4_01_4.html',1,'Geometry']]],
+  ['linecheckvalue_54',['LineCheckValue',['../namespaceGeometry.html#aac5516cc68fea17219c2e7aeca1d1866',1,'Geometry']]],
+  ['linecross_55',['LineCross',['../structGeometry_1_1LineCross.html',1,'Geometry']]],
+  ['linecross_3c_20line_3c_20point_20_3e_20_3e_56',['LineCross&lt; Line&lt; Point &gt; &gt;',['../structGeometry_1_1LineCross_3_01Line_3_01Point_01_4_01_4.html',1,'Geometry']]],
+  ['linecrosstype_57',['LineCrossType',['../namespaceGeometry.html#a4f8cfed19a25794e5c047f57fc4d1e1c',1,'Geometry']]],
+  ['linepoint_58',['LinePoint',['../structGeometry_1_1LinePoint.html',1,'Geometry']]],
+  ['linepoint_3c_20line_3c_20point_20_3e_20_3e_59',['LinePoint&lt; Line&lt; Point &gt; &gt;',['../structGeometry_1_1LinePoint_3_01Line_3_01Point_01_4_01_4.html',1,'Geometry']]],
+  ['linepointtype_60',['LinePointType',['../namespaceGeometry.html#a0ed5ef6187435bd72b10e6735900970a',1,'Geometry']]],
+  ['linerelativepositionidentifier_61',['LineRelativePositionIdentifier',['../namespaceGeometry.html#ab297de21f50307e1e9e83171b00ce2b2',1,'Geometry']]],
+  ['llvmfuzzertestoneinput_62',['LLVMFuzzerTestOneInput',['../geometry__fuzzer__convex_8cpp.html#a64bcdeaa6e8559f4b2ce1baa08a50d7c',1,'geometry_fuzzer_convex.cpp']]]
 ];

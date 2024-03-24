@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dev-env-cpp: sources/power.hpp Source File</title>
+<title>dev-env-cpp: sources/power/power.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_4b5e9b98f141e53b8d9d7023f384e485.html">power</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -72,17 +72,17 @@ $(function() {
 <a href="power_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;concepts&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="namespaceMath.html">    4</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMath.html">Math</a> {</div>
+<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="namespacePower.html">    4</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacePower.html">Power</a> {</div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespaceMath.html#a9802fd238031917f337a82d32a9911f1">   10</a></span>&#160;concept <a class="code" href="namespaceMath.html#a9802fd238031917f337a82d32a9911f1">Multipliable</a> = requires(T lhs, T rhs) {</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="namespacePower.html#ac1cb0c1722b03764b262963448bca359">   10</a></span>&#160;concept <a class="code" href="namespacePower.html#ac1cb0c1722b03764b262963448bca359">Multipliable</a> = requires(T lhs, T rhs) {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="comment">// clang-format off</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    {lhs * rhs} -&gt; std::convertible_to&lt;T&gt;;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">// clang-format on</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;};</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">template</span> &lt;Multipliable Base, std::<span class="keywordtype">unsigned</span>_<span class="keywordtype">int</span>egral Exponent&gt;</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">   24</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Power</a>(Base base, Exponent exponent) -&gt; Base</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="namespacePower.html#aa58d0a358f4c5bb8d6ba2e7efdce7f92">   24</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="namespacePower.html#aa58d0a358f4c5bb8d6ba2e7efdce7f92">Power</a>(Base base, Exponent exponent) -&gt; Base</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;{</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">auto</span> power = Base{1};</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">while</span> (exponent &gt; Exponent{0U}) {</div>
@@ -95,14 +95,14 @@ $(function() {
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordflow">return</span> power;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}  <span class="comment">// namespace Math</span></div>
-<div class="ttc" id="anamespaceMath_html"><div class="ttname"><a href="namespaceMath.html">Math</a></div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00004">power.hpp:4</a></div></div>
-<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00024">power.hpp:24</a></div></div>
-<div class="ttc" id="anamespaceMath_html_a9802fd238031917f337a82d32a9911f1"><div class="ttname"><a href="namespaceMath.html#a9802fd238031917f337a82d32a9911f1">Math::Multipliable</a></div><div class="ttdeci">concept Multipliable</div><div class="ttdoc">A concept to check if a type supports multiplication operations.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00010">power.hpp:10</a></div></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}  <span class="comment">// namespace Power</span></div>
+<div class="ttc" id="anamespacePower_html"><div class="ttname"><a href="namespacePower.html">Power</a></div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00004">power.hpp:4</a></div></div>
+<div class="ttc" id="anamespacePower_html_aa58d0a358f4c5bb8d6ba2e7efdce7f92"><div class="ttname"><a href="namespacePower.html#aa58d0a358f4c5bb8d6ba2e7efdce7f92">Power::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00024">power.hpp:24</a></div></div>
+<div class="ttc" id="anamespacePower_html_ac1cb0c1722b03764b262963448bca359"><div class="ttname"><a href="namespacePower.html#ac1cb0c1722b03764b262963448bca359">Power::Multipliable</a></div><div class="ttdeci">concept Multipliable</div><div class="ttdoc">A concept to check if a type supports multiplication operations.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00010">power.hpp:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 9 2024 11:04:16 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sun Mar 24 2024 12:57:37 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

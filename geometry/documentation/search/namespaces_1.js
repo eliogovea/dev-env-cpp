@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['math_130',['Math',['../namespaceMath.html',1,'']]]
+  ['power_161',['Power',['../namespacePower.html',1,'']]]
 ];

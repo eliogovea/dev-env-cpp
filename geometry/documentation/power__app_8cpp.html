@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dev-env-cpp: sources/power_app.cpp File Reference</title>
+<title>dev-env-cpp: sources/power/power_app.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,7 +61,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_08d237fc27d4ecd563f71c5d52f2fecc.html">sources</a></li><li class="navelem"><a class="el" href="dir_4b5e9b98f141e53b8d9d7023f384e485.html">power</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -80,7 +80,7 @@ $(function() {
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for power_app.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="power__app_8cpp__incl.png" border="0" usemap="#asources_2power__app_8cpp" alt=""/></div>
+<div class="center"><img src="power__app_8cpp__incl.png" border="0" usemap="#asources_2power_2power__app_8cpp" alt=""/></div>
 </div>
 </div>
 <p><a href="power__app_8cpp_source.html">Go to the source code of this file.</a></p>
@@ -128,7 +128,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">try</span> {</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        std::uint64_t <span class="keyword">const</span> base     = std::stoll(argv[1]);  <span class="comment">// NOLINT</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::uint64_t <span class="keyword">const</span> exponent = std::stoll(argv[2]);  <span class="comment">// NOLINT</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        std::cout &lt;&lt; <a class="code" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a>(base, exponent) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        std::cout &lt;&lt; <a class="code" href="namespacePower.html#aa58d0a358f4c5bb8d6ba2e7efdce7f92">Power::Power</a>(base, exponent) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    } <span class="keywordflow">catch</span> (std::exception&amp; e) {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;error: &quot;</span> &lt;&lt; e.what() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">return</span> EXIT_FAILURE;</div>
@@ -136,14 +136,14 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00024">power.hpp:24</a></div></div>
+<div class="ttc" id="anamespacePower_html_aa58d0a358f4c5bb8d6ba2e7efdce7f92"><div class="ttname"><a href="namespacePower.html#aa58d0a358f4c5bb8d6ba2e7efdce7f92">Power::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00024">power.hpp:24</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 9 2024 11:04:16 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sun Mar 24 2024 12:57:37 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

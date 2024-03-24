@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zero_213',['Zero',['../namespaceGeometry.html#ab9f4b56d4c909a9fae605283dad7e1b7ad7ed4ee1df437474d005188535f74875',1,'Geometry']]]
+  ['right_270',['Right',['../namespaceGeometry.html#ab297de21f50307e1e9e83171b00ce2b2a92b09c7c48c520c3c55e497875da437c',1,'Geometry']]]
 ];
