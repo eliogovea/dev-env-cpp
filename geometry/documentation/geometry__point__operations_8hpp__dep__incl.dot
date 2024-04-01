@@ -16,6 +16,7 @@ digraph "sources/geometry/geometry_point_operations.hpp"
   Node6 [label="sources/geometry/geometry\l_line_traits.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__line__traits_8cpp.html",tooltip=" "];
   Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node7 [label="sources/geometry/geometry\l_line_traits_test.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__line__traits__test_8cpp.html",tooltip=" "];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node8 [label="sources/geometry/geometry\l_point_operations.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__point__operations_8cpp.html",tooltip=" "];
   Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
@@ -36,9 +37,9 @@ digraph "sources/geometry/geometry_point_operations.hpp"
   Node16 [label="sources/geometry/geometry\l_segment_test.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__segment__test_8cpp.html",tooltip=" "];
   Node14 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node17 [label="sources/geometry/geometry\l_segment_traits.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__segment__traits_8hpp.html",tooltip=" "];
-  Node17 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node18 [label="sources/geometry/geometry\l_segment_traits.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__segment__traits_8cpp.html",tooltip=" "];
   Node17 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node19 [label="sources/geometry/geometry\l_segment_traits_test.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__segment__traits__test_8cpp.html",tooltip=" "];
+  Node14 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

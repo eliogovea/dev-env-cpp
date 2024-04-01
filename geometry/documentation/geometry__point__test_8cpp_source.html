@@ -124,7 +124,7 @@ $(function() {
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="geometry__point__test_8cpp.html#acafd1a97729a3e4a2a30345b6dfdf71a">   53</a></span>&#160;<a class="code" href="geometry__point__test_8cpp.html#a66fd3387bf385895f3759a1604a7c65e">TEST</a>(GeometryPoint, CheckPointScaleUp)</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> lhs    = <a class="code" href="structGeometry_1_1Point.html">Geometry::Point&lt;int&gt;</a>{1, 2};</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> rhs    = <span class="keywordtype">int</span>{2};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> rhs    = 2;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> scaled = <a class="code" href="structGeometry_1_1Point.html">Geometry::Point&lt;int&gt;</a>{2, 4};</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    EXPECT_EQ(lhs * rhs, scaled);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    EXPECT_EQ(rhs * lhs, scaled);</div>
@@ -133,7 +133,7 @@ $(function() {
 <div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="geometry__point__test_8cpp.html#a09c34594445da0cf67d292754f2c64e3">   62</a></span>&#160;<a class="code" href="geometry__point__test_8cpp.html#a66fd3387bf385895f3759a1604a7c65e">TEST</a>(GeometryPoint, CheckPointScaleDown)</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;{</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> lhs    = <a class="code" href="structGeometry_1_1Point.html">Geometry::Point&lt;int&gt;</a>{2, 4};</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> rhs    = <span class="keywordtype">int</span>{2};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> rhs    = 2;</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> scaled = <a class="code" href="structGeometry_1_1Point.html">Geometry::Point&lt;int&gt;</a>{1, 2};</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    EXPECT_EQ(lhs / rhs, scaled);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
@@ -143,7 +143,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2024 12:57:37 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Mon Apr 1 2024 11:12:50 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

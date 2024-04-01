@@ -69,61 +69,68 @@ $(function() {
 <div class="title">geometry_fuzzer_convex.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="geometry__fuzzer__convex_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="geometry__polygon__convex_8hpp.html">geometry_polygon_convex.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno"><a class="line" href="geometry__fuzzer__convex_8cpp.html#a64bcdeaa6e8559f4b2ce1baa08a50d7c">    5</a></span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> <span class="keywordtype">int</span> <a class="code" href="geometry__fuzzer__convex_8cpp.html#a64bcdeaa6e8559f4b2ce1baa08a50d7c">LLVMFuzzerTestOneInput</a>(uint8_t <span class="keyword">const</span>* data, <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    uint16_t points_size = 0U;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordflow">if</span> (size &lt; <span class="keyword">sizeof</span>(points_size)) {</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    points_size = (points_size &lt;&lt; 8U) | *data;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    data++;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    size--;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    points_size = (points_size &lt;&lt; 8U) | *data;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    data++;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    size--;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">if</span> (size &lt;= 2 * points_size) {</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">auto</span> points = std::vector&lt;Geometry::Point&lt;int&gt;&gt;(points_size, {0, 0});</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; point : points) {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        point.x = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        data++;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        size--;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        point.y = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        data++;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        size--;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> convex = <a class="code" href="namespaceGeometry.html#aebd5f7e4d27711aa518d1ae7f33f2a57">Geometry::GetConvexHulGrahamScan</a>(std::span{points});</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    assert(<a class="code" href="namespaceGeometry.html#a41c52f58acc76623ca83ef1a0e3bc5b9">Geometry::CheckConvex</a>(convex));</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordflow">while</span> (size &gt;= 2U) {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="structGeometry_1_1Point.html">Geometry::Point&lt;int&gt;</a> point = {0, 0};</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        point.<a class="code" href="structGeometry_1_1Point.html#abeeb9d774a287e63a5a5db913e9883c1">x</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        data++;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        size--;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        point.<a class="code" href="structGeometry_1_1Point.html#a85825f26259d3e2106eeeed624cfff66">y</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        data++;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        size--;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">auto</span> position = <a class="code" href="namespaceGeometry.html#a8c5e64df9e323e1f3b23e75d4fb572c8">Geometry::PointVsConvexPolygon</a>(convex, point);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        (void)position;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
-<div class="ttc" id="ageometry__fuzzer__convex_8cpp_html_a64bcdeaa6e8559f4b2ce1baa08a50d7c"><div class="ttname"><a href="geometry__fuzzer__convex_8cpp.html#a64bcdeaa6e8559f4b2ce1baa08a50d7c">LLVMFuzzerTestOneInput</a></div><div class="ttdeci">int LLVMFuzzerTestOneInput(uint8_t const *data, size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="geometry__fuzzer__convex_8cpp_source.html#l00005">geometry_fuzzer_convex.cpp:5</a></div></div>
+<a href="geometry__fuzzer__convex_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;cassert&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;span&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="geometry__point_8hpp.html">geometry_point.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="geometry__polygon__convex_8hpp.html">geometry_polygon_convex.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="geometry__fuzzer__convex_8cpp.html#a64bcdeaa6e8559f4b2ce1baa08a50d7c">   11</a></span>&#160;<span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> <span class="keywordtype">int</span> <a class="code" href="geometry__fuzzer__convex_8cpp.html#a64bcdeaa6e8559f4b2ce1baa08a50d7c">LLVMFuzzerTestOneInput</a>(uint8_t <span class="keyword">const</span>* data, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;{</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    uint16_t points_size = 0U;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">if</span> (size &lt; <span class="keyword">sizeof</span>(points_size)) {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    points_size = (points_size &lt;&lt; 8U) | *data;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    data++;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    size--;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    points_size = (points_size &lt;&lt; 8U) | *data;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    data++;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    size--;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (size &lt;= <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(2U * points_size)) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">auto</span> points = std::vector&lt;Geometry::Point&lt;int&gt;&gt;(points_size, {0, 0});</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; point : points) {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        point.x = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        data++;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        size--;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        point.y = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        data++;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        size--;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">auto</span> <span class="keyword">const</span> convex = <a class="code" href="namespaceGeometry.html#aebd5f7e4d27711aa518d1ae7f33f2a57">Geometry::GetConvexHulGrahamScan</a>(std::span{points});</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    assert(<a class="code" href="namespaceGeometry.html#a41c52f58acc76623ca83ef1a0e3bc5b9">Geometry::CheckConvex</a>(convex));</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordflow">while</span> (size &gt;= 2U) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="structGeometry_1_1Point.html">Geometry::Point&lt;int&gt;</a> point = {0, 0};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        point.<a class="code" href="structGeometry_1_1Point.html#abeeb9d774a287e63a5a5db913e9883c1">x</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        data++;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        size--;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        point.<a class="code" href="structGeometry_1_1Point.html#a85825f26259d3e2106eeeed624cfff66">y</a> = <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(*data);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        data++;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        size--;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">auto</span> position = <a class="code" href="namespaceGeometry.html#a8c5e64df9e323e1f3b23e75d4fb572c8">Geometry::PointVsConvexPolygon</a>(convex, point);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        (void)position;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="ttc" id="ageometry__fuzzer__convex_8cpp_html_a64bcdeaa6e8559f4b2ce1baa08a50d7c"><div class="ttname"><a href="geometry__fuzzer__convex_8cpp.html#a64bcdeaa6e8559f4b2ce1baa08a50d7c">LLVMFuzzerTestOneInput</a></div><div class="ttdeci">int LLVMFuzzerTestOneInput(uint8_t const *data, size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="geometry__fuzzer__convex_8cpp_source.html#l00011">geometry_fuzzer_convex.cpp:11</a></div></div>
+<div class="ttc" id="ageometry__point_8hpp_html"><div class="ttname"><a href="geometry__point_8hpp.html">geometry_point.hpp</a></div></div>
 <div class="ttc" id="ageometry__polygon__convex_8hpp_html"><div class="ttname"><a href="geometry__polygon__convex_8hpp.html">geometry_polygon_convex.hpp</a></div></div>
 <div class="ttc" id="anamespaceGeometry_html_a41c52f58acc76623ca83ef1a0e3bc5b9"><div class="ttname"><a href="namespaceGeometry.html#a41c52f58acc76623ca83ef1a0e3bc5b9">Geometry::CheckConvex</a></div><div class="ttdeci">requires PointCheckValue&lt; std::remove_cvref_t&lt; Point &gt; &gt; auto CheckConvex(std::span&lt; Point, Size &gt; points) -&gt; bool</div><div class="ttdef"><b>Definition:</b> <a href="geometry__polygon__convex_8hpp_source.html#l00016">geometry_polygon_convex.hpp:16</a></div></div>
 <div class="ttc" id="anamespaceGeometry_html_a8c5e64df9e323e1f3b23e75d4fb572c8"><div class="ttname"><a href="namespaceGeometry.html#a8c5e64df9e323e1f3b23e75d4fb572c8">Geometry::PointVsConvexPolygon</a></div><div class="ttdeci">requires PointCheckValue&lt; std::remove_cvref_t&lt; Point &gt; &gt; auto PointVsConvexPolygon(std::span&lt; Point, Size &gt; const &amp;convex, Point const &amp;point) -&gt; PointRelativePosition</div><div class="ttdef"><b>Definition:</b> <a href="geometry__polygon__convex_8hpp_source.html#l00129">geometry_polygon_convex.hpp:129</a></div></div>
@@ -134,7 +141,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2024 12:57:37 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Mon Apr 1 2024 11:12:50 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -14,4 +14,5 @@ digraph "sources/geometry/geometry_line.hpp"
   Node5 [label="sources/geometry/geometry\l_line_traits.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__line__traits_8cpp.html",tooltip=" "];
   Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node6 [label="sources/geometry/geometry\l_line_traits_test.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$geometry__line__traits__test_8cpp.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

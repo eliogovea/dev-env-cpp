@@ -69,16 +69,22 @@ $(function() {
 <div class="title">geometry_line_traits_test.cpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="geometry__line__traits__test_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="geometry__line__traits_8hpp.html">geometry_line_traits.hpp</a>&quot;</span></div>
+<a href="geometry__line__traits__test_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;type_traits&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceGeometry.html">Geometry</a> {</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;static_assert(<a class="code" href="namespaceGeometry.html#aac5516cc68fea17219c2e7aeca1d1866">LineCheckValue</a>&lt;Line&lt;Point&lt;int&gt;&gt;&gt;);</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;static_assert(std::is_same_v&lt;<a class="code" href="namespaceGeometry.html#a0ed5ef6187435bd72b10e6735900970a">LinePointType</a>&lt;Line&lt;Point&lt;int&gt;&gt;&gt;, Point&lt;int&gt;&gt;);</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;static_assert(std::is_same_v&lt;<a class="code" href="namespaceGeometry.html#a4f8cfed19a25794e5c047f57fc4d1e1c">LineCrossType</a>&lt;Line&lt;Point&lt;int&gt;&gt;&gt;, <span class="keywordtype">int</span>&gt;);</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="geometry__line_8hpp.html">geometry_line.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="geometry__line__traits_8hpp.html">geometry_line_traits.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="geometry__point_8hpp.html">geometry_point.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceGeometry.html">Geometry</a> {</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;}  <span class="comment">// namespace Geometry</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;static_assert(<a class="code" href="namespaceGeometry.html#aac5516cc68fea17219c2e7aeca1d1866">LineCheckValue</a>&lt;Line&lt;Point&lt;int&gt;&gt;&gt;);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;static_assert(std::is_same_v&lt;<a class="code" href="namespaceGeometry.html#a0ed5ef6187435bd72b10e6735900970a">LinePointType</a>&lt;Line&lt;Point&lt;int&gt;&gt;&gt;, Point&lt;int&gt;&gt;);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;static_assert(std::is_same_v&lt;<a class="code" href="namespaceGeometry.html#a4f8cfed19a25794e5c047f57fc4d1e1c">LineCrossType</a>&lt;Line&lt;Point&lt;int&gt;&gt;&gt;, <span class="keywordtype">int</span>&gt;);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;}  <span class="comment">// namespace Geometry</span></div>
+<div class="ttc" id="ageometry__line_8hpp_html"><div class="ttname"><a href="geometry__line_8hpp.html">geometry_line.hpp</a></div></div>
 <div class="ttc" id="ageometry__line__traits_8hpp_html"><div class="ttname"><a href="geometry__line__traits_8hpp.html">geometry_line_traits.hpp</a></div></div>
+<div class="ttc" id="ageometry__point_8hpp_html"><div class="ttname"><a href="geometry__point_8hpp.html">geometry_point.hpp</a></div></div>
 <div class="ttc" id="anamespaceGeometry_html"><div class="ttname"><a href="namespaceGeometry.html">Geometry</a></div><div class="ttdef"><b>Definition:</b> <a href="geometry__line_8hpp_source.html#l00007">geometry_line.hpp:7</a></div></div>
 <div class="ttc" id="anamespaceGeometry_html_a0ed5ef6187435bd72b10e6735900970a"><div class="ttname"><a href="namespaceGeometry.html#a0ed5ef6187435bd72b10e6735900970a">Geometry::LinePointType</a></div><div class="ttdeci">typename LinePoint&lt; Line &gt;::Type LinePointType</div><div class="ttdef"><b>Definition:</b> <a href="geometry__line__traits_8hpp_source.html#l00034">geometry_line_traits.hpp:34</a></div></div>
 <div class="ttc" id="anamespaceGeometry_html_a4f8cfed19a25794e5c047f57fc4d1e1c"><div class="ttname"><a href="namespaceGeometry.html#a4f8cfed19a25794e5c047f57fc4d1e1c">Geometry::LineCrossType</a></div><div class="ttdeci">typename LineCross&lt; Line &gt;::Type LineCrossType</div><div class="ttdef"><b>Definition:</b> <a href="geometry__line__traits_8hpp_source.html#l00048">geometry_line_traits.hpp:48</a></div></div>
@@ -86,7 +92,7 @@ $(function() {
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 24 2024 12:57:37 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Mon Apr 1 2024 11:12:50 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
