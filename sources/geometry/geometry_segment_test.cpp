@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
+#include "geometry_point.hpp"
 #include "geometry_segment.hpp"
-#include "geometry_segment_traits.hpp"
 
 template struct Geometry::Segment<Geometry::Point<int>>;
 

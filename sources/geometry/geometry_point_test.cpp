@@ -53,7 +53,7 @@ TEST(GeometryPoint, CheckPointSubstract)
 TEST(GeometryPoint, CheckPointScaleUp)
 {
     auto const lhs    = Geometry::Point<int>{1, 2};
-    auto const rhs    = int{2};
+    auto const rhs    = 2;
     auto const scaled = Geometry::Point<int>{2, 4};
     EXPECT_EQ(lhs * rhs, scaled);
     EXPECT_EQ(rhs * lhs, scaled);
@@ -62,7 +62,7 @@ TEST(GeometryPoint, CheckPointScaleUp)
 TEST(GeometryPoint, CheckPointScaleDown)
 {
     auto const lhs    = Geometry::Point<int>{2, 4};
-    auto const rhs    = int{2};
+    auto const rhs    = 2;
     auto const scaled = Geometry::Point<int>{1, 2};
     EXPECT_EQ(lhs / rhs, scaled);
 }

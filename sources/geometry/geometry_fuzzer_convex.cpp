@@ -1,5 +1,11 @@
+#include <cassert>
+#include <cstddef>
+#include <cstdint>
+#include <cstdlib>
+#include <span>
 #include <vector>
 
+#include "geometry_point.hpp"
 #include "geometry_polygon_convex.hpp"
 
 extern "C" int LLVMFuzzerTestOneInput(uint8_t const* data, size_t size)
@@ -18,7 +24,7 @@ extern "C" int LLVMFuzzerTestOneInput(uint8_t const* data, size_t size)
     data++;
     size--;
 
-    if (size <= 2 * points_size) {
+    if (size <= static_cast<size_t>(2U * points_size)) {
         return 0;
     }
 

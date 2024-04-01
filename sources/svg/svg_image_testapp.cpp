@@ -1,4 +1,8 @@
+#include <algorithm>
+#include <cstdlib>
+#include <exception>
 #include <iostream>
+#include <string>
 
 #include "svg_image.hpp"
 
@@ -22,7 +26,8 @@ auto GenerateSvgImage(SVG::Svg svg) -> std::string
 int main()
 {
     try {
-        std::cout << GenerateSvgImage(SVG::Svg{1000, 500}) << std::flush;
+        std::cout << GenerateSvgImage({.width = 1000, .height = 500})
+                  << std::flush;
         return EXIT_SUCCESS;
     } catch (std::exception& e) {
         std::cerr << "Error: " << e.what() << "\n" << std::flush;

@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include "geometry_line.hpp"
+#include "geometry_point.hpp"
 
 template struct Geometry::Line<Geometry::Point<int>>;
 

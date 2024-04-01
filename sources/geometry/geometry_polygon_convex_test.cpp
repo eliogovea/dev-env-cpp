@@ -1,5 +1,8 @@
+#include <span>
+
 #include <gtest/gtest.h>
 
+#include "geometry_point.hpp"
 #include "geometry_polygon_convex.hpp"
 
 TEST(GeometryPolygonConvex, CheckConvexTriangle)

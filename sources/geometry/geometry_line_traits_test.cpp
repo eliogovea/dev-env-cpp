@@ -1,4 +1,8 @@
+#include <type_traits>
+
+#include "geometry_line.hpp"
 #include "geometry_line_traits.hpp"
+#include "geometry_point.hpp"
 
 namespace Geometry {
 

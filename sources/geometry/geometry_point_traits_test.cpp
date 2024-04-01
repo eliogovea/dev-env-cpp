@@ -1,6 +1,5 @@
 #include <type_traits>
 
-#include <gtest/gtest.h>
 
 #include "geometry_point.hpp"
 #include "geometry_point_traits.hpp"

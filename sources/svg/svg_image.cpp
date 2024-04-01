@@ -1,6 +1,7 @@
 #include "svg_image.hpp"
 
 #include <format>
+#include <string>
 
 namespace SVG {
 
