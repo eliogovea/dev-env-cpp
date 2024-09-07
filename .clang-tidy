@@ -1,6 +1,7 @@
 ---
 Checks: >
   *,
+  -fuchsia-trailing-return,
   -llvmlibc-callee-namespace,
   -llvmlibc-implementation-in-namespace,
   -llvmlibc-restrict-system-libc-headers,

@@ -1,4 +1,4 @@
-#include "power.hpp"
+#include "math_power.hpp"
 
 #include <gtest/gtest.h>
 

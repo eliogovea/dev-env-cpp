@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-#include "power.hpp"
+#include "math_power.hpp"
 
 int main(int argc, char* argv[])
 {

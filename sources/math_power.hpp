@@ -25,12 +25,12 @@ template <Multipliable Base, std::unsigned_integral Exponent>
 constexpr auto Power(Base base, Exponent exponent) -> Base
 {
     auto power = Base{1};
-    while (exponent > Exponent{0U}) {
-        if (exponent & Exponent{1U}) {
+    while (exponent > 0U) {
+        if (exponent & 1U) {
             power *= base;
         }
         base *= base;
-        exponent >>= Exponent{1U};
+        exponent >>= 1U;
     }
     return power;
 }
