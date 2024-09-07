@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dev-env-cpp: sources/power_app.cpp Source File</title>
+<title>dev-env-cpp: sources/math_power_app.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -65,20 +65,60 @@ $(function() {
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">power_app.cpp</div>  </div>
+<div class="title">math_power_app.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="power__app_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;exception&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="power_8hpp.html">power.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">    9</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[])</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstdlib&gt;</code><br />
+<code>#include &lt;exception&gt;</code><br />
+<code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;string&gt;</code><br />
+<code>#include &quot;<a class="el" href="math__power_8hpp_source.html">math_power.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for math_power_app.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="math__power__app_8cpp__incl.png" border="0" usemap="#asources_2math__power__app_8cpp" alt=""/></div>
+</div>
+</div>
+<p><a href="math__power__app_8cpp_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math__power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a> (int argc, char *argv[])</td></tr>
+<tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddf1224851353fc92bfbff6f499fa97">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="math__power__app_8cpp_source.html#l00009">9</a> of file <a class="el" href="math__power__app_8cpp_source.html">math_power_app.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">if</span> (argc != 3) {</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;unknown arguments\n&quot;</span>;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        std::cout &lt;&lt; <span class="stringliteral">&quot;usage: &quot;</span> &lt;&lt; argv[0] &lt;&lt; <span class="stringliteral">&quot; base exponent\n&quot;</span>;  <span class="comment">// NOLINT</span></div>
@@ -96,13 +136,14 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">return</span> EXIT_SUCCESS;</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00025">power.hpp:25</a></div></div>
-<div class="ttc" id="apower_8hpp_html"><div class="ttname"><a href="power_8hpp.html">power.hpp</a></div></div>
-<div class="ttc" id="apower__app_8cpp_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="power__app_8cpp_source.html#l00009">power_app.cpp:9</a></div></div>
-</div><!-- fragment --></div><!-- contents -->
+<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="math__power_8hpp_source.html#l00025">math_power.hpp:25</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 17 2024 12:32:05 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Sep 7 2024 07:59:22 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

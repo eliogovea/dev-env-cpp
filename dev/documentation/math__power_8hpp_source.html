@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dev-env-cpp: sources/power.hpp Source File</title>
+<title>dev-env-cpp: sources/math_power.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -66,10 +66,10 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">power.hpp</div>  </div>
+<div class="title">math_power.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="power_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;concepts&gt;</span></div>
+<a href="math__power_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;concepts&gt;</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="namespaceMath.html">    4</a></span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMath.html">Math</a></div>
@@ -86,24 +86,24 @@ $(function() {
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">   25</a></span>&#160;constexpr <span class="keyword">auto</span> <a class="code" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Power</a>(Base base, Exponent exponent) -&gt; Base</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">auto</span> power = Base{1};</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">while</span> (exponent &gt; Exponent{0U}) {</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span> (exponent &amp; Exponent{1U}) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">while</span> (exponent &gt; 0U) {</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordflow">if</span> (exponent &amp; 1U) {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            power *= base;</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        }</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        base *= base;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        exponent &gt;&gt;= Exponent{1U};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        exponent &gt;&gt;= 1U;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    }</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> power;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;}  <span class="comment">// namespace Math</span></div>
-<div class="ttc" id="anamespaceMath_html"><div class="ttname"><a href="namespaceMath.html">Math</a></div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00004">power.hpp:5</a></div></div>
-<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00025">power.hpp:25</a></div></div>
-<div class="ttc" id="anamespaceMath_html_a9802fd238031917f337a82d32a9911f1"><div class="ttname"><a href="namespaceMath.html#a9802fd238031917f337a82d32a9911f1">Math::Multipliable</a></div><div class="ttdeci">concept Multipliable</div><div class="ttdoc">A concept to check if a type supports multiplication operations.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00011">power.hpp:11</a></div></div>
+<div class="ttc" id="anamespaceMath_html"><div class="ttname"><a href="namespaceMath.html">Math</a></div><div class="ttdef"><b>Definition:</b> <a href="math__power_8hpp_source.html#l00004">math_power.hpp:5</a></div></div>
+<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="math__power_8hpp_source.html#l00025">math_power.hpp:25</a></div></div>
+<div class="ttc" id="anamespaceMath_html_a9802fd238031917f337a82d32a9911f1"><div class="ttname"><a href="namespaceMath.html#a9802fd238031917f337a82d32a9911f1">Math::Multipliable</a></div><div class="ttdeci">concept Multipliable</div><div class="ttdoc">A concept to check if a type supports multiplication operations.</div><div class="ttdef"><b>Definition:</b> <a href="math__power_8hpp_source.html#l00011">math_power.hpp:11</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 17 2024 12:32:05 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Sep 7 2024 07:59:22 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

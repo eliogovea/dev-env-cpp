@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>dev-env-cpp: sources/power_test.cpp File Reference</title>
+<title>dev-env-cpp: sources/math_power_test.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,22 +68,22 @@ $(function() {
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">power_test.cpp File Reference</div>  </div>
+<div class="title">math_power_test.cpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="power_8hpp_source.html">power.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="math__power_8hpp_source.html">math_power.hpp</a>&quot;</code><br />
 <code>#include &lt;gtest/gtest.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
-Include dependency graph for power_test.cpp:</div>
+Include dependency graph for math_power_test.cpp:</div>
 <div class="dyncontent">
-<div class="center"><img src="power__test_8cpp__incl.png" border="0" usemap="#asources_2power__test_8cpp" alt=""/></div>
+<div class="center"><img src="math__power__test_8cpp__incl.png" border="0" usemap="#asources_2math__power__test_8cpp" alt=""/></div>
 </div>
 </div>
-<p><a href="power__test_8cpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="math__power__test_8cpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a92a239555d39299a1fcd63e34bab5f57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="power__test_8cpp.html#a92a239555d39299a1fcd63e34bab5f57">TEST</a> (Math, Power)</td></tr>
+<tr class="memitem:a92a239555d39299a1fcd63e34bab5f57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math__power__test_8cpp.html#a92a239555d39299a1fcd63e34bab5f57">TEST</a> (Math, Power)</td></tr>
 <tr class="separator:a92a239555d39299a1fcd63e34bab5f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -113,7 +113,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="power__test_8cpp_source.html#l00005">5</a> of file <a class="el" href="power__test_8cpp_source.html">power_test.cpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="math__power__test_8cpp_source.html#l00005">5</a> of file <a class="el" href="math__power__test_8cpp_source.html">math_power_test.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    static_assert(<a class="code" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a>(2, 0U) == 1);  <span class="comment">// NOLINT</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    static_assert(<a class="code" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a>(2, 1U) == 2);  <span class="comment">// NOLINT</span></div>
@@ -123,14 +123,14 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    EXPECT_EQ(<a class="code" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a>(1, 2U), 1);        <span class="comment">// NOLINT</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    EXPECT_EQ(<a class="code" href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a>(2, 2U), 4);        <span class="comment">// NOLINT</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;}</div>
-<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="power_8hpp_source.html#l00025">power.hpp:25</a></div></div>
+<div class="ttc" id="anamespaceMath_html_a1f0f4b888c5e0edb3fd6046d6c054678"><div class="ttname"><a href="namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678">Math::Power</a></div><div class="ttdeci">constexpr auto Power(Base base, Exponent exponent) -&gt; Base</div><div class="ttdoc">Calculates the power of a base raised to an exponent.</div><div class="ttdef"><b>Definition:</b> <a href="math__power_8hpp_source.html#l00025">math_power.hpp:25</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Mar 17 2024 12:32:05 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sat Sep 7 2024 07:59:22 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>

@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['power_3',['Power',['../namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678',1,'Math']]],
-  ['power_2ehpp_4',['power.hpp',['../power_8hpp.html',1,'']]],
-  ['power_5fapp_2ecpp_5',['power_app.cpp',['../power__app_8cpp.html',1,'']]],
-  ['power_5ftest_2ecpp_6',['power_test.cpp',['../power__test_8cpp.html',1,'']]]
+  ['filedescriptor_1',['FileDescriptor',['../classLinux_1_1FileDescriptor.html#a02f8fecf5ca73b6de0749c605d8214e1',1,'Linux::FileDescriptor::FileDescriptor()=default'],['../classLinux_1_1FileDescriptor.html#a24ba04779ddbf32b6c47f0f2745be377',1,'Linux::FileDescriptor::FileDescriptor(FileDescriptor const &amp;)=delete'],['../classLinux_1_1FileDescriptor.html#ad9cfda5e1f1064b2b3a4712fdaf2b0b9',1,'Linux::FileDescriptor::FileDescriptor(FileDescriptor &amp;&amp;other) noexcept'],['../classLinux_1_1FileDescriptor.html#a54cccc7c1ccf0ee35d6e27ae10c3209e',1,'Linux::FileDescriptor::FileDescriptor(int handle)'],['../classLinux_1_1FileDescriptor.html',1,'Linux::FileDescriptor']]]
 ];

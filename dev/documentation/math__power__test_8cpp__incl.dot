@@ -1,11 +1,11 @@
-digraph "sources/power_test.cpp"
+digraph "sources/math_power_test.cpp"
 {
  // LATEX_PDF_SIZE
   edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
   node [fontname="Helvetica",fontsize="10",shape=record];
-  Node1 [label="sources/power_test.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 [label="sources/math_power\l_test.cpp",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
   Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="power.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$power_8hpp.html",tooltip=" "];
+  Node2 [label="math_power.hpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$math__power_8hpp.html",tooltip=" "];
   Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="concepts",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
   Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
