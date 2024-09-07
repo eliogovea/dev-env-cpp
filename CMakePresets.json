@@ -21,7 +21,7 @@
       "inherits": ["make-base"],
       "generator": "Unix Makefiles",
       "cacheVariables": {
-        "CMAKE_CXX_COMPILER": "g++-13",
+        "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
       },
       "hidden": true
@@ -44,7 +44,7 @@
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fprofile-arcs -ftest-coverage",
         "ENABLE_COVERAGE": "ON",
         "COVERAGE_LCOV": "lcov",
-        "COVERAGE_GCOV": "gcov-13",
+        "COVERAGE_GCOV": "gcov",
         "COVERAGE_GENHTML": "genhtml"
       }
     },
