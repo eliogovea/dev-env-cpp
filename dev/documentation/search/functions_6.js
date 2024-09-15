@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['power_46',['Power',['../namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678',1,'Math']]]
+  ['power_48',['Power',['../namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678',1,'Math']]]
 ];

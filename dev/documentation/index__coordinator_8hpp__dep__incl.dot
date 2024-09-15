@@ -8,4 +8,6 @@ digraph "sources/index_coordinator.hpp"
   Node2 [label="sources/index_coordinator.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$index__coordinator_8cpp.html",tooltip=" "];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="sources/index_coordinator\l_fuzzer.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$index__coordinator__fuzzer_8cpp.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="sources/index_coordinator\l_test.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$index__coordinator__test_8cpp.html",tooltip=" "];
 }
