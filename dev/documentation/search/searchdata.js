@@ -1,10 +1,10 @@
 var indexSectionsWithContent =
 {
-  0: "cfglmoprt~",
+  0: "cfgilmoprst~",
   1: "f",
   2: "lm",
-  3: "lm",
-  4: "cfgmoprt~",
+  3: "ilm",
+  4: "cfglmoprst~",
   5: "m"
 };
 

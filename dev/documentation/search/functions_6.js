@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['releasenativehandle_35',['ReleaseNativeHandle',['../classLinux_1_1FileDescriptor.html#affbda97eec82f75343337d059697158f',1,'Linux::FileDescriptor']]]
+  ['power_46',['Power',['../namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678',1,'Math']]]
 ];

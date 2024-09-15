@@ -1,4 +1,10 @@
 var searchData=
 [
-  ['operator_3d_14',['operator=',['../classLinux_1_1FileDescriptor.html#a2a3dd93c6713835638ce059bcc0cb009',1,'Linux::FileDescriptor::operator=(FileDescriptor const &amp;) -&gt; FileDescriptor &amp;=delete'],['../classLinux_1_1FileDescriptor.html#aa90f21aff7cc632e4f84eb219a045e22',1,'Linux::FileDescriptor::operator=(FileDescriptor &amp;&amp;other) noexcept -&gt; FileDescriptor &amp;']]]
+  ['main_12',['main',['../math__power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'math_power_app.cpp']]],
+  ['math_13',['Math',['../namespaceMath.html',1,'']]],
+  ['math_5fpower_2ecpp_14',['math_power.cpp',['../math__power_8cpp.html',1,'']]],
+  ['math_5fpower_2ehpp_15',['math_power.hpp',['../math__power_8hpp.html',1,'']]],
+  ['math_5fpower_5fapp_2ecpp_16',['math_power_app.cpp',['../math__power__app_8cpp.html',1,'']]],
+  ['math_5fpower_5ftest_2ecpp_17',['math_power_test.cpp',['../math__power__test_8cpp.html',1,'']]],
+  ['multipliable_18',['Multipliable',['../namespaceMath.html#a9802fd238031917f337a82d32a9911f1',1,'Math']]]
 ];
