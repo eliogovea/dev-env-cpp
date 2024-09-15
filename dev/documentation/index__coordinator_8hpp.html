@@ -127,30 +127,30 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="index__coordinator_8hpp_source.html#l00043">43</a> of file <a class="el" href="index__coordinator_8hpp_source.html">index_coordinator.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        assert(value &lt; Capacity);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        assert(0U &lt; size_);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        assert(where_[value] &lt; size_);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        --size_;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        assert(value_[where_[value]] == value);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        assert(where_[value_[size_]] == size_);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> lhs_value = value;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> rhs_value = value_[size_];</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> lhs_where = where_[value];</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> rhs_where = size_;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keyword">using</span> std::swap;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        swap(where_[lhs_value], where_[rhs_value]);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        swap(value_[lhs_where], value_[rhs_where]);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        assert(value_[size_] == value);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        assert(where_[value] == size_);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="index__coordinator_8hpp_source.html#l00044">44</a> of file <a class="el" href="index__coordinator_8hpp_source.html">index_coordinator.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        assert(value &lt; Capacity);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        assert(0U &lt; size_);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        assert(where_[value] &lt; size_);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        --size_;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        assert(value_[where_[value]] == value);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        assert(where_[value_[size_]] == size_);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> lhs_value = value;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> rhs_value = value_[size_];</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> lhs_where = where_[value];</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span> rhs_where = size_;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">using</span> std::swap;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        swap(where_[lhs_value], where_[rhs_value]);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        swap(value_[lhs_where], value_[rhs_where]);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        assert(value_[size_] == value);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        assert(where_[value] == size_);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -180,10 +180,10 @@ Functions</h2></td></tr>
 
 <p>number of used values </p>
 
-<p class="definition">Definition at line <a class="el" href="index__coordinator_8hpp_source.html#l00028">28</a> of file <a class="el" href="index__coordinator_8hpp_source.html">index_coordinator.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">return</span> size_;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="index__coordinator_8hpp_source.html#l00029">29</a> of file <a class="el" href="index__coordinator_8hpp_source.html">index_coordinator.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordflow">return</span> size_;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -206,18 +206,18 @@ Functions</h2></td></tr>
 <p>take one value </p>
 <dl class="section return"><dt>Returns</dt><dd>one value in the range [0, Capacity) </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="index__coordinator_8hpp_source.html#l00035">35</a> of file <a class="el" href="index__coordinator_8hpp_source.html">index_coordinator.hpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        assert(size_ &lt; Capacity);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> value_[size_++];</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="index__coordinator_8hpp_source.html#l00036">36</a> of file <a class="el" href="index__coordinator_8hpp_source.html">index_coordinator.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        assert(size_ &lt; Capacity);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">return</span> value_[size_++];</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 15 2024 16:15:21 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+Generated on Sun Sep 15 2024 16:54:44 for dev-env-cpp by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
 </small></address>
 </body>
 </html>
