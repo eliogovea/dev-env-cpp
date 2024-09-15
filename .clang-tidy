@@ -1,6 +1,7 @@
 ---
 Checks: >
   *,
+  -altera-unroll-loops,
   -fuchsia-trailing-return,
   -llvmlibc-callee-namespace,
   -llvmlibc-implementation-in-namespace,

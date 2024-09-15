@@ -8,6 +8,7 @@ project(
 
 set(
     UTILITIES_PUBLIC_HEADERS
+    index_coordinator.hpp
     linux_file_descriptor.hpp
     math_power.hpp
 )
@@ -16,7 +17,8 @@ add_library(utilities_static STATIC)
 
 target_sources(
     utilities_static
-    PRIVATE linux_file_descriptor.cpp
+    PRIVATE index_coordinator.cpp
+            linux_file_descriptor.cpp
             math_power.cpp
 )
 
@@ -44,7 +46,8 @@ add_library(utilities_shared SHARED)
 
 target_sources(
     utilities_shared
-    PRIVATE linux_file_descriptor.cpp
+    PRIVATE index_coordinator.cpp
+            linux_file_descriptor.cpp
             math_power.cpp
 )
 
@@ -80,7 +83,8 @@ add_executable(utilities_test)
 
 target_sources(
     utilities_test
-    PRIVATE linux_file_descriptor_test.cpp
+    PRIVATE index_coordinator_test.cpp
+            linux_file_descriptor_test.cpp
             math_power_test.cpp
 )
 
@@ -94,6 +98,30 @@ add_test(
     NAME    utilities_test
     COMMAND utilities_test
 )
+
+# fuzzing
+
+if (ENABLE_FUZZING)
+    add_executable(index_coordinator_fuzzer)
+
+    target_sources(
+        index_coordinator_fuzzer
+        PRIVATE index_coordinator_fuzzer.cpp
+    )
+
+    target_compile_options(
+        index_coordinator_fuzzer
+        PRIVATE -coverage
+                -fsanitize=fuzzer,undefined,address
+    )
+
+    target_link_libraries(
+        index_coordinator_fuzzer
+        PRIVATE utilities_static
+                -coverage
+                -fsanitize=fuzzer,undefined,address
+    )
+endif(ENABLE_FUZZING)
 
 # app
 
