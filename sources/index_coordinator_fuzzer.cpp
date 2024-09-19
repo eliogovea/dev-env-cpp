@@ -6,8 +6,7 @@
 
 #include "index_coordinator.hpp"
 
-extern "C" int LLVMFuzzerTestOneInput(std::uint8_t const* data,
-                                      std::size_t         size)
+extern "C" int LLVMFuzzerTestOneInput(std::uint8_t const* data, std::size_t size)
 {
     // NOLINTNEXTLINE(cppcoreguidelines-avoid-magic-numbers,readability-magic-numbers)
     auto index = IndexCoordinator<std::uint8_t, 256U>{};

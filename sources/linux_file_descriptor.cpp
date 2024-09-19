@@ -12,8 +12,7 @@ FileDescriptor::FileDescriptor(FileDescriptor&& other) noexcept
 {
 }
 
-auto FileDescriptor::operator=(FileDescriptor&& other) noexcept
-    -> FileDescriptor&
+auto FileDescriptor::operator=(FileDescriptor&& other) noexcept -> FileDescriptor&
 {
     if (this == &other) {
         return *this;

@@ -8,7 +8,7 @@
 
 template <typename Type, std::size_t Capacity>
     requires std::unsigned_integral<Type>  //
-          && (0U < Capacity)
+          && (0U < Capacity)               //
           && (Capacity - 1U <= std::numeric_limits<Type>::max())
 class IndexCoordinator
 {
