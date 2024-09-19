@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.11)
 project(
     utilities
     VERSION 0.0.1
-    LANGUAGES CXX
+    LANGUAGES C CXX
 )
 
 set(
@@ -123,7 +123,7 @@ if (ENABLE_FUZZING)
     )
 endif(ENABLE_FUZZING)
 
-# app
+# apps
 
 add_executable(math_power_app)
 
@@ -142,6 +142,13 @@ target_link_libraries(
     PRIVATE utilities::utilities_static
 )
 
+add_executable(linux_executor)
+
+target_sources(
+    linux_executor
+    PRIVATE linux_executor.c
+)
+
 # install
 
 include(GNUInstallDirs)
@@ -150,6 +157,7 @@ install(
     TARGETS                   utilities_static
                               utilities_shared
                               math_power_app
+                              linux_executor
     EXPORT                    ${PROJECT_NAME}
     COMPONENT                 ${PROJECT_NAME}
     LIBRARY       DESTINATION ${CMAKE_INSTALL_LIBDIR}
