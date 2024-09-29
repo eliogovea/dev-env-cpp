@@ -13,13 +13,18 @@ set(
     math_power.hpp
 )
 
+set(
+    UTILITIES_PRIVATE_SOURCES
+    index_coordinator.cpp
+    linux_file_descriptor.cpp
+    math_power.cpp
+)
+
 add_library(utilities_static STATIC)
 
 target_sources(
     utilities_static
-    PRIVATE index_coordinator.cpp
-            linux_file_descriptor.cpp
-            math_power.cpp
+    PRIVATE ${UTILITIES_PRIVATE_SOURCES}
 )
 
 set_target_properties(
@@ -46,9 +51,7 @@ add_library(utilities_shared SHARED)
 
 target_sources(
     utilities_shared
-    PRIVATE index_coordinator.cpp
-            linux_file_descriptor.cpp
-            math_power.cpp
+    PRIVATE ${UTILITIES_PRIVATE_SOURCES}
 )
 
 
