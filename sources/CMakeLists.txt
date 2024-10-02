@@ -118,14 +118,14 @@ if (ENABLE_FUZZING)
     target_compile_options(
         index_coordinator_fuzzer
         PRIVATE -coverage
-                -fsanitize=fuzzer,undefined,address
+                -fsanitize=fuzzer
     )
 
     target_link_libraries(
         index_coordinator_fuzzer
         PRIVATE utilities_static
                 -coverage
-                -fsanitize=fuzzer,undefined,address
+                -fsanitize=fuzzer
     )
 endif(ENABLE_FUZZING)
 
