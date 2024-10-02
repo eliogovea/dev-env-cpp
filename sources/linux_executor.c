@@ -16,6 +16,8 @@
  * 5. Terminate the child process if it does not complete within the specified timeout.
  */
 
+#define _GNU_SOURCE  // Enable GNU-specific extensions in the standard library.
+
 // Linux-specific includes
 #include <fcntl.h>         // For file control operations: fcntl
 #include <poll.h>          // For event notification: poll, struct pollfd
@@ -72,7 +74,7 @@ int create_timer_fd(int timeout)
 }
 
 // Function to create a signalfd for handling SIGCHLD signals
-int create_signalfd()
+int create_signalfd(void)
 {
     sigset_t sigset;
 

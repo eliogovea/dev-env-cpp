@@ -12,6 +12,7 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_VERBOSE_MAKEFILE": true,
         "ENABLE_FORMATTING": true
       },
       "hidden": true
@@ -21,6 +22,7 @@
       "inherits": ["make-base"],
       "generator": "Unix Makefiles",
       "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
         "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror"
       },
@@ -62,6 +64,8 @@
       "inherits": ["make-base"],
       "generator": "Unix Makefiles",
       "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_C_FLAGS": "-Wall -Wextra -Wpedantic -Werror",
         "CMAKE_CXX_COMPILER": "clang++",
         "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Werror",
         "ENABLE_FUZZING": true
@@ -83,6 +87,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
         "ENABLE_STATIC_ANALYSIS": true,
         "STATIC_ANALYSIS_RUN_CLANG_TIDY": "run-clang-tidy"
@@ -94,6 +99,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g -fsanitize=address -fno-omit-frame-pointer",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=address -fno-omit-frame-pointer"
       }
     },
@@ -103,6 +109,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g -fsanitize=leak -fno-omit-frame-pointer",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=leak -fno-omit-frame-pointer"
       }
     },
@@ -112,6 +119,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g -fsanitize=memory -fno-omit-frame-pointer",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=memory -fno-omit-frame-pointer"
       }
     },
@@ -121,6 +129,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g -fsanitize=thread -fno-omit-frame-pointer",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=thread -fno-omit-frame-pointer"
       }
     },
@@ -130,6 +139,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g -fsanitize=undefined -fno-omit-frame-pointer",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fsanitize=undefined -fno-omit-frame-pointer"
       }
     },
@@ -139,6 +149,7 @@
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g -fxray-instrument -fxray-instruction-threshold=1",
         "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fxray-instrument -fxray-instruction-threshold=1",
         "ENABLE_FUZZING": false
       }
