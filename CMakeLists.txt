@@ -5,7 +5,7 @@ project(
     VERSION      0.0.1
     DESCRIPTION  "C++ Project"
     HOMEPAGE_URL "https://github.com/eliogovea/dev-env-cpp"
-    LANGUAGES    CXX
+    LANGUAGES    C CXX
 )
 
 
