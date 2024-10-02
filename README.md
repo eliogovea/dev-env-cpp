@@ -36,6 +36,7 @@ Template for a `CMake` based `C++` projects using `vscode`'s `devcontainer` to h
 - `make-clang-debug-sanitize-memory`
 - `make-clang-debug-sanitize-thread`
 - `make-clang-debug-sanitize-undefined`
+- `make-clang-debug-xray`
 - `make-clang-release`
 
 Each `preset` creates a directory inside `build`, example: `build/make-gcc-debug`

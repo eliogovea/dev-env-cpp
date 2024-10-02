@@ -134,6 +134,16 @@
       }
     },
     {
+      "name": "make-clang-debug-xray",
+      "inherits": ["make-clang-base"],
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g -fxray-instrument -fxray-instruction-threshold=1",
+        "ENABLE_FUZZING": false
+      }
+    },
+    {
       "name": "make-clang-release",
       "inherits": ["make-clang-base"],
       "binaryDir": "${sourceDir}/build/${presetName}",
@@ -199,6 +209,11 @@
     {
       "name": "make-clang-debug-sanitize-undefined",
       "configurePreset": "make-clang-debug-sanitize-undefined",
+      "jobs": 0
+    },
+    {
+      "name": "make-clang-debug-xray",
+      "configurePreset": "make-clang-debug-xray",
       "jobs": 0
     },
     {
@@ -311,6 +326,21 @@
       }
     },
     {
+      "name": "make-clang-debug-xray",
+      "configurePreset": "make-clang-debug-xray",
+      "output": {
+        "verbosity": "extra",
+        "outputOnFailure": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": true
+      },
+      "environment": {
+        "XRAY_OPTIONS": "patch_premain=true xray_mode=xray-basic verbosity=1"
+      }
+    },
+    {
       "name": "make-clang-release",
       "configurePreset": "make-clang-release",
       "output": {
@@ -362,6 +392,11 @@
     {
       "name": "make-clang-debug-sanitize-undefined",
       "configurePreset": "make-clang-debug-sanitize-undefined",
+      "generators": ["TGZ", "DEB"]
+    },
+    {
+      "name": "make-clang-debug-xray",
+      "configurePreset": "make-clang-debug-xray",
       "generators": ["TGZ", "DEB"]
     },
     {
@@ -570,6 +605,27 @@
         {
           "type": "package",
           "name": "make-clang-debug-sanitize-undefined"
+        }
+      ]
+    },
+    {
+      "name": "make-clang-debug-xray",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "make-clang-debug-xray"
+        },
+        {
+          "type": "build",
+          "name": "make-clang-debug-xray"
+        },
+        {
+          "type": "test",
+          "name": "make-clang-debug-xray"
+        },
+        {
+          "type": "package",
+          "name": "make-clang-debug-xray"
         }
       ]
     },
