@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7efiledescriptor_31',['~FileDescriptor',['../classLinux_1_1FileDescriptor.html#ad1b315753412603ab18c7e64ba394fc6',1,'Linux::FileDescriptor']]]
+  ['releasenativehandle_51',['ReleaseNativeHandle',['../classLinux_1_1FileDescriptor.html#affbda97eec82f75343337d059697158f',1,'Linux::FileDescriptor']]]
 ];

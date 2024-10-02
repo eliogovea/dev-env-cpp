@@ -1,11 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "cfgilmoprst~",
-  1: "f",
-  2: "lm",
-  3: "ilm",
-  4: "cfglmoprst~",
-  5: "m"
+  0: "_cdfgilmnoprstuvxyz~",
+  1: "fv",
+  2: "glm",
+  3: "gilm",
+  4: "cdfglmnoprstuvz~",
+  5: "mxy",
+  6: "o",
+  7: "_"
 };
 
 var indexSectionNames =
@@ -15,7 +17,9 @@ var indexSectionNames =
   2: "namespaces",
   3: "files",
   4: "functions",
-  5: "variables"
+  5: "variables",
+  6: "related",
+  7: "defines"
 };
 
 var indexSectionLabels =
@@ -25,6 +29,8 @@ var indexSectionLabels =
   2: "Namespaces",
   3: "Files",
   4: "Functions",
-  5: "Variables"
+  5: "Variables",
+  6: "Friends",
+  7: "Macros"
 };
 

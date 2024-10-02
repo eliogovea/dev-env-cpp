@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['operator_3d_55',['operator=',['../classLinux_1_1FileDescriptor.html#a2a3dd93c6713835638ce059bcc0cb009',1,'Linux::FileDescriptor::operator=(FileDescriptor const &amp;) -&gt; FileDescriptor &amp;=delete'],['../classLinux_1_1FileDescriptor.html#aa90f21aff7cc632e4f84eb219a045e22',1,'Linux::FileDescriptor::operator=(FileDescriptor &amp;&amp;other) noexcept -&gt; FileDescriptor &amp;']]]
+  ['main_100',['main',['../linux__executor_8c.html#adedb285b02c41bde2158ded9cc9fd7ac',1,'main(int argc, char *argv[], char *envp[]):&#160;linux_executor.c'],['../math__power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;math_power_app.cpp']]]
 ];

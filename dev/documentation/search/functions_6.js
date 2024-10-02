@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['power_56',['Power',['../namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678',1,'Math']]],
-  ['print_5fusage_57',['print_usage',['../linux__executor_8c.html#a93fa3f4bc442caee4d269f1f2b8acde7',1,'linux_executor.c']]]
+  ['normalizeconvexpolygon_101',['NormalizeConvexPolygon',['../namespaceGeometry.html#a28db3db81d2bbef1ee1870813d516203',1,'Geometry']]]
 ];
