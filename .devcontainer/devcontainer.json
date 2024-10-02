@@ -29,7 +29,8 @@
         "mhutchie.git-graph",
         "cschlosser.doxdocgen",
         "ms-azuretools.vscode-docker",
-        "ms-vscode.cpptools-extension-pack"
+        "ms-vscode.cpptools-extension-pack",
+        "ryanluker.vscode-coverage-gutters"
       ],
       // Set *default* container specific settings.json values on container create.
       "settings": {
@@ -69,6 +70,7 @@
         "C_Cpp.errorSquiggles": "enabled",
         "C_Cpp.hover": "default",
         "C_Cpp.formatting": "clangFormat",
+        "coverage-gutters.coverageReportFileName": "build/make-gcc-debug-coverage/lcov.info",
         "files.trimTrailingWhitespace": true,
         "files.insertFinalNewline": true,
         "files.trimFinalNewlines": true,
