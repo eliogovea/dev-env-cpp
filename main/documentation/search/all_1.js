@@ -1,7 +1,11 @@
 var searchData=
 [
-  ['power_3',['Power',['../namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678',1,'Math']]],
-  ['power_2ehpp_4',['power.hpp',['../power_8hpp.html',1,'']]],
-  ['power_5fapp_2ecpp_5',['power_app.cpp',['../power__app_8cpp.html',1,'']]],
-  ['power_5ftest_2ecpp_6',['power_test.cpp',['../power__test_8cpp.html',1,'']]]
+  ['calculatesemiplane_1',['CalculateSemiPlane',['../structGeometry_1_1Vector.html#a3303cec8c78dbb10ed4224f20656941e',1,'Geometry::Vector::CalculateSemiPlane(Vector const &amp;vector) -&gt; int'],['../structGeometry_1_1Vector.html#ae92a4886e893d879cd002b9080b44718',1,'Geometry::Vector::CalculateSemiPlane(Vector direction, Vector vector)']]],
+  ['checknativehandle_2',['CheckNativeHandle',['../classLinux_1_1FileDescriptor.html#a6db43c81521384e57785b6dc23533364',1,'Linux::FileDescriptor']]],
+  ['comparextheny_3',['CompareXThenY',['../structGeometry_1_1Vector.html#ae61930f363d136ca64fa743453b7dd72',1,'Geometry::Vector']]],
+  ['compareythenx_4',['CompareYThenX',['../structGeometry_1_1Vector.html#ad58c6c4e8318255c622c7abbfbb70b35',1,'Geometry::Vector']]],
+  ['create_5fsignalfd_5',['create_signalfd',['../linux__executor_8c.html#ad3688ec85ac351c4a49a250d1205cc2f',1,'linux_executor.c']]],
+  ['create_5ftimer_5ffd_6',['create_timer_fd',['../linux__executor_8c.html#a4249f7db199823776a9d5533cc5f42a1',1,'linux_executor.c']]],
+  ['createcomparatorbyangle_7',['CreateComparatorByAngle',['../structGeometry_1_1Vector.html#a01dc82fcaca8d67cce5466c7d8a7e2a3',1,'Geometry::Vector']]],
+  ['crossproduct_8',['CrossProduct',['../structGeometry_1_1Vector.html#a332e1ca04735e4398bc8487dd713012f',1,'Geometry::Vector']]]
 ];

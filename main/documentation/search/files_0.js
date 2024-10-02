@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['power_2ehpp_9',['power.hpp',['../power_8hpp.html',1,'']]],
-  ['power_5fapp_2ecpp_10',['power_app.cpp',['../power__app_8cpp.html',1,'']]],
-  ['power_5ftest_2ecpp_11',['power_test.cpp',['../power__test_8cpp.html',1,'']]]
+  ['geometry_5fconvex_2ehpp_69',['geometry_convex.hpp',['../geometry__convex_8hpp.html',1,'']]],
+  ['geometry_5fvector_2ecpp_70',['geometry_vector.cpp',['../geometry__vector_8cpp.html',1,'']]],
+  ['geometry_5fvector_2ehpp_71',['geometry_vector.hpp',['../geometry__vector_8hpp.html',1,'']]],
+  ['geometry_5fvector_5ftest_2ecpp_72',['geometry_vector_test.cpp',['../geometry__vector__test_8cpp.html',1,'']]]
 ];
