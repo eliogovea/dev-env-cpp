@@ -15,6 +15,7 @@
         "make-clang-debug-sanitize-memory",
         "make-clang-debug-sanitize-thread",
         "make-clang-debug-sanitize-undefined",
+        "make-clang-debug-xray",
         "make-clang-release",
         "static-analysis"
       ]
