@@ -8,6 +8,7 @@ project(
 
 set(
     UTILITIES_PUBLIC_HEADERS
+    geometry_vector.hpp
     index_coordinator.hpp
     linux_file_descriptor.hpp
     math_power.hpp
@@ -15,6 +16,7 @@ set(
 
 set(
     UTILITIES_PRIVATE_SOURCES
+    geometry_vector.cpp
     index_coordinator.cpp
     linux_file_descriptor.cpp
     math_power.cpp
@@ -86,7 +88,8 @@ add_executable(utilities_test)
 
 target_sources(
     utilities_test
-    PRIVATE index_coordinator_test.cpp
+    PRIVATE geometry_vector_test.cpp
+            index_coordinator_test.cpp
             linux_file_descriptor_test.cpp
             math_power_test.cpp
 )
