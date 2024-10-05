@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zero_62',['Zero',['../structGeometry_1_1Vector.html#aa1131fd41e3fc943e34effa0b339800f',1,'Geometry::Vector']]]
+  ['_7efiledescriptor_60',['~FileDescriptor',['../classLinux_1_1FileDescriptor.html#ad1b315753412603ab18c7e64ba394fc6',1,'Linux::FileDescriptor']]]
 ];
