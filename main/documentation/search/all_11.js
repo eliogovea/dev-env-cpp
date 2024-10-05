@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y_61',['y',['../structGeometry_1_1Vector.html#add472d128547e1aaf7721c1a878dd96d',1,'Geometry::Vector']]]
+  ['zero_59',['Zero',['../structGeometry_1_1Vector.html#aa1131fd41e3fc943e34effa0b339800f',1,'Geometry::Vector']]]
 ];
