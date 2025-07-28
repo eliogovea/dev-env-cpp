@@ -155,6 +155,18 @@ target_sources(
     PRIVATE linux_executor.c
 )
 
+add_executable(egpoc_duplicates_finder)
+
+target_sources(
+    egpoc_duplicates_finder
+    PRIVATE egpoc_duplicates_finder.c
+)
+
+target_compile_definitions(
+    egpoc_duplicates_finder
+    PRIVATE EGPOC_DUPLICATES_FINDER_USE_HASH_ONLY
+)
+
 # install
 
 include(GNUInstallDirs)

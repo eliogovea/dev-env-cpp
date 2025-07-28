@@ -19,6 +19,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     gpg-agent \
     lcov \
     libgtest-dev \
+    libxxhash-dev \
     python3 \
     python3-pip \
     software-properties-common \
