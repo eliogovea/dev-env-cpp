@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['main_28',['main',['../linux__executor_8c.html#adedb285b02c41bde2158ded9cc9fd7ac',1,'main(int argc, char *argv[], char *envp[]):&#160;linux_executor.c'],['../math__power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;math_power_app.cpp']]],
-  ['math_29',['Math',['../namespaceMath.html',1,'']]],
-  ['math_5fpower_2ecpp_30',['math_power.cpp',['../math__power_8cpp.html',1,'']]],
-  ['math_5fpower_2ehpp_31',['math_power.hpp',['../math__power_8hpp.html',1,'']]],
-  ['math_5fpower_5fapp_2ecpp_32',['math_power_app.cpp',['../math__power__app_8cpp.html',1,'']]],
-  ['math_5fpower_5ftest_2ecpp_33',['math_power_test.cpp',['../math__power__test_8cpp.html',1,'']]],
-  ['multipliable_34',['Multipliable',['../namespaceMath.html#a9802fd238031917f337a82d32a9911f1',1,'Math']]]
+  ['geometry_0',['Geometry',['../namespaceGeometry.html',1,'']]],
+  ['geometry_5fvector_2ecpp_1',['geometry_vector.cpp',['../geometry__vector_8cpp.html',1,'']]],
+  ['geometry_5fvector_2ehpp_2',['geometry_vector.hpp',['../geometry__vector_8hpp.html',1,'']]],
+  ['geometry_5fvector_5ftest_2ecpp_3',['geometry_vector_test.cpp',['../geometry__vector__test_8cpp.html',1,'']]],
+  ['getnativehandle_4',['GetNativeHandle',['../classLinux_1_1FileDescriptor.html#a8edcb0a6836e65bbd2198a557b869f92',1,'Linux::FileDescriptor']]],
+  ['give_5',['give',['../classIndexCoordinator.html#a777ae94ef2f0a8475a501d4a1b09234f',1,'IndexCoordinator']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['power_101',['Power',['../namespaceMath.html#a1f0f4b888c5e0edb3fd6046d6c054678',1,'Math']]],
-  ['print_5fusage_102',['print_usage',['../linux__executor_8c.html#a93fa3f4bc442caee4d269f1f2b8acde7',1,'linux_executor.c']]]
+  ['main_0',['main',['../egpoc__duplicates__finder_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;egpoc_duplicates_finder.c'],['../linux__executor_8c.html#adedb285b02c41bde2158ded9cc9fd7ac',1,'main(int argc, char *argv[], char *envp[]):&#160;linux_executor.c'],['../math__power__app_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;math_power_app.cpp']]]
 ];
