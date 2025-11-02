@@ -1,0 +1,266 @@
+{
+  "version": 10,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 22,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "host-llvm-release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/host-llvm-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_LINKER": "",
+        "CMAKE_C_FLAGS": "",
+        "CMAKE_CXX_FLAGS": "",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
+        "CMAKE_C_FLAGS_RELEASE": "-O2",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2",
+        "CMAKE_EXE_LINKER_FLAGS": "",
+        "CMAKE_SHARED_LINKER_FLAGS": "",
+        "CMAKE_MODULE_LINKER_FLAGS": "",
+        "CMAKE_PREFIX_PATH": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_POSITION_INDEPENDENT_CODE": true,
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_SKIP_RPATH": false
+      }
+    },
+    {
+      "name": "host-llvm-debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/host-llvm-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_CXX_COMPILER": "clang++",
+        "CMAKE_LINKER": "",
+        "CMAKE_C_FLAGS": "",
+        "CMAKE_CXX_FLAGS": "",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
+        "CMAKE_C_FLAGS_RELEASE": "-O2",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2",
+        "CMAKE_EXE_LINKER_FLAGS": "",
+        "CMAKE_SHARED_LINKER_FLAGS": "",
+        "CMAKE_MODULE_LINKER_FLAGS": "",
+        "CMAKE_PREFIX_PATH": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_POSITION_INDEPENDENT_CODE": true,
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_SKIP_RPATH": false
+      }
+    },
+    {
+      "name": "cross-windows-release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cross-windows-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_SYSTEM_NAME": "Windows",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "x86_64-w64-mingw32-windres",
+        "CMAKE_LINKER": "x86_64-w64-mingw32-ld",
+        "CMAKE_C_FLAGS": "",
+        "CMAKE_CXX_FLAGS": "",
+        "CMAKE_C_FLAGS_DEBUG": "",
+        "CMAKE_CXX_FLAGS_DEBUG": "",
+        "CMAKE_C_FLAGS_RELEASE": "",
+        "CMAKE_CXX_FLAGS_RELEASE": "",
+        "CMAKE_EXE_LINKER_FLAGS": "",
+        "CMAKE_SHARED_LINKER_FLAGS": "",
+        "CMAKE_MODULE_LINKER_FLAGS": "",
+        "CMAKE_PREFIX_PATH": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_POSITION_INDEPENDENT_CODE": true,
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_SKIP_RPATH": true
+      }
+    },
+    {
+      "name": "cross-windows-debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cross-windows-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_SYSTEM_NAME": "Windows",
+        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
+        "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
+        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+        "CMAKE_RC_COMPILER": "x86_64-w64-mingw32-windres",
+        "CMAKE_LINKER": "x86_64-w64-mingw32-ld",
+        "CMAKE_C_FLAGS": "",
+        "CMAKE_CXX_FLAGS": "",
+        "CMAKE_C_FLAGS_DEBUG": "",
+        "CMAKE_CXX_FLAGS_DEBUG": "",
+        "CMAKE_C_FLAGS_RELEASE": "",
+        "CMAKE_CXX_FLAGS_RELEASE": "",
+        "CMAKE_EXE_LINKER_FLAGS": "",
+        "CMAKE_SHARED_LINKER_FLAGS": "",
+        "CMAKE_MODULE_LINKER_FLAGS": "",
+        "CMAKE_PREFIX_PATH": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_POSITION_INDEPENDENT_CODE": true,
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_SKIP_RPATH": true
+      }
+    },
+    {
+      "name": "cross-wasm-release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cross-wasm-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_SYSTEM_NAME": "Emscripten",
+        "CMAKE_SYSTEM_PROCESSOR": "wasm32",
+        "CMAKE_C_COMPILER": "emcc",
+        "CMAKE_CXX_COMPILER": "em++",
+        "CMAKE_LINKER": "emcc",
+        "CMAKE_C_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
+        "CMAKE_CXX_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
+        "CMAKE_C_FLAGS_DEBUG": "",
+        "CMAKE_CXX_FLAGS_DEBUG": "",
+        "CMAKE_C_FLAGS_RELEASE": "",
+        "CMAKE_CXX_FLAGS_RELEASE": "",
+        "CMAKE_EXE_LINKER_FLAGS": "",
+        "CMAKE_SHARED_LINKER_FLAGS": "",
+        "CMAKE_MODULE_LINKER_FLAGS": "",
+        "CMAKE_PREFIX_PATH": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_POSITION_INDEPENDENT_CODE": true,
+        "CMAKE_TOOLCHAIN_FILE": "$env{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_SKIP_RPATH": true
+      },
+      "environment": {
+        "EMSDK": "$penv{EMSDK}"
+      }
+    },
+    {
+      "name": "cross-wasm-debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/cross-wasm-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_SYSTEM_NAME": "Emscripten",
+        "CMAKE_SYSTEM_PROCESSOR": "wasm32",
+        "CMAKE_C_COMPILER": "emcc",
+        "CMAKE_CXX_COMPILER": "em++",
+        "CMAKE_LINKER": "emcc",
+        "CMAKE_C_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
+        "CMAKE_CXX_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
+        "CMAKE_C_FLAGS_DEBUG": "",
+        "CMAKE_CXX_FLAGS_DEBUG": "",
+        "CMAKE_C_FLAGS_RELEASE": "",
+        "CMAKE_CXX_FLAGS_RELEASE": "",
+        "CMAKE_EXE_LINKER_FLAGS": "",
+        "CMAKE_SHARED_LINKER_FLAGS": "",
+        "CMAKE_MODULE_LINKER_FLAGS": "",
+        "CMAKE_PREFIX_PATH": "",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_POSITION_INDEPENDENT_CODE": true,
+        "CMAKE_TOOLCHAIN_FILE": "$penv{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_SKIP_RPATH": true
+      },
+      "environment": {
+        "EMSDK": "$penv{EMSDK}"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "host-llvm-release",
+      "configurePreset": "host-llvm-release",
+      "targets": "all"
+    },
+    {
+      "name": "host-llvm-debug",
+      "configurePreset": "host-llvm-debug",
+      "targets": "all"
+    },
+    {
+      "name": "cross-windows-release",
+      "configurePreset": "cross-windows-release",
+      "targets": "all"
+    },
+    {
+      "name": "cross-windows-debug",
+      "configurePreset": "cross-windows-debug",
+      "targets": "all"
+    },
+    {
+      "name": "cross-wasm-release",
+      "configurePreset": "cross-wasm-release",
+      "targets": "all"
+    },
+    {
+      "name": "cross-wasm-debug",
+      "configurePreset": "cross-wasm-debug",
+      "targets": "all"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "host-llvm-release",
+      "configurePreset": "host-llvm-release"
+    },
+    {
+      "name": "host-llvm-debug",
+      "configurePreset": "host-llvm-debug"
+    },
+    {
+      "name": "cross-windows-release",
+      "configurePreset": "cross-windows-release"
+    },
+    {
+      "name": "cross-windows-debug",
+      "configurePreset": "cross-windows-debug"
+    },
+    {
+      "name": "cross-wasm-release",
+      "configurePreset": "cross-wasm-release"
+    },
+    {
+      "name": "cross-wasm-debug",
+      "configurePreset": "cross-wasm-debug"
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "host-llvm-release",
+      "configurePreset": "host-llvm-release"
+    },
+    {
+      "name": "host-llvm-debug",
+      "configurePreset": "host-llvm-debug"
+    },
+    {
+      "name": "cross-windows-release",
+      "configurePreset": "cross-windows-release"
+    },
+    {
+      "name": "cross-windows-debug",
+      "configurePreset": "cross-windows-debug"
+    },
+    {
+      "name": "cross-wasm-release",
+      "configurePreset": "cross-wasm-release"
+    },
+    {
+      "name": "cross-wasm-debug",
+      "configurePreset": "cross-wasm-debug"
+    }
+  ]
+}
