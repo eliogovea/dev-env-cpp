@@ -1,6 +1,6 @@
-#ifdef EGPOC_PLATFORM_WIN32
-
 #include "egpoc_platform.h"
+
+#ifdef EGPOC_PLATFORM_WIN32
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -31,7 +31,7 @@ static LRESULT CALLBACK egpoc_platform_win32_WndProc(HWND hwnd, UINT msg, WPARAM
     case WM_PAINT: {
         fprintf(stderr, "WM_PAINT\n");
         PAINTSTRUCT ps;
-        HDC         hdc = BeginPaint(hwnd, &ps);
+        BeginPaint(hwnd, &ps);
         EndPaint(hwnd, &ps);
         break;
     }
@@ -96,16 +96,24 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
                                              egpoc_memory_acquire_t memory_acquire,
                                              egpoc_memory_release_t memory_release,
                                              char const*            window_title,
-                                             int                    window_width,
-                                             int                    window_height,
+                                             unsigned int           window_width,
+                                             unsigned int           window_height,
                                              egpoc_platform_t**     platform)
 {
+    egpoc_platform_win32_t* platform_win32
+        = (egpoc_platform_win32_t*)memory_acquire(memory_owner, sizeof(egpoc_platform_win32_t));
+
+    if (!platform_win32) {
+        return egpoc_platform_error_unknown;
+    }
+
     WNDCLASS wc      = {0};
     wc.lpfnWndProc   = egpoc_platform_win32_WndProc;
     wc.hInstance     = GetModuleHandle(NULL);
     wc.lpszClassName = "egpoc";
 
     if (!RegisterClass(&wc)) {
+        platform_win32 = memory_release(memory_owner, sizeof(egpoc_platform_win32_t), platform_win32);
         return egpoc_platform_error_unknown;
     }
 
@@ -115,26 +123,20 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
                                WS_OVERLAPPEDWINDOW | WS_VISIBLE,
                                CW_USEDEFAULT,
                                CW_USEDEFAULT,
-                               window_width,
-                               window_width,
+                               (int)window_width,
+                               (int)window_height,
                                NULL,
                                NULL,
                                wc.hInstance,
                                NULL);
 
     if (!hwnd) {
+        platform_win32 = memory_release(memory_owner, sizeof(egpoc_platform_win32_t), platform_win32);
         return egpoc_platform_error_unknown;
     }
 
     ShowWindow(hwnd, SW_SHOW);
     UpdateWindow(hwnd);
-
-    egpoc_platform_win32_t* platform_win32
-        = (egpoc_platform_win32_t*)memory_acquire(memory_owner, sizeof(egpoc_platform_win32_t));
-
-    if (!platform_win32) {
-        return egpoc_platform_error_unknown;
-    }
 
     platform_win32->hwnd = hwnd;
 
@@ -147,16 +149,19 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
 
 egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
                                              egpoc_platform_event_t* events,
-                                             int                     events_count_limit,
-                                             int*                    events_count)
+                                             size_t                  events_count_limit,
+                                             size_t*                 events_count)
 {
-    egpoc_platform_win32_t* platform_x11 = (egpoc_platform_win32_t*)platform;
+    (void)events;
 
-    HWND hwnd = ((egpoc_platform_win32_t*)platform)->hwnd;
+    egpoc_platform_win32_t* platform_win32 = (egpoc_platform_win32_t*)platform;
 
-    MSG msg = {};
+    HWND hwnd = platform_win32->hwnd;
 
-    int events_count_ = 0;
+    MSG msg;
+    memset(&msg, 0, sizeof(msg));
+
+    size_t events_count_ = 0;
 
     while (events_count_ < events_count_limit) {
         if (!PeekMessage(&msg, hwnd, 0, 0, PM_REMOVE)) {

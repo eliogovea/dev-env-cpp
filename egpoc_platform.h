@@ -24,12 +24,12 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
                                              egpoc_memory_acquire_t memory_acquire,
                                              egpoc_memory_release_t memory_release,
                                              char const*            window_title,
-                                             int                    window_width,
-                                             int                    window_height,
+                                             unsigned int           window_width,
+                                             unsigned int           window_height,
                                              egpoc_platform_t**     platform);
 
 egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
                                              egpoc_platform_event_t* events,
-                                             int                     events_count_limit,
-                                             int*                    events_count);
+                                             size_t                  events_count_limit,
+                                             size_t*                 events_count);
 #endif  // EGPOC_PLATFORM_H_

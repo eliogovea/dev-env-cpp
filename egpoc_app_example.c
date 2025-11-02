@@ -9,7 +9,7 @@ int main(int argc, char* argv[])
 {
     (void)argc;
 
-    egpoc_memory_arena_t arena       = {};
+    egpoc_memory_arena_t arena       = {.data = NULL, .size = 0, .used = 0};
     egpoc_memory_error_t arena_error = egpoc_memory_error_none;
 
     arena_error = egpoc_memory_arena_create(NULL,  //
@@ -33,7 +33,12 @@ int main(int argc, char* argv[])
                                            256,
                                            &platform);
 
-    int events_capacity = 16;
+    if (platform_error != egpoc_platform_error_none) {
+        fprintf(stderr, "Error. egpoc_platform_create failed\n");
+        return EXIT_FAILURE;
+    }
+
+    size_t events_capacity = 16;
 
     egpoc_platform_event_t* events
         = egpoc_memory_arena_acquire(&arena, events_capacity * sizeof(egpoc_platform_event_t));
@@ -45,7 +50,7 @@ int main(int argc, char* argv[])
 
 #ifndef EGPOC_PLATFORM_WASM
     while (1) {
-        int                    events_count = 0;
+        size_t                 events_count = 0;
         egpoc_platform_error_t events_error = egpoc_platform_events(platform, events, events_capacity, &events_count);
 
         if (events_error != egpoc_platform_error_none) {
@@ -54,7 +59,7 @@ int main(int argc, char* argv[])
         }
 
         if (events_count > 0) {
-            fprintf(stderr, "events count: %d\n", events_count);
+            fprintf(stderr, "events count: %zu\n", events_count);
         }
 
         // small sleep so we don't spin the CPU

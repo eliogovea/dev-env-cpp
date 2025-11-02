@@ -1,6 +1,6 @@
-#ifdef EGPOC_PLATFORM_X11
-
 #include "egpoc_platform.h"
+
+#ifdef EGPOC_PLATFORM_X11
 
 #include <stdio.h>
 #include <string.h>
@@ -17,8 +17,8 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
                                              egpoc_memory_acquire_t memory_acquire,
                                              egpoc_memory_release_t memory_release,
                                              char const*            window_title,
-                                             int                    window_width,
-                                             int                    window_height,
+                                             unsigned int           window_width,
+                                             unsigned int           window_height,
                                              egpoc_platform_t**     platform)
 {
     Display* display;
@@ -29,13 +29,14 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
         = (egpoc_platform_x11_t*)memory_acquire(memory_owner, sizeof(egpoc_platform_x11_t));
 
     if (!platform_x11) {
+        platform_x11 = memory_release(memory_owner, sizeof(egpoc_platform_x11_t), platform_x11);
         return egpoc_platform_error_unknown;
     }
 
     display = XOpenDisplay(NULL);
 
     if (!display) {
-        memory_release(memory_owner, sizeof(egpoc_platform_x11_t), platform_x11);
+        platform_x11 = memory_release(memory_owner, sizeof(egpoc_platform_x11_t), platform_x11);
         return egpoc_platform_error_unknown;
     }
 
@@ -87,18 +88,21 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
 
 egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
                                              egpoc_platform_event_t* events,
-                                             int                     events_count_limit,
-                                             int*                    events_count)
+                                             size_t                  events_count_limit,
+                                             size_t*                 events_count)
 {
+    // TODO
+    (void)events;
+
     egpoc_platform_x11_t* platform_x11 = (egpoc_platform_x11_t*)platform;
 
     Display* display = platform_x11->display;
-    XEvent   event   = {};
+    XEvent   event   = {.type = 0};
 
-    int events_queued = XEventsQueued(display, QueuedAfterReading);
-    int events_count_ = (events_queued < events_count_limit) ? events_queued : events_count_limit;
+    size_t events_queued = (size_t)XEventsQueued(display, QueuedAfterReading);
+    size_t events_count_ = (events_queued < events_count_limit) ? events_queued : events_count_limit;
 
-    for (int i = 0; i < events_count_; i++) {
+    for (size_t i = 0; i < events_count_; i++) {
         XNextEvent(display, &event);
 
         // TODO: save events

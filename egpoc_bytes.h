@@ -22,7 +22,7 @@ typedef enum {
     egpoc_bytes_order_unknown,
 } egpoc_bytes_order_t;
 
-static inline egpoc_bytes_order_t egpoc_bytes_order_on_host()
+static inline egpoc_bytes_order_t egpoc_bytes_order_on_host(void)
 {
     uint32_t value = 0x01234567;
     uint8_t* bytes = (uint8_t*)&value;

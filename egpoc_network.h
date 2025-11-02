@@ -24,10 +24,10 @@ static inline int egpoc_network_ipv4_bytes_to_address(egpoc_network_ipv4_address
 
     address->data = 0;
 
-    address->data |= bytes.data[0] << 24;
-    address->data |= bytes.data[1] << 16;
-    address->data |= bytes.data[2] << 8;
-    address->data |= bytes.data[3];
+    address->data |= (uint32_t)bytes.data[0] << 24;
+    address->data |= (uint32_t)bytes.data[1] << 16;
+    address->data |= (uint32_t)bytes.data[2] << 8;
+    address->data |= (uint32_t)bytes.data[3];
 
     return 1;
 }
