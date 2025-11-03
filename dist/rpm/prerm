@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+set -e
+set -o pipefail
+set -u
+
+echo "egpoc prerm ..."
+
+exit 0

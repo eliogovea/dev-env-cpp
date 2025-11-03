@@ -248,7 +248,11 @@ set(CPACK_DEBIAN_PACKAGE_SECTION    "utils"                     CACHE STRING "De
 set(CPACK_DEBIAN_PACKAGE_PRIORITY   "optional"                  CACHE STRING "Debian package priority")
 set(CPACK_DEBIAN_ARCHITECTURE       "${CMAKE_SYSTEM_PROCESSOR}" CACHE STRING "Debian package architecture")
 set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS  ON                          CACHE BOOL   "Automatically detect shared library dependencies")
-
+set(CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "")
+list(APPEND CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_LIST_DIR}/dist/deb/preinst")
+list(APPEND CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_LIST_DIR}/dist/deb/postinst")
+list(APPEND CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_LIST_DIR}/dist/deb/prerm")
+list(APPEND CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_LIST_DIR}/dist/deb/postrm")
 
 # ------------------------
 # RPM specific options
@@ -261,6 +265,10 @@ set(CPACK_RPM_PACKAGE_VENDOR "${CPACK_PACKAGE_VENDOR}" CACHE STRING "RPM package
 set(CPACK_RPM_PACKAGE_URL "${CPACK_PACKAGE_HOMEPAGE_URL}" CACHE STRING "RPM project URL")
 set(CPACK_RPM_PACKAGE_RELEASE "1" CACHE STRING "RPM package release")
 set(CPACK_RPM_ARCHITECTURE ${CMAKE_SYSTEM_PROCESSOR})
+set(CPACK_RPM_PRE_INSTALL_SCRIPT_FILE    "${CMAKE_SOURCE_DIR}/dist/rpm/preinst")
+set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE   "${CMAKE_SOURCE_DIR}/dist/rpm/postinst")
+set(CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE  "${CMAKE_SOURCE_DIR}/dist/rpm/prerm")
+set(CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE "${CMAKE_SOURCE_DIR}/dist/rpm/postrm")
 
 # ------------------------
 # NSIS specific options
