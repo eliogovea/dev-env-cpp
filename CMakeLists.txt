@@ -49,7 +49,7 @@ set(
 add_library(egpoc_static STATIC)
 add_library(egpoc::egpoc_static ALIAS egpoc_static)
 target_sources(egpoc_static PRIVATE "${EGPOC_SOURCES}")
-set_target_properties(egpoc_static PROPERTIES OUTPUT_NAME   egpoc)
+set_target_properties(egpoc_static PROPERTIES OUTPUT_NAME egpoc)
 set_target_properties(egpoc_static PROPERTIES PUBLIC_HEADER "${EGPOC_HEADERS}")
 target_compile_features(egpoc_static PRIVATE c_std_11)
 target_include_directories(egpoc_static PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>)
@@ -73,24 +73,28 @@ endif()
 # Unit Tests
 # ------------------------------------------------------------------------------
 
-add_executable(egpoc_memory_unittest egpoc_memory_unittest.c)
-target_link_libraries(egpoc_memory_unittest PRIVATE egpoc::egpoc_static)
+add_executable(egpoc_testing)
+
+target_sources(egpoc_testing PRIVATE egpoc_testing.c)
+target_sources(egpoc_testing PRIVATE egpoc_testing_main.c)
+target_sources(egpoc_testing PRIVATE egpoc_memory_unittest.c)
+target_link_libraries(egpoc_testing PRIVATE egpoc::egpoc_static)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
-    set_target_properties(egpoc_memory_unittest PROPERTIES SUFFIX ".js")
-    target_link_options(egpoc_memory_unittest PRIVATE $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Emscripten>:-s WASM=1>)
-    target_link_options(egpoc_memory_unittest PRIVATE "-s WASM=1")
-    target_link_options(egpoc_memory_unittest PRIVATE "-s ENVIRONMENT=node")
-    target_link_options(egpoc_memory_unittest PRIVATE "-s EXIT_RUNTIME=1")
-    add_test(NAME egpoc_memory_unittest COMMAND node ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_memory_unittest.js)
+    set_target_properties(egpoc_testing PROPERTIES SUFFIX ".js")
+    target_link_options(egpoc_testing PRIVATE $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Emscripten>:-s WASM=1>)
+    target_link_options(egpoc_testing PRIVATE "-s WASM=1")
+    target_link_options(egpoc_testing PRIVATE "-s ENVIRONMENT=node")
+    target_link_options(egpoc_testing PRIVATE "-s EXIT_RUNTIME=1")
+    add_test(NAME egpoc_testing COMMAND node ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.js)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     if (${CMAKE_CROSSCOMPILING})
-        add_test(NAME egpoc_memory_unittest COMMAND wine ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_memory_unittest.exe)
+        add_test(NAME egpoc_testing COMMAND wine ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
     else ()
-        add_test(NAME egpoc_memory_unittest COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_memory_unittest.exe)
+        add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
     endif ()
 else(MAKE_SYSTEM_NAME STREQUAL "Linux")
-    add_test(NAME egpoc_memory_unittest COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_memory_unittest)
+    add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing)
 endif()
 # ------------------------------------------------------------------------------
 # Applications
@@ -100,8 +104,8 @@ endif()
 # Applications: egpoc_app_example
 # ------------------------------------------------------------------------------
 
-add_executable(egpoc_app_example egpoc_app_example.c)
-
+add_executable(egpoc_app_example)
+target_sources(egpoc_app_example PRIVATE  egpoc_app_example.c)
 target_link_libraries(egpoc_app_example PRIVATE egpoc::egpoc_static)
 
 # ------------------------------------------------------------------------------

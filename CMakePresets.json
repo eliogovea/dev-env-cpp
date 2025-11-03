@@ -240,7 +240,6 @@
     {
       "name": "host-gcc-debug-coverage",
       "configurePreset": "host-gcc-debug-coverage",
-      "configuration": "",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -249,27 +248,57 @@
     },
     {
       "name": "host-llvm-release",
-      "configurePreset": "host-llvm-release"
+      "configurePreset": "host-llvm-release",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
     },
     {
       "name": "host-llvm-debug",
-      "configurePreset": "host-llvm-debug"
+      "configurePreset": "host-llvm-debug",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
     },
     {
       "name": "cross-windows-release",
-      "configurePreset": "cross-windows-release"
+      "configurePreset": "cross-windows-release",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
     },
     {
       "name": "cross-windows-debug",
-      "configurePreset": "cross-windows-debug"
+      "configurePreset": "cross-windows-debug",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
     },
     {
       "name": "cross-wasm-release",
-      "configurePreset": "cross-wasm-release"
+      "configurePreset": "cross-wasm-release",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
     },
     {
       "name": "cross-wasm-debug",
-      "configurePreset": "cross-wasm-debug"
+      "configurePreset": "cross-wasm-debug",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
     }
   ],
   "packagePresets": [
