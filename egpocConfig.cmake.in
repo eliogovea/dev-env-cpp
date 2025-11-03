@@ -1,0 +1,17 @@
+@PACKAGE_INIT@
+
+# ------------------------------------------------------------------------------
+# egpoc CMake Package Configuration
+# ------------------------------------------------------------------------------
+# This file is installed with the egpoc library and allows other projects
+# to use:
+#   find_package(egpoc REQUIRED)
+# ------------------------------------------------------------------------------
+
+set(egpoc_VERSION "@PROJECT_VERSION@")
+
+# Include the exported targets from the installed package
+include("${CMAKE_CURRENT_LIST_DIR}/egpocTargets.cmake")
+
+# Optionally print version info when found
+message(STATUS "Found egpoc version ${egpoc_VERSION}")

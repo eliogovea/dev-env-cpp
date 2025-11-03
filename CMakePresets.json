@@ -315,6 +315,112 @@
           "name": "host-gcc-debug-coverage"
         }
       ]
+    },
+    {
+      "name": "host-llvm-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "host-llvm-debug"
+        },
+        {
+          "type": "build",
+          "name": "host-llvm-debug"
+        },
+        {
+          "type": "test",
+          "name": "host-llvm-debug"
+        },
+        {
+          "type": "package",
+          "name": "host-llvm-debug"
+        }
+      ]
+    },
+    {
+      "name": "host-llvm-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "host-llvm-release"
+        },
+        {
+          "type": "build",
+          "name": "host-llvm-release"
+        },
+        {
+          "type": "test",
+          "name": "host-llvm-release"
+        }
+      ]
+    },
+    {
+      "name": "cross-windows-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "cross-windows-debug"
+        },
+        {
+          "type": "build",
+          "name": "cross-windows-debug"
+        },
+        {
+          "type": "test",
+          "name": "cross-windows-debug"
+        }
+      ]
+    },
+    {
+      "name": "cross-windows-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "cross-windows-release"
+        },
+        {
+          "type": "build",
+          "name": "cross-windows-release"
+        },
+        {
+          "type": "test",
+          "name": "cross-windows-release"
+        }
+      ]
+    },
+    {
+      "name": "cross-wasm-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "cross-wasm-debug"
+        },
+        {
+          "type": "build",
+          "name": "cross-wasm-debug"
+        },
+        {
+          "type": "test",
+          "name": "cross-wasm-debug"
+        }
+      ]
+    },
+    {
+      "name": "cross-wasm-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "cross-wasm-release"
+        },
+        {
+          "type": "build",
+          "name": "cross-wasm-release"
+        },
+        {
+          "type": "test",
+          "name": "cross-wasm-release"
+        }
+      ]
     }
   ]
 }

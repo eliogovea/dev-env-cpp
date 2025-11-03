@@ -2,6 +2,9 @@
 
 #ifdef EGPOC_PLATFORM_X11
 
+#define _POSIX_C_SOURCE 200809L
+#include <unistd.h>
+
 #include <stdio.h>
 #include <string.h>
 
@@ -340,6 +343,12 @@ egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
 
     *events_count = events_count_;
 
+    return egpoc_platform_error_none;
+}
+
+egpoc_platform_error_t egpoc_platform_sleep_ms(unsigned int ms)
+{
+    usleep(ms * 1000);
     return egpoc_platform_error_none;
 }
 

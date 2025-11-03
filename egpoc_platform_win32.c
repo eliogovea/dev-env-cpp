@@ -180,4 +180,10 @@ egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
     return egpoc_platform_error_none;
 }
 
+egpoc_platform_error_t egpoc_platform_sleep_ms(unsigned int ms)
+{
+    Sleep(ms);
+    return egpoc_platform_error_none;
+}
+
 #endif  // EGPOC_PLATFORM_WIN32

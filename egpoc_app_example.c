@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 
 #include "egpoc_memory.h"
 #include "egpoc_platform.h"
@@ -63,7 +62,7 @@ int main(int argc, char* argv[])
         }
 
         // small sleep so we don't spin the CPU
-        usleep(16000);  // ~60Hz
+        egpoc_platform_sleep_ms(16);  // ~60Hz
     }
 #endif  // EGPOC_PLATFORM_WASM
 

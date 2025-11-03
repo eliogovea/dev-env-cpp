@@ -32,4 +32,6 @@ egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
                                              egpoc_platform_event_t* events,
                                              size_t                  events_count_limit,
                                              size_t*                 events_count);
+
+egpoc_platform_error_t egpoc_platform_sleep_ms(unsigned int ms);
 #endif  // EGPOC_PLATFORM_H_
