@@ -96,6 +96,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
 else(MAKE_SYSTEM_NAME STREQUAL "Linux")
     add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing)
 endif()
+
 # ------------------------------------------------------------------------------
 # Applications
 # ------------------------------------------------------------------------------
@@ -199,7 +200,7 @@ set(CPACK_PACKAGE_VERSION_MAJOR       "${PROJECT_VERSION_MAJOR}"                
 set(CPACK_PACKAGE_VERSION_MINOR       "${PROJECT_VERSION_MINOR}"                                           CACHE STRING "Package minor version")
 set(CPACK_PACKAGE_VERSION_PATCH       "${PROJECT_VERSION_PATCH}"                                           CACHE STRING "Package patch version")
 set(CPACK_PACKAGE_VERSION             "${PROJECT_VERSION}"                                                 CACHE STRING "Full package version")
-set(CPACK_PACKAGE_HOMEPAGE_URL        "https://egpoc.com/egpoc"                                            CACHE STRING "Project homepage")
+set(CPACK_PACKAGE_HOMEPAGE_URL        "TODO"                                                               CACHE STRING "Project homepage")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY   "egpoc-${CPACK_PACKAGE_VERSION}"                                     CACHE STRING "Installation directory")
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
@@ -240,9 +241,9 @@ set(CPACK_VERBATIM_VARIABLES ON CACHE BOOL   "Escape variables")
 # set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/egpoc_icon.png" CACHE FILEPATH "Package icon")
 
 # ----------------------------
-# Packaging: debian
+# Packaging: DEB
 # ----------------------------
-set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Elio <elio@example.com>"   CACHE STRING "Debian package maintainer")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "TODO"                      CACHE STRING "Debian package maintainer")
 set(CPACK_DEBIAN_PACKAGE_DEPENDS    "libc6 (>= 2.29)"           CACHE STRING "Debian package dependencies")
 set(CPACK_DEBIAN_PACKAGE_SECTION    "utils"                     CACHE STRING "Debian package section")
 set(CPACK_DEBIAN_PACKAGE_PRIORITY   "optional"                  CACHE STRING "Debian package priority")
@@ -255,7 +256,7 @@ list(APPEND CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_LIST_DIR}/dist/d
 list(APPEND CPACK_DEBIAN_PACKAGE_CONTROL_EXTRA "${CMAKE_CURRENT_LIST_DIR}/dist/deb/postrm")
 
 # ------------------------
-# RPM specific options
+# Packaging: RPM
 # ------------------------
 set(CPACK_RPM_PACKAGE_LICENSE "MIT" CACHE STRING "RPM license")
 set(CPACK_RPM_PACKAGE_GROUP "Applications/Utilities" CACHE STRING "RPM group")
@@ -271,17 +272,32 @@ set(CPACK_RPM_PRE_UNINSTALL_SCRIPT_FILE  "${CMAKE_SOURCE_DIR}/dist/rpm/prerm")
 set(CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE "${CMAKE_SOURCE_DIR}/dist/rpm/postrm")
 
 # ------------------------
-# NSIS specific options
+# Packaging: NSIS
 # ------------------------
-set(CPACK_NSIS_DISPLAY_NAME                    "${PROJECT_NAME}"                    CACHE STRING   "Project name")
-set(CPACK_NSIS_INSTALL_ROOT                    "C:\\Program Files\\${PROJECT_NAME}" CACHE FILEPATH "Install directory")
-set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON                                   CACHE BOOL     "Enable uninstall before install")
-# # TODO: setup CPACK_PACKAGE_EXECUTABLES
-# set(CPACK_PACKAGE_EXECUTABLES "egpoc;egpoc main executable" CACHE STRING "List of executables")
-# TODO: setup CPACK_NSIS_CREATE_ICONS_EXTRA
-# set(CPACK_NSIS_CREATE_ICONS_EXTRA "")
-# TODO: setup CPACK_PACKAGE_ICON
-# set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/installer_icon.ico")
+
+set(CPACK_NSIS_INSTALL_ROOT                    "$PROGRAMFILES")
+set(CPACK_NSIS_DISPLAY_NAME                    "egpoc")
+set(CPACK_NSIS_PACKAGE_NAME                    "egpoc installer")
+# # TODO: setup CPACK_NSIS_INSTALLED_ICON_NAME
+# set(CPACK_NSIS_INSTALLED_ICON_NAME             "$INSTDIR\\egpoc_app_example.exe")
+# # TODO: setup CPACK_NSIS_MUI_ICON
+# set(CPACK_NSIS_MUI_ICON                        "${CMAKE_SOURCE_DIR}/dist/egpoc.ico")
+# # TODO: setup CPACK_NSIS_MUI_UNIICON
+# set(CPACK_NSIS_MUI_UNIICON                     "${CMAKE_SOURCE_DIR}/dist/egpoc.ico")
+set(CPACK_NSIS_HELP_LINK                       "TODO")
+set(CPACK_NSIS_URL_INFO_ABOUT                  "TODO")
+set(CPACK_NSIS_CONTACT                         "TODO")
+set(CPACK_NSIS_EXECUTABLES_DIRECTORY           "bin")
+set(CPACK_NSIS_CREATE_ICONS_EXTRA              "CreateShortCut '$SMPROGRAMS\\egpoc\\egpoc_app_example.lnk' '$INSTDIR\\egpoc_app_example.exe'")
+set(CPACK_NSIS_DELETE_ICONS_EXTRA              "Delete '$SMPROGRAMS\\egpoc\\egpoc_app_example.lnk'")
+set(CPACK_NSIS_MUI_FINISHPAGE_RUN              "$INSTDIR\\egpoc_app_example.exe")
+set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
+set(CPACK_NSIS_MODIFY_PATH                     OFF)
+set(CPACK_NSIS_COMPRESSOR                      "lzma")
+set(CPACK_NSIS_EXTRA_PREINSTALL_COMMANDS       "")
+set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS          "")
+set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS        "")
+set(CPACK_NSIS_MENU_LINKS                      "")
 
 include(CPack)
 
