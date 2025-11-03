@@ -176,6 +176,101 @@ install(
 # Packaging
 # ------------------------------------------------------------------------------
 
+# ---------------------------------------
+# Packaging: generators
+# ---------------------------------------
+
+set(CPACK_GENERATOR        "TGZ" CACHE STRING "Package generator (TGZ by default)")
+set(CPACK_SOURCE_GENERATOR "TGZ" CACHE STRING "CPACK_SOURCE_GENERATOR: TGZ by default")
+
+# ---------------------------------------
+# Packaging: names
+# ---------------------------------------
+
+set(CPACK_PACKAGE_NAME                "${PROJECT_NAME}"                                                    CACHE STRING "Package name")
+set(CPACK_PACKAGE_VENDOR              "${PROJECT_NAME}"                                                    CACHE STRING "Package vendor")
+set(CPACK_PACKAGE_DESCRIPTION         "${PROJECT_NAME} TODO"                                               CACHE STRING "Package description")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "${PROJECT_NAME} TODO"                                               CACHE STRING "Short description")
+set(CPACK_PACKAGE_VERSION_MAJOR       "${PROJECT_VERSION_MAJOR}"                                           CACHE STRING "Package major version")
+set(CPACK_PACKAGE_VERSION_MINOR       "${PROJECT_VERSION_MINOR}"                                           CACHE STRING "Package minor version")
+set(CPACK_PACKAGE_VERSION_PATCH       "${PROJECT_VERSION_PATCH}"                                           CACHE STRING "Package patch version")
+set(CPACK_PACKAGE_VERSION             "${PROJECT_VERSION}"                                                 CACHE STRING "Full package version")
+set(CPACK_PACKAGE_HOMEPAGE_URL        "https://egpoc.com/egpoc"                                            CACHE STRING "Project homepage")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY   "egpoc-${CPACK_PACKAGE_VERSION}"                                     CACHE STRING "Installation directory")
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
+    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}-wasm"                      CACHE STRING "Package file name")
+else()
+    set(CPACK_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${PROJECT_VERSION}-${CMAKE_SYSTEM_PROCESSOR}"       CACHE STRING "Package file name")
+endif()
+
+# ---------------------------------------
+# Packaging: source
+# ---------------------------------------
+
+set(CPACK_SOURCE_IGNORE_FILES "")
+list(APPEND CPACK_SOURCE_IGNORE_FILES "/\\.git")
+list(APPEND CPACK_SOURCE_IGNORE_FILES "/build")
+
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION}" CACHE STRING "Source package file name")
+
+# ---------------------------------------
+# Packaging: common
+# ---------------------------------------
+
+set(CPACK_STRIP_FILES        ON CACHE BOOL   "Strip installed binaries")
+set(CPACK_MONOLITHIC_INSTALL ON CACHE BOOL   "Use monolithic installation")
+set(CPACK_THREADS            0  CACHE STRING "Use all available CPU cores for compression")
+set(CPACK_VERBATIM_VARIABLES ON CACHE BOOL   "Escape variables")
+
+# Resource files
+# # TODO: setup CPACK_RESOURCE_FILE_LICENSE
+# set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"     CACHE FILEPATH "License file")
+# # TODO: setup CPACK_RESOURCE_FILE_README
+# set(CPACK_RESOURCE_FILE_README  "${CMAKE_CURRENT_SOURCE_DIR}/README.md"   CACHE FILEPATH "ReadMe file")
+# # TODO: setup CPACK_RESOURCE_FILE_WELCOME
+# set(CPACK_RESOURCE_FILE_WELCOME "${CMAKE_CURRENT_SOURCE_DIR}/Welcome.txt" CACHE FILEPATH "Welcome file")
+# # TODO: setup CPACK_PACKAGE_DESCRIPTION_FILE
+# set(CPACK_PACKAGE_DESCRIPTION_FILE "${CMAKE_CURRENT_SOURCE_DIR}/CPackDescription.txt" CACHE FILEPATH "Description file")
+# # TODO: setup CPACK_PACKAGE_ICON
+# set(CPACK_PACKAGE_ICON "${CMAKE_CURRENT_SOURCE_DIR}/egpoc_icon.png" CACHE FILEPATH "Package icon")
+
+# ----------------------------
+# Packaging: debian
+# ----------------------------
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Elio <elio@example.com>"   CACHE STRING "Debian package maintainer")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS    "libc6 (>= 2.29)"           CACHE STRING "Debian package dependencies")
+set(CPACK_DEBIAN_PACKAGE_SECTION    "utils"                     CACHE STRING "Debian package section")
+set(CPACK_DEBIAN_PACKAGE_PRIORITY   "optional"                  CACHE STRING "Debian package priority")
+set(CPACK_DEBIAN_ARCHITECTURE       "${CMAKE_SYSTEM_PROCESSOR}" CACHE STRING "Debian package architecture")
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS  ON                          CACHE BOOL   "Automatically detect shared library dependencies")
+
+
+# ------------------------
+# RPM specific options
+# ------------------------
+set(CPACK_RPM_PACKAGE_LICENSE "MIT" CACHE STRING "RPM license")
+set(CPACK_RPM_PACKAGE_GROUP "Applications/Utilities" CACHE STRING "RPM group")
+set(CPACK_RPM_PACKAGE_REQUIRES "" CACHE STRING "RPM dependencies (comma separated)")
+set(CPACK_RPM_PACKAGE_DESCRIPTION "${CPACK_PACKAGE_DESCRIPTION}" CACHE STRING "RPM package description")
+set(CPACK_RPM_PACKAGE_VENDOR "${CPACK_PACKAGE_VENDOR}" CACHE STRING "RPM package vendor")
+set(CPACK_RPM_PACKAGE_URL "${CPACK_PACKAGE_HOMEPAGE_URL}" CACHE STRING "RPM project URL")
+set(CPACK_RPM_PACKAGE_RELEASE "1" CACHE STRING "RPM package release")
+set(CPACK_RPM_ARCHITECTURE ${CMAKE_SYSTEM_PROCESSOR})
+
+# ------------------------
+# NSIS specific options
+# ------------------------
+set(CPACK_NSIS_DISPLAY_NAME                    "${PROJECT_NAME}"                    CACHE STRING   "Project name")
+set(CPACK_NSIS_INSTALL_ROOT                    "C:\\Program Files\\${PROJECT_NAME}" CACHE FILEPATH "Install directory")
+set(CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON                                   CACHE BOOL     "Enable uninstall before install")
+# # TODO: setup CPACK_PACKAGE_EXECUTABLES
+# set(CPACK_PACKAGE_EXECUTABLES "egpoc;egpoc main executable" CACHE STRING "List of executables")
+# TODO: setup CPACK_NSIS_CREATE_ICONS_EXTRA
+# set(CPACK_NSIS_CREATE_ICONS_EXTRA "")
+# TODO: setup CPACK_PACKAGE_ICON
+# set(CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/installer_icon.ico")
+
 include(CPack)
 
 # ------------------------------------------------------------------------------

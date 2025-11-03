@@ -27,7 +27,9 @@ sudo apt-get install -y --no-install-recommends \
     libxrandr-dev \
     lsb-release \
     mingw-w64 \
+    nsis \
     pkg-config \
+    rpm \
     sudo \
     vulkan-tools \
     vulkan-validationlayers-dev \

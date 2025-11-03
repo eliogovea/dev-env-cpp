@@ -275,27 +275,33 @@
   "packagePresets": [
     {
       "name": "host-llvm-release",
-      "configurePreset": "host-llvm-release"
+      "configurePreset": "host-llvm-release",
+      "generators": ["TGZ", "DEB", "RPM"]
     },
     {
       "name": "host-llvm-debug",
-      "configurePreset": "host-llvm-debug"
+      "configurePreset": "host-llvm-debug",
+      "generators": ["TGZ", "DEB", "RPM"]
     },
     {
       "name": "cross-windows-release",
-      "configurePreset": "cross-windows-release"
+      "configurePreset": "cross-windows-release",
+      "generators": ["ZIP", "NSIS"]
     },
     {
       "name": "cross-windows-debug",
-      "configurePreset": "cross-windows-debug"
+      "configurePreset": "cross-windows-debug",
+      "generators": ["ZIP", "NSIS"]
     },
     {
       "name": "cross-wasm-release",
-      "configurePreset": "cross-wasm-release"
+      "configurePreset": "cross-wasm-release",
+      "generators": ["TGZ"]
     },
     {
       "name": "cross-wasm-debug",
-      "configurePreset": "cross-wasm-debug"
+      "configurePreset": "cross-wasm-debug",
+      "generators": ["TGZ"]
     }
   ],
   "workflowPresets": [
@@ -351,6 +357,10 @@
         {
           "type": "test",
           "name": "host-llvm-release"
+        },
+        {
+          "type": "package",
+          "name": "host-llvm-release"
         }
       ]
     },
@@ -367,6 +377,10 @@
         },
         {
           "type": "test",
+          "name": "cross-windows-debug"
+        },
+        {
+          "type": "package",
           "name": "cross-windows-debug"
         }
       ]
@@ -385,6 +399,10 @@
         {
           "type": "test",
           "name": "cross-windows-release"
+        },
+        {
+          "type": "package",
+          "name": "cross-windows-release"
         }
       ]
     },
@@ -402,6 +420,10 @@
         {
           "type": "test",
           "name": "cross-wasm-debug"
+        },
+        {
+          "type": "package",
+          "name": "cross-wasm-debug"
         }
       ]
     },
@@ -418,6 +440,10 @@
         },
         {
           "type": "test",
+          "name": "cross-wasm-release"
+        },
+        {
+          "type": "package",
           "name": "cross-wasm-release"
         }
       ]
