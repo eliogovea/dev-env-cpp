@@ -52,20 +52,20 @@ egpoc_memory_error_t egpoc_memory_arena_destroy(egpoc_memory_owner_t*  owner,
 
 void* egpoc_memory_arena_acquire(egpoc_memory_owner_t* arena, size_t size)
 {
-    egpoc_memory_arena_t* stack = (egpoc_memory_arena_t*)arena;
+    egpoc_memory_arena_t* arena_ = (egpoc_memory_arena_t*)arena;
 
     void*  data;
     size_t used;
 
-    if (size <= stack->size - stack->used) {
-        data = stack->data + stack->size;
+    if (size <= arena_->size - arena_->used) {
+        data = arena_->data + arena_->used;
         used = size;
     } else {
         data = NULL;
         used = 0;
     }
 
-    stack->used += used;
+    arena_->used += used;
 
     return data;
 }

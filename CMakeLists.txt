@@ -9,6 +9,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}")
 
+include(CTest)
+
+enable_testing()
+
 add_library(egpoc_static STATIC)
 
 target_sources(
@@ -57,6 +61,27 @@ if (CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
         PRIVATE EGPOC_PLATFORM_WASM
     )
 endif ()
+
+# unit tests
+
+add_executable(egpoc_memory_unittest)
+
+target_sources(
+    egpoc_memory_unittest
+    PRIVATE egpoc_memory_unittest.c
+)
+
+target_link_libraries(
+    egpoc_memory_unittest
+    PRIVATE egpoc_static
+)
+
+add_test(
+    NAME    egpoc_memory_unittest
+    COMMAND egpoc_memory_unittest
+)
+
+# applications
 
 add_executable(egpoc_app_example)
 

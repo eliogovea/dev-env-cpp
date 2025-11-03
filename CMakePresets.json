@@ -7,6 +7,31 @@
   },
   "configurePresets": [
     {
+      "name": "host-gcc-debug-coverage",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/host-gcc-debug-coverage",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_LINKER": "",
+        "CMAKE_C_FLAGS": "--coverage -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Wmissing-declarations -Wunreachable-code",
+        "CMAKE_CXX_FLAGS": "--coverage -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Wmissing-declarations -Wunreachable-code",
+        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
+        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
+        "CMAKE_C_FLAGS_RELEASE": "-O2",
+        "CMAKE_CXX_FLAGS_RELEASE": "-O2",
+        "CMAKE_EXE_LINKER_FLAGS": "--coverage",
+        "CMAKE_SHARED_LINKER_FLAGS": "--coverage",
+        "CMAKE_MODULE_LINKER_FLAGS": "--coverage",
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+        "CMAKE_POSITION_INDEPENDENT_CODE": true,
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
+        "CMAKE_SKIP_RPATH": false
+      }
+    },
+    {
       "name": "host-llvm-release",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/host-llvm-release",
@@ -26,7 +51,6 @@
         "CMAKE_EXE_LINKER_FLAGS": "",
         "CMAKE_SHARED_LINKER_FLAGS": "",
         "CMAKE_MODULE_LINKER_FLAGS": "",
-        "CMAKE_PREFIX_PATH": "",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_POSITION_INDEPENDENT_CODE": true,
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
@@ -54,7 +78,6 @@
         "CMAKE_SHARED_LINKER_FLAGS": "",
         "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_PREFIX_PATH": "",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_POSITION_INDEPENDENT_CODE": true,
         "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
@@ -83,11 +106,9 @@
         "CMAKE_SHARED_LINKER_FLAGS": "",
         "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_PREFIX_PATH": "",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
-        "CMAKE_SKIP_RPATH": true
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
       }
     },
     {
@@ -112,11 +133,9 @@
         "CMAKE_SHARED_LINKER_FLAGS": "",
         "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_PREFIX_PATH": "",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
-        "CMAKE_SKIP_RPATH": true
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
       }
     },
     {
@@ -140,12 +159,10 @@
         "CMAKE_SHARED_LINKER_FLAGS": "",
         "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_PREFIX_PATH": "",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_POSITION_INDEPENDENT_CODE": true,
         "CMAKE_TOOLCHAIN_FILE": "$env{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
-        "CMAKE_SKIP_RPATH": true
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
       },
       "environment": {
         "EMSDK": "$penv{EMSDK}"
@@ -172,12 +189,10 @@
         "CMAKE_SHARED_LINKER_FLAGS": "",
         "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_PREFIX_PATH": "",
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
         "CMAKE_POSITION_INDEPENDENT_CODE": true,
         "CMAKE_TOOLCHAIN_FILE": "$penv{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
-        "CMAKE_SKIP_RPATH": true
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
       },
       "environment": {
         "EMSDK": "$penv{EMSDK}"
@@ -185,6 +200,11 @@
     }
   ],
   "buildPresets": [
+    {
+      "name": "host-gcc-debug-coverage",
+      "configurePreset": "host-gcc-debug-coverage",
+      "targets": "all"
+    },
     {
       "name": "host-llvm-release",
       "configurePreset": "host-llvm-release",
@@ -217,6 +237,16 @@
     }
   ],
   "testPresets": [
+    {
+      "name": "host-gcc-debug-coverage",
+      "configurePreset": "host-gcc-debug-coverage",
+      "configuration": "",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
+    },
     {
       "name": "host-llvm-release",
       "configurePreset": "host-llvm-release"
@@ -266,6 +296,25 @@
     {
       "name": "cross-wasm-debug",
       "configurePreset": "cross-wasm-debug"
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "host-gcc-debug-coverage",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "host-gcc-debug-coverage"
+        },
+        {
+          "type": "build",
+          "name": "host-gcc-debug-coverage"
+        },
+        {
+          "type": "test",
+          "name": "host-gcc-debug-coverage"
+        }
+      ]
     }
   ]
 }
