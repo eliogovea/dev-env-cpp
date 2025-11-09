@@ -9,8 +9,8 @@
 #include <stdio.h>
 #include <string.h>
 
-typedef struct {
-} egpoc_platform_wasm_t;
+typedef struct egpoc_window_t {
+} egpoc_window_t;
 
 static void egpoc_console_printf(char const* fmt, ...)
 {
@@ -47,7 +47,7 @@ static EM_BOOL egpoc_on_event_key(int type, EmscriptenKeyboardEvent const* e, vo
                              e->metaKey,
                              e->repeat,
                              e->timestamp);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_KEYUP: {
@@ -69,7 +69,7 @@ static EM_BOOL egpoc_on_event_key(int type, EmscriptenKeyboardEvent const* e, vo
                              e->metaKey,
                              e->repeat,
                              e->timestamp);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_KEYPRESS: {
@@ -91,7 +91,7 @@ static EM_BOOL egpoc_on_event_key(int type, EmscriptenKeyboardEvent const* e, vo
                              e->metaKey,
                              e->repeat,
                              e->timestamp);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -131,7 +131,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_DBLCLICK: {
@@ -158,7 +158,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_MOUSEDOWN: {
@@ -185,7 +185,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_MOUSEUP: {
@@ -212,7 +212,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_MOUSEMOVE: {
@@ -238,7 +238,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_MOUSEENTER: {
@@ -255,7 +255,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_MOUSELEAVE: {
@@ -272,7 +272,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_MOUSEOVER: {
@@ -289,7 +289,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_MOUSEOUT: {
@@ -306,7 +306,7 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
                              e->shiftKey,
                              e->altKey,
                              e->metaKey);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -325,7 +325,7 @@ static EM_BOOL egpoc_on_event_wheel(int type, EmscriptenWheelEvent const* e, voi
     case EMSCRIPTEN_EVENT_WHEEL: {
         egpoc_console_printf(
             "[Wheel] deltaX=%lf deltaY=%lf deltaZ=%lf mode=%u", e->deltaX, e->deltaY, e->deltaZ, e->deltaMode);
-        // TODO: update egpoc_platform_event_t with wheel delta
+        // TODO: update egpoc_window_event_t with wheel delta
     } break;
     default:
         break;
@@ -362,7 +362,7 @@ static EM_BOOL egpoc_on_event_touch(int type, EmscriptenTouchEvent const* e, voi
                                  t->targetX,
                                  t->targetY);
         }
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_TOUCHEND: {
@@ -388,7 +388,7 @@ static EM_BOOL egpoc_on_event_touch(int type, EmscriptenTouchEvent const* e, voi
                                  t->targetX,
                                  t->targetY);
         }
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_TOUCHMOVE: {
@@ -414,7 +414,7 @@ static EM_BOOL egpoc_on_event_touch(int type, EmscriptenTouchEvent const* e, voi
                                  t->targetX,
                                  t->targetY);
         }
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_TOUCHCANCEL: {
@@ -440,7 +440,7 @@ static EM_BOOL egpoc_on_event_touch(int type, EmscriptenTouchEvent const* e, voi
                                  t->targetX,
                                  t->targetY);
         }
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -461,7 +461,7 @@ static EM_BOOL egpoc_on_event_focus(int type, EmscriptenFocusEvent const* e, voi
                              " nodeName=%s id=%s",
                              e->nodeName,
                              e->id);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_FOCUS: {
@@ -469,7 +469,7 @@ static EM_BOOL egpoc_on_event_focus(int type, EmscriptenFocusEvent const* e, voi
                              " nodeName=%s id=%s",
                              e->nodeName,
                              e->id);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_FOCUSIN: {
@@ -477,7 +477,7 @@ static EM_BOOL egpoc_on_event_focus(int type, EmscriptenFocusEvent const* e, voi
                              " nodeName=%s id=%s",
                              e->nodeName,
                              e->id);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_FOCUSOUT: {
@@ -485,7 +485,7 @@ static EM_BOOL egpoc_on_event_focus(int type, EmscriptenFocusEvent const* e, voi
                              " nodeName=%s id=%s",
                              e->nodeName,
                              e->id);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -517,7 +517,7 @@ static EM_BOOL egpoc_on_event_ui(int type, EmscriptenUiEvent const* e, void* use
                              e->windowOuterHeight,
                              e->scrollTop,
                              e->scrollLeft);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_SCROLL: {
@@ -533,7 +533,7 @@ static EM_BOOL egpoc_on_event_ui(int type, EmscriptenUiEvent const* e, void* use
                              e->windowInnerHeight,
                              e->windowOuterWidth,
                              e->windowOuterHeight);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -552,7 +552,7 @@ static EM_BOOL egpoc_on_event_deviceorientation(int type, EmscriptenDeviceOrient
     case EMSCRIPTEN_EVENT_DEVICEORIENTATION: {
         egpoc_console_printf(
             "[DeviceOrientation] alpha=%lf beta=%lf gamma=%lf abs=%d", e->alpha, e->beta, e->gamma, e->absolute);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
     default:
         break;
@@ -579,7 +579,7 @@ static EM_BOOL egpoc_on_event_devicemotion(int type, EmscriptenDeviceMotionEvent
                              e->rotationRateBeta,
                              e->rotationRateGamma,
                              e->supportedFields);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -597,7 +597,7 @@ static EM_BOOL egpoc_on_event_visibility(int type, EmscriptenVisibilityChangeEve
     switch (type) {
     case EMSCRIPTEN_EVENT_VISIBILITYCHANGE: {
         egpoc_console_printf("[Visibility] hidden=%d visibilityState=%d", e->hidden, e->visibilityState);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -635,7 +635,7 @@ static EM_BOOL egpoc_on_event_gamepad(int type, EmscriptenGamepadEvent const* e,
             egpoc_console_printf("   button[%d] = %.3f (digital=%d)", i, e->analogButton[i], e->digitalButton[i]);
         }
 
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     case EMSCRIPTEN_EVENT_GAMEPADDISCONNECTED: {
@@ -646,7 +646,7 @@ static EM_BOOL egpoc_on_event_gamepad(int type, EmscriptenGamepadEvent const* e,
                              e->id,
                              e->mapping,
                              e->connected);
-        // TODO: update egpoc_platform_event_t
+        // TODO: update egpoc_window_event_t
     } break;
 
     default:
@@ -657,20 +657,19 @@ static EM_BOOL egpoc_on_event_gamepad(int type, EmscriptenGamepadEvent const* e,
 }
 
 EMSCRIPTEN_KEEPALIVE
-egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner,
-                                             egpoc_memory_acquire_t memory_acquire,
-                                             egpoc_memory_release_t memory_release,
-                                             char const*            window_title,
-                                             unsigned int           window_width,
-                                             unsigned int           window_height,
-                                             egpoc_platform_t**     platform)
+egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
+                                         egpoc_memory_acquire_t memory_acquire,
+                                         egpoc_memory_release_t memory_release,
+                                         char const*            window_title,
+                                         unsigned int           window_width,
+                                         unsigned int           window_height,
+                                         egpoc_window_t**       platform)
 {
-    egpoc_platform_wasm_t* platform_wasm
-        = (egpoc_platform_wasm_t*)memory_acquire(memory_owner, sizeof(egpoc_platform_wasm_t));
+    egpoc_window_t* platform_wasm = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
 
     if (!platform_wasm) {
-        platform_wasm = memory_release(memory_owner, sizeof(egpoc_platform_wasm_t), (void*)platform_wasm);
-        return egpoc_platform_error_unknown;
+        platform_wasm = memory_release(memory_owner, sizeof(egpoc_window_t), (void*)platform_wasm);
+        return egpoc_window_error_unknown;
     }
 
     memset(platform_wasm, 0, sizeof(*platform_wasm));
@@ -721,40 +720,40 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
     emscripten_set_resize_callback("#egpoc_canvas", NULL, EM_TRUE, egpoc_on_event_ui);
     emscripten_set_scroll_callback("#egpoc_canvas", NULL, EM_TRUE, egpoc_on_event_ui);
 
-    *platform = (egpoc_platform_t*)platform_wasm;
+    *platform = (egpoc_window_t*)platform_wasm;
 
-    return egpoc_platform_error_none;
+    return egpoc_window_error_none;
 }
 
 EMSCRIPTEN_KEEPALIVE
-egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
-                                             egpoc_platform_event_t* events,
-                                             size_t                  events_count_limit,
-                                             size_t*                 events_count)
+egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
+                                         egpoc_window_event_t* events,
+                                         size_t                events_count_limit,
+                                         size_t*               events_count)
 {
-    egpoc_platform_wasm_t* platform_wasm = (egpoc_platform_wasm_t*)platform;
+    egpoc_window_t* platform_wasm = (egpoc_window_t*)platform;
 
     if (!platform_wasm) {
-        return egpoc_platform_error_unknown;
+        return egpoc_window_error_unknown;
     }
 
     if (!events) {
-        return egpoc_platform_error_unknown;
+        return egpoc_window_error_unknown;
     }
 
     if (!events_count) {
-        return egpoc_platform_error_unknown;
+        return egpoc_window_error_unknown;
     }
 
     *events_count = 0;
 
-    return egpoc_platform_error_none;
+    return egpoc_window_error_none;
 }
 
-egpoc_platform_error_t egpoc_platform_sleep_ms(unsigned int ms)
+egpoc_window_error_t egpoc_window_sleep_ms(unsigned int ms)
 {
     emscripten_sleep(ms);
-    return egpoc_platform_error_none;
+    return egpoc_window_error_none;
 }
 
 #endif  // EGPOC_PLATFORM_WASM

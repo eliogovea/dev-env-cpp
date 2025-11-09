@@ -11,36 +11,35 @@
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
 
-typedef struct {
+typedef struct egpoc_window_t {
     Display* display;
     Window   window;
-} egpoc_platform_x11_t;
+} egpoc_window_t;
 
-egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner,
-                                             egpoc_memory_acquire_t memory_acquire,
-                                             egpoc_memory_release_t memory_release,
-                                             char const*            window_title,
-                                             unsigned int           window_width,
-                                             unsigned int           window_height,
-                                             egpoc_platform_t**     platform)
+egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
+                                         egpoc_memory_acquire_t memory_acquire,
+                                         egpoc_memory_release_t memory_release,
+                                         char const*            window_title,
+                                         unsigned int           window_width,
+                                         unsigned int           window_height,
+                                         egpoc_window_t**       platform)
 {
     Display* display;
     int      screen;
     Window   window;
 
-    egpoc_platform_x11_t* platform_x11
-        = (egpoc_platform_x11_t*)memory_acquire(memory_owner, sizeof(egpoc_platform_x11_t));
+    egpoc_window_t* platform_x11 = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
 
     if (!platform_x11) {
-        platform_x11 = memory_release(memory_owner, sizeof(egpoc_platform_x11_t), platform_x11);
-        return egpoc_platform_error_unknown;
+        platform_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_x11);
+        return egpoc_window_error_unknown;
     }
 
     display = XOpenDisplay(NULL);
 
     if (!display) {
-        platform_x11 = memory_release(memory_owner, sizeof(egpoc_platform_x11_t), platform_x11);
-        return egpoc_platform_error_unknown;
+        platform_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_x11);
+        return egpoc_window_error_unknown;
     }
 
     screen = DefaultScreen(display);
@@ -86,18 +85,18 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
     platform_x11->window  = window;
 
     *platform = (void*)platform_x11;
-    return egpoc_platform_error_none;
+    return egpoc_window_error_none;
 }
 
-egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
-                                             egpoc_platform_event_t* events,
-                                             size_t                  events_count_limit,
-                                             size_t*                 events_count)
+egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
+                                         egpoc_window_event_t* events,
+                                         size_t                events_count_limit,
+                                         size_t*               events_count)
 {
     // TODO
     (void)events;
 
-    egpoc_platform_x11_t* platform_x11 = (egpoc_platform_x11_t*)platform;
+    egpoc_window_t* platform_x11 = (egpoc_window_t*)platform;
 
     Display* display = platform_x11->display;
     XEvent   event   = {.type = 0};
@@ -343,13 +342,7 @@ egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
 
     *events_count = events_count_;
 
-    return egpoc_platform_error_none;
-}
-
-egpoc_platform_error_t egpoc_platform_sleep_ms(unsigned int ms)
-{
-    usleep(ms * 1000);
-    return egpoc_platform_error_none;
+    return egpoc_window_error_none;
 }
 
 #endif  // EGPOC_PLATFORM_X11

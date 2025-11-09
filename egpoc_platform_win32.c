@@ -10,11 +10,11 @@
 
 #include "egpoc_memory.h"
 
-typedef struct {
+typedef struct egpoc_window_t {
     HWND hwnd;
-} egpoc_platform_win32_t;
+} egpoc_window_t;
 
-static LRESULT CALLBACK egpoc_platform_win32_WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+static LRESULT CALLBACK egpoc_window_win32_WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     switch (msg) {
     case WM_CREATE:
@@ -92,29 +92,28 @@ static LRESULT CALLBACK egpoc_platform_win32_WndProc(HWND hwnd, UINT msg, WPARAM
     return 0;
 }
 
-egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner,
-                                             egpoc_memory_acquire_t memory_acquire,
-                                             egpoc_memory_release_t memory_release,
-                                             char const*            window_title,
-                                             unsigned int           window_width,
-                                             unsigned int           window_height,
-                                             egpoc_platform_t**     platform)
+egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
+                                         egpoc_memory_acquire_t memory_acquire,
+                                         egpoc_memory_release_t memory_release,
+                                         char const*            window_title,
+                                         unsigned int           window_width,
+                                         unsigned int           window_height,
+                                         egpoc_window_t**       platform)
 {
-    egpoc_platform_win32_t* platform_win32
-        = (egpoc_platform_win32_t*)memory_acquire(memory_owner, sizeof(egpoc_platform_win32_t));
+    egpoc_window_t* platform_win32 = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
 
     if (!platform_win32) {
-        return egpoc_platform_error_unknown;
+        return egpoc_window_error_unknown;
     }
 
     WNDCLASS wc      = {0};
-    wc.lpfnWndProc   = egpoc_platform_win32_WndProc;
+    wc.lpfnWndProc   = egpoc_window_win32_WndProc;
     wc.hInstance     = GetModuleHandle(NULL);
     wc.lpszClassName = "egpoc";
 
     if (!RegisterClass(&wc)) {
-        platform_win32 = memory_release(memory_owner, sizeof(egpoc_platform_win32_t), platform_win32);
-        return egpoc_platform_error_unknown;
+        platform_win32 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_win32);
+        return egpoc_window_error_unknown;
     }
 
     HWND hwnd = CreateWindowEx(0,
@@ -131,8 +130,8 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
                                NULL);
 
     if (!hwnd) {
-        platform_win32 = memory_release(memory_owner, sizeof(egpoc_platform_win32_t), platform_win32);
-        return egpoc_platform_error_unknown;
+        platform_win32 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_win32);
+        return egpoc_window_error_unknown;
     }
 
     ShowWindow(hwnd, SW_SHOW);
@@ -144,17 +143,17 @@ egpoc_platform_error_t egpoc_platform_create(egpoc_memory_owner_t*  memory_owner
 
     *platform = platform_win32;
 
-    return egpoc_platform_error_none;
+    return egpoc_window_error_none;
 }
 
-egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
-                                             egpoc_platform_event_t* events,
-                                             size_t                  events_count_limit,
-                                             size_t*                 events_count)
+egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
+                                         egpoc_window_event_t* events,
+                                         size_t                events_count_limit,
+                                         size_t*               events_count)
 {
     (void)events;
 
-    egpoc_platform_win32_t* platform_win32 = (egpoc_platform_win32_t*)platform;
+    egpoc_window_t* platform_win32 = (egpoc_window_t*)platform;
 
     HWND hwnd = platform_win32->hwnd;
 
@@ -177,13 +176,7 @@ egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
 
     *events_count = events_count_;
 
-    return egpoc_platform_error_none;
-}
-
-egpoc_platform_error_t egpoc_platform_sleep_ms(unsigned int ms)
-{
-    Sleep(ms);
-    return egpoc_platform_error_none;
+    return egpoc_window_error_none;
 }
 
 #endif  // EGPOC_PLATFORM_WIN32
