@@ -2,12 +2,18 @@
 #include <stdlib.h>
 
 #include "egpoc_memory.h"
-#include "egpoc_platform.h"
 #include "egpoc_system.h"
+#include "egpoc_window.h"
 
 int main(int argc, char* argv[])
 {
     (void)argc;
+
+    egpoc_system_t*      system       = NULL;
+    egpoc_system_error_t system_error = egpoc_system_error_none;
+
+    egpoc_window_t*      window       = NULL;
+    egpoc_system_error_t window_error = egpoc_system_error_none;
 
     egpoc_memory_arena_t arena       = {.data = NULL, .size = 0, .used = 0};
     egpoc_memory_error_t arena_error = EGPOC_MEMORY_ERROR_NONE;
@@ -22,9 +28,6 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
-    egpoc_system_t*      system       = NULL;
-    egpoc_system_error_t system_error = egpoc_system_error_none;
-
     system_error = egpoc_system_create(&arena,  //
                                        &egpoc_memory_arena_acquire,
                                        &egpoc_memory_arena_release,
@@ -37,18 +40,15 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
-    egpoc_window_t*      platform       = NULL;
-    egpoc_window_error_t platform_error = egpoc_window_error_none;
+    window_error = egpoc_window_create(&arena,  //
+                                       &egpoc_memory_arena_acquire,
+                                       &egpoc_memory_arena_release,
+                                       argv[0],
+                                       256,
+                                       256,
+                                       &window);
 
-    platform_error = egpoc_window_create(&arena,  //
-                                         &egpoc_memory_arena_acquire,
-                                         &egpoc_memory_arena_release,
-                                         argv[0],
-                                         256,
-                                         256,
-                                         &platform);
-
-    if (platform_error != egpoc_window_error_none) {
+    if (window_error != egpoc_system_error_none) {
         fprintf(stderr, "Error. egpoc_window_create failed\n");
         return EXIT_FAILURE;
     }
@@ -65,9 +65,9 @@ int main(int argc, char* argv[])
 #ifndef EGPOC_PLATFORM_WASM
     while (1) {
         size_t               events_count = 0;
-        egpoc_window_error_t events_error = egpoc_window_events(platform, events, events_capacity, &events_count);
+        egpoc_system_error_t events_error = egpoc_window_events(window, events, events_capacity, &events_count);
 
-        if (events_error != egpoc_window_error_none) {
+        if (events_error != egpoc_system_error_none) {
             fprintf(stderr, "Error. egpoc_window_events failed\n");
             continue;
         }

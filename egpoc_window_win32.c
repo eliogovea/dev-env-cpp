@@ -1,6 +1,4 @@
-#include "egpoc_platform.h"
-
-#ifdef EGPOC_PLATFORM_WIN32
+#include "egpoc_window.h"
 
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -9,6 +7,7 @@
 #include <stdio.h>
 
 #include "egpoc_memory.h"
+#include "egpoc_system.h"
 
 typedef struct egpoc_window_t {
     HWND hwnd;
@@ -92,7 +91,7 @@ static LRESULT CALLBACK egpoc_window_win32_WndProc(HWND hwnd, UINT msg, WPARAM w
     return 0;
 }
 
-egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
+egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          egpoc_memory_acquire_t memory_acquire,
                                          egpoc_memory_release_t memory_release,
                                          char const*            window_title,
@@ -103,7 +102,7 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
     egpoc_window_t* platform_win32 = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
 
     if (!platform_win32) {
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     WNDCLASS wc      = {0};
@@ -113,7 +112,7 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
 
     if (!RegisterClass(&wc)) {
         platform_win32 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_win32);
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     HWND hwnd = CreateWindowEx(0,
@@ -131,7 +130,7 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
 
     if (!hwnd) {
         platform_win32 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_win32);
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     ShowWindow(hwnd, SW_SHOW);
@@ -143,10 +142,10 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
 
     *platform = platform_win32;
 
-    return egpoc_window_error_none;
+    return egpoc_system_error_none;
 }
 
-egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
+egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
                                          egpoc_window_event_t* events,
                                          size_t                events_count_limit,
                                          size_t*               events_count)
@@ -176,7 +175,5 @@ egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
 
     *events_count = events_count_;
 
-    return egpoc_window_error_none;
+    return egpoc_system_error_none;
 }
-
-#endif  // EGPOC_PLATFORM_WIN32

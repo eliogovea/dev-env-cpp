@@ -31,7 +31,7 @@ set(
     egpoc_chars.h
     egpoc_memory.h
     egpoc_network.h
-    egpoc_platform.h
+    egpoc_window.h
     egpoc_system.h
 )
 
@@ -41,7 +41,7 @@ set(
     egpoc_chars.c
     egpoc_memory.c
     egpoc_network.c
-    egpoc_platform.c
+    egpoc_window.c
     egpoc_system.c
 )
 
@@ -59,22 +59,19 @@ target_include_directories(egpoc_static PUBLIC $<INSTALL_INTERFACE:include>)
 # ------------------------------------------------------------------------------
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
-    target_sources(egpoc_static PRIVATE egpoc_system_posix.c)
-    target_sources(egpoc_static PRIVATE egpoc_platform_x11.c)
     find_package(X11 REQUIRED)
-    target_compile_definitions(egpoc_static PRIVATE EGPOC_PLATFORM_X11)
+    target_sources(egpoc_static PRIVATE egpoc_system_posix.c)
+    target_sources(egpoc_static PRIVATE egpoc_window_x11.c)
     target_link_libraries(egpoc_static PUBLIC X11)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     target_sources(egpoc_static PRIVATE egpoc_system_win32.c)
-    target_sources(egpoc_static PRIVATE egpoc_platform_win32.c)
-    target_compile_definitions(egpoc_static PRIVATE EGPOC_PLATFORM_WIN32)
+    target_sources(egpoc_static PRIVATE egpoc_window_win32.c)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
     target_sources(egpoc_static PRIVATE egpoc_system_wasm.c)
-    target_sources(egpoc_static PRIVATE egpoc_platform_wasm.c)
-    target_compile_definitions(egpoc_static PRIVATE EGPOC_PLATFORM_WASM)
+    target_sources(egpoc_static PRIVATE egpoc_window_wasm.c)
 else()
     target_sources(egpoc_static PRIVATE egpoc_system_none.c)
-    target_sources(egpoc_static PRIVATE egpoc_platform_none.c)
+    target_sources(egpoc_static PRIVATE egpoc_window_none.c)
 endif()
 
 # ------------------------------------------------------------------------------
@@ -90,17 +87,12 @@ target_link_libraries(egpoc_testing PRIVATE egpoc::egpoc_static)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
     set_target_properties(egpoc_testing PROPERTIES SUFFIX ".js")
-    target_link_options(egpoc_testing PRIVATE $<$<STREQUAL:${CMAKE_SYSTEM_NAME},Emscripten>:-s WASM=1>)
     target_link_options(egpoc_testing PRIVATE "-s WASM=1")
     target_link_options(egpoc_testing PRIVATE "-s ENVIRONMENT=node")
     target_link_options(egpoc_testing PRIVATE "-s EXIT_RUNTIME=1")
     add_test(NAME egpoc_testing COMMAND node ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.js)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    if (${CMAKE_CROSSCOMPILING})
-        add_test(NAME egpoc_testing COMMAND wine ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
-    else ()
-        add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
-    endif ()
+    add_test(NAME egpoc_testing COMMAND wine ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
 else(MAKE_SYSTEM_NAME STREQUAL "Linux")
     add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing)
 endif()

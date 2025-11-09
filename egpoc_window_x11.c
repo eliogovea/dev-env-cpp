@@ -1,6 +1,4 @@
-#include "egpoc_platform.h"
-
-#ifdef EGPOC_PLATFORM_X11
+#include "egpoc_window.h"
 
 #define _POSIX_C_SOURCE 200809L
 #include <unistd.h>
@@ -16,7 +14,7 @@ typedef struct egpoc_window_t {
     Window   window;
 } egpoc_window_t;
 
-egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
+egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          egpoc_memory_acquire_t memory_acquire,
                                          egpoc_memory_release_t memory_release,
                                          char const*            window_title,
@@ -32,14 +30,14 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
 
     if (!platform_x11) {
         platform_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_x11);
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     display = XOpenDisplay(NULL);
 
     if (!display) {
         platform_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_x11);
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     screen = DefaultScreen(display);
@@ -85,10 +83,10 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
     platform_x11->window  = window;
 
     *platform = (void*)platform_x11;
-    return egpoc_window_error_none;
+    return egpoc_system_error_none;
 }
 
-egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
+egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
                                          egpoc_window_event_t* events,
                                          size_t                events_count_limit,
                                          size_t*               events_count)
@@ -342,7 +340,5 @@ egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
 
     *events_count = events_count_;
 
-    return egpoc_window_error_none;
+    return egpoc_system_error_none;
 }
-
-#endif  // EGPOC_PLATFORM_X11

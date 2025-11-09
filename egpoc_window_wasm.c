@@ -1,6 +1,4 @@
-#include "egpoc_platform.h"
-
-#ifdef EGPOC_PLATFORM_WASM
+#include "egpoc_window.h"
 
 #include <emscripten/emscripten.h>
 #include <emscripten/html5.h>
@@ -657,7 +655,7 @@ static EM_BOOL egpoc_on_event_gamepad(int type, EmscriptenGamepadEvent const* e,
 }
 
 EMSCRIPTEN_KEEPALIVE
-egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
+egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          egpoc_memory_acquire_t memory_acquire,
                                          egpoc_memory_release_t memory_release,
                                          char const*            window_title,
@@ -669,7 +667,7 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
 
     if (!platform_wasm) {
         platform_wasm = memory_release(memory_owner, sizeof(egpoc_window_t), (void*)platform_wasm);
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     memset(platform_wasm, 0, sizeof(*platform_wasm));
@@ -722,11 +720,11 @@ egpoc_window_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
 
     *platform = (egpoc_window_t*)platform_wasm;
 
-    return egpoc_window_error_none;
+    return egpoc_system_error_none;
 }
 
 EMSCRIPTEN_KEEPALIVE
-egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
+egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
                                          egpoc_window_event_t* events,
                                          size_t                events_count_limit,
                                          size_t*               events_count)
@@ -734,26 +732,18 @@ egpoc_window_error_t egpoc_window_events(egpoc_window_t*       platform,
     egpoc_window_t* platform_wasm = (egpoc_window_t*)platform;
 
     if (!platform_wasm) {
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     if (!events) {
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     if (!events_count) {
-        return egpoc_window_error_unknown;
+        return egpoc_system_error_unknown;
     }
 
     *events_count = 0;
 
-    return egpoc_window_error_none;
+    return egpoc_system_error_none;
 }
-
-egpoc_window_error_t egpoc_window_sleep_ms(unsigned int ms)
-{
-    emscripten_sleep(ms);
-    return egpoc_window_error_none;
-}
-
-#endif  // EGPOC_PLATFORM_WASM
