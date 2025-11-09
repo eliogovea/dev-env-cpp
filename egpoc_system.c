@@ -17,8 +17,12 @@ char const* egpoc_system_error_to_cstring(egpoc_system_error_t error)
         return "Timeout";
     case egpoc_system_error_invalid:
         return "Invalid";
-    case egpoc_system_error_unimplemented:
+    case egpoc_system_error_missing:
         return "Unimplemented";
+    case egpoc_system_error_oom:
+        return "Memory";
+    case egpoc_system_error_mmap:
+        return "Mapping";
     }
 
     return "Unrecognized";

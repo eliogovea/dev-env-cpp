@@ -60,3 +60,26 @@ egpoc_system_error_t egpoc_system_sleep_ms(egpoc_system_t* system, unsigned int 
     emscripten_sleep(ms);
     return egpoc_system_error_none;
 }
+
+egpoc_system_error_t egpoc_system_memory_map(egpoc_system_t*     system,  //
+                                             egpoc_memory_map_t* map,
+                                             char const*         source,
+                                             size_t              size,
+                                             uint32_t            flags,
+                                             uint64_t            offset)
+{
+    (void)system;
+    (void)map;
+    (void)source;
+    (void)size;
+    (void)flags;
+    (void)offset;
+    return egpoc_system_error_missing;
+}
+
+egpoc_system_error_t egpoc_system_memory_unmap(egpoc_system_t* system, egpoc_memory_map_t* map)
+{
+    (void)system;
+    (void)map;
+    return egpoc_system_error_missing;
+}

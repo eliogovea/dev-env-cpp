@@ -23,7 +23,7 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
     (void)window_height;
     (void)window;
 
-    return egpoc_system_error_unimplemented;
+    return egpoc_system_error_missing;
 }
 
 egpoc_system_error_t egpoc_window_events(egpoc_window_t*       window,
@@ -36,5 +36,5 @@ egpoc_system_error_t egpoc_window_events(egpoc_window_t*       window,
     (void)events_count_limit;
     (void)events_count;
 
-    return egpoc_system_error_unimplemented;
+    return egpoc_system_error_missing;
 }
