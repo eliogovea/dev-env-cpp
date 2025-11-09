@@ -5,7 +5,7 @@
 
 #include "egpoc_memory.h"
 
-typedef void egpoc_platform_t;
+typedef struct egpoc_platform egpoc_platform_t;
 
 typedef struct {
     int quit;
@@ -34,4 +34,5 @@ egpoc_platform_error_t egpoc_platform_events(egpoc_platform_t*       platform,
                                              size_t*                 events_count);
 
 egpoc_platform_error_t egpoc_platform_sleep_ms(unsigned int ms);
+
 #endif  // EGPOC_PLATFORM_H_

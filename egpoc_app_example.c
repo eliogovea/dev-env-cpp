@@ -9,14 +9,14 @@ int main(int argc, char* argv[])
     (void)argc;
 
     egpoc_memory_arena_t arena       = {.data = NULL, .size = 0, .used = 0};
-    egpoc_memory_error_t arena_error = egpoc_memory_error_none;
+    egpoc_memory_error_t arena_error = EGPOC_MEMORY_ERROR_NONE;
 
     arena_error = egpoc_memory_arena_create(NULL,  //
                                             egpoc_memory_heap_acquire,
                                             &arena,
                                             1 << 20);
 
-    if (arena_error != egpoc_memory_error_none) {
+    if (arena_error != EGPOC_MEMORY_ERROR_NONE) {
         fprintf(stderr, "Error. egpoc_memory_arena_create failed\n");
         return EXIT_FAILURE;
     }

@@ -27,11 +27,11 @@ egpoc_memory_error_t egpoc_memory_arena_create(egpoc_memory_owner_t*  owner,
     if (arena->data == NULL) {
         arena->size = 0;
         arena->used = 0;
-        return egpoc_memory_error_unknown;
+        return EGPOC_MEMORY_ERROR_OUT_OF_MEMORY;
     } else {
         arena->size = arena_size;
         arena->used = 0;
-        return egpoc_memory_error_none;
+        return EGPOC_MEMORY_ERROR_NONE;
     }
 }
 
@@ -44,9 +44,9 @@ egpoc_memory_error_t egpoc_memory_arena_destroy(egpoc_memory_owner_t*  owner,
     if (arena->data == NULL) {
         arena->size = 0;
         arena->used = 0;
-        return egpoc_memory_error_none;
+        return EGPOC_MEMORY_ERROR_NONE;
     } else {
-        return egpoc_memory_error_unknown;
+        return EGPOC_MEMORY_ERROR_UNKNOWN;
     }
 }
 
