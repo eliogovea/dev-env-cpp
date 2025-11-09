@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "egpoc_debug.h"
 #include "egpoc_memory.h"
 #include "egpoc_system.h"
 #include "egpoc_window.h"
@@ -18,6 +19,7 @@ int main(int argc, char* argv[])
     egpoc_memory_arena_t arena       = {.data = NULL, .size = 0, .used = 0};
     egpoc_memory_error_t arena_error = EGPOC_MEMORY_ERROR_NONE;
 
+    EGPOC_DEBUG("egpoc_memory_arena_create ...");
     arena_error = egpoc_memory_arena_create(NULL,  //
                                             egpoc_memory_heap_acquire,
                                             &arena,

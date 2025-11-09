@@ -6,6 +6,7 @@
 
 #include <stdio.h>
 
+#include "egpoc_debug.h"
 #include "egpoc_memory.h"
 #include "egpoc_system.h"
 
@@ -17,74 +18,71 @@ static LRESULT CALLBACK egpoc_window_win32_WndProc(HWND hwnd, UINT msg, WPARAM w
 {
     switch (msg) {
     case WM_CREATE:
-        fprintf(stderr, "WM_CREATE\n");
+        EGPOC_DEBUG("WM_CREATE\n");
         break;
     case WM_DESTROY:
-        fprintf(stderr, "WM_DESTROY\n");
+        EGPOC_DEBUG("WM_DESTROY\n");
         PostQuitMessage(0);
         break;
     case WM_CLOSE:
-        fprintf(stderr, "WM_CLOSE\n");
+        EGPOC_DEBUG("WM_CLOSE\n");
         DestroyWindow(hwnd);
         break;
     case WM_PAINT: {
-        fprintf(stderr, "WM_PAINT\n");
+        EGPOC_DEBUG("WM_PAINT\n");
         PAINTSTRUCT ps;
         BeginPaint(hwnd, &ps);
         EndPaint(hwnd, &ps);
         break;
     }
     case WM_MOVE:
-        fprintf(stderr, "WM_MOVE: x=%d, y=%d\n", (int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam));
+        EGPOC_DEBUG("WM_MOVE: x=%d, y=%d\n", (int)(short)LOWORD(lParam), (int)(short)HIWORD(lParam));
         break;
     case WM_SIZE:
-        fprintf(stderr, "WM_SIZE: width=%d, height=%d\n", LOWORD(lParam), HIWORD(lParam));
+        EGPOC_DEBUG("WM_SIZE: width=%d, height=%d\n", LOWORD(lParam), HIWORD(lParam));
         break;
     case WM_KEYDOWN:
-        fprintf(stderr, "WM_KEYDOWN: key=%u\n", (unsigned int)wParam);
+        EGPOC_DEBUG("WM_KEYDOWN: key=%u\n", (unsigned int)wParam);
         break;
     case WM_KEYUP:
-        fprintf(stderr, "WM_KEYUP: key=%u\n", (unsigned int)wParam);
+        EGPOC_DEBUG("WM_KEYUP: key=%u\n", (unsigned int)wParam);
         break;
     case WM_CHAR:
-        fprintf(stderr, "WM_CHAR: char='%c'\n", (char)wParam);
+        EGPOC_DEBUG("WM_CHAR: char='%c'\n", (char)wParam);
         break;
     case WM_MOUSEMOVE:
-        fprintf(stderr, "WM_MOUSEMOVE: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+        EGPOC_DEBUG("WM_MOUSEMOVE: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
         break;
     case WM_LBUTTONDOWN:
-        fprintf(stderr, "WM_LBUTTONDOWN: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+        EGPOC_DEBUG("WM_LBUTTONDOWN: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
         break;
     case WM_LBUTTONUP:
-        fprintf(stderr, "WM_LBUTTONUP: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+        EGPOC_DEBUG("WM_LBUTTONUP: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
         break;
     case WM_RBUTTONDOWN:
-        fprintf(stderr, "WM_RBUTTONDOWN: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+        EGPOC_DEBUG("WM_RBUTTONDOWN: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
         break;
     case WM_RBUTTONUP:
-        fprintf(stderr, "WM_RBUTTONUP: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
+        EGPOC_DEBUG("WM_RBUTTONUP: x=%d, y=%d\n", GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam));
         break;
     case WM_MOUSEWHEEL:
-        fprintf(stderr, "WM_MOUSEWHEEL: delta=%d\n", GET_WHEEL_DELTA_WPARAM(wParam));
+        EGPOC_DEBUG("WM_MOUSEWHEEL: delta=%d\n", GET_WHEEL_DELTA_WPARAM(wParam));
         break;
     case WM_SETFOCUS:
-        fprintf(stderr, "WM_SETFOCUS\n");
+        EGPOC_DEBUG("WM_SETFOCUS\n");
         break;
     case WM_KILLFOCUS:
-        fprintf(stderr, "WM_KILLFOCUS\n");
+        EGPOC_DEBUG("WM_KILLFOCUS\n");
         break;
     case WM_ACTIVATE:
-        fprintf(stderr, "WM_ACTIVATE: state=%d\n", LOWORD(wParam));
+        EGPOC_DEBUG("WM_ACTIVATE: state=%d\n", LOWORD(wParam));
         break;
     case WM_SHOWWINDOW:
-        fprintf(stderr, "WM_SHOWWINDOW: shown=%d\n", (int)wParam);
+        EGPOC_DEBUG("WM_SHOWWINDOW: shown=%d\n", (int)wParam);
         break;
     default:
-        fprintf(stderr,
-                "Message: 0x%04X (wParam=0x%08X, lParam=0x%08X)\n",
-                msg,
-                (unsigned int)wParam,
-                (unsigned int)lParam);
+        EGPOC_DEBUG(
+            "Message: 0x%04X (wParam=0x%08X, lParam=0x%08X)\n", msg, (unsigned int)wParam, (unsigned int)lParam);
         return DefWindowProc(hwnd, msg, wParam, lParam);
     }
 

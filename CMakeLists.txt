@@ -29,6 +29,7 @@ set(
     EGPOC_HEADERS
     egpoc_bytes.h
     egpoc_chars.h
+    egpoc_debug.h
     egpoc_memory.h
     egpoc_network.h
     egpoc_window.h
@@ -39,6 +40,7 @@ set(
     EGPOC_SOURCES
     egpoc_bytes.c
     egpoc_chars.c
+    egpoc_debug.c
     egpoc_memory.c
     egpoc_network.c
     egpoc_window.c
