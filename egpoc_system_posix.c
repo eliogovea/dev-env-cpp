@@ -8,6 +8,10 @@
 #include <string.h>
 #include <unistd.h>
 
+#ifndef MAP_ANONYMOUS
+#define MAP_ANONYMOUS MAP_ANON
+#endif
+
 typedef struct egpoc_system_t {
     egpoc_system_error_t error;
 } egpoc_system_t;

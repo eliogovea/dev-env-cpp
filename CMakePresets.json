@@ -7,6 +7,26 @@
   },
   "configurePresets": [
     {
+      "name": "host-debug",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/host-debug",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS": "-Wall -Wextra -Wpedantic -Wconversion -Wshadow -Wmissing-declarations -Wunreachable-code",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Wconversion -Wshadow -Wmissing-declarations -Wunreachable-code"
+      }
+    },
+    {
+      "name": "host-release",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/host-release",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug",
+        "CMAKE_C_FLAGS": "-Wall -Wextra -Wpedantic -Wconversion -Wshadow -Wmissing-declarations -Wunreachable-code",
+        "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Wconversion -Wshadow -Wmissing-declarations -Wunreachable-code"
+      }
+    },
+    {
       "name": "host-gcc-debug-coverage",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/host-gcc-debug-coverage",
@@ -32,13 +52,12 @@
       }
     },
     {
-      "name": "host-llvm-release",
+      "name": "linux-llvm-release",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/host-llvm-release",
+      "binaryDir": "${sourceDir}/build/linux-llvm-release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_NAME": "Linux",
-        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
         "CMAKE_C_COMPILER": "clang",
         "CMAKE_CXX_COMPILER": "clang++",
         "CMAKE_LINKER": "",
@@ -58,13 +77,12 @@
       }
     },
     {
-      "name": "host-llvm-debug",
+      "name": "linux-llvm-debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/host-llvm-debug",
+      "binaryDir": "${sourceDir}/build/linux-llvm-debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_NAME": "Linux",
-        "CMAKE_SYSTEM_PROCESSOR": "x86_64",
         "CMAKE_C_COMPILER": "clang",
         "CMAKE_CXX_COMPILER": "clang++",
         "CMAKE_LINKER": "",
@@ -85,9 +103,9 @@
       }
     },
     {
-      "name": "cross-windows-release",
+      "name": "windows-x86_64-w64-mingw32-release",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/cross-windows-release",
+      "binaryDir": "${sourceDir}/build/windows-x86_64-w64-mingw32-release",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_NAME": "Windows",
@@ -112,9 +130,9 @@
       }
     },
     {
-      "name": "cross-windows-debug",
+      "name": "windows-x86_64-w64-mingw32-debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/cross-windows-debug",
+      "binaryDir": "${sourceDir}/build/windows-x86_64-w64-mingw32-debug",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_NAME": "Windows",
@@ -201,28 +219,38 @@
   ],
   "buildPresets": [
     {
+      "name": "host-debug",
+      "configurePreset": "host-debug",
+      "targets": "all"
+    },
+    {
+      "name": "host-release",
+      "configurePreset": "host-release",
+      "targets": "all"
+    },
+    {
       "name": "host-gcc-debug-coverage",
       "configurePreset": "host-gcc-debug-coverage",
       "targets": "all"
     },
     {
-      "name": "host-llvm-release",
-      "configurePreset": "host-llvm-release",
+      "name": "linux-llvm-release",
+      "configurePreset": "linux-llvm-release",
       "targets": "all"
     },
     {
-      "name": "host-llvm-debug",
-      "configurePreset": "host-llvm-debug",
+      "name": "linux-llvm-debug",
+      "configurePreset": "linux-llvm-debug",
       "targets": "all"
     },
     {
-      "name": "cross-windows-release",
-      "configurePreset": "cross-windows-release",
+      "name": "windows-x86_64-w64-mingw32-release",
+      "configurePreset": "windows-x86_64-w64-mingw32-release",
       "targets": "all"
     },
     {
-      "name": "cross-windows-debug",
-      "configurePreset": "cross-windows-debug",
+      "name": "windows-x86_64-w64-mingw32-debug",
+      "configurePreset": "windows-x86_64-w64-mingw32-debug",
       "targets": "all"
     },
     {
@@ -238,6 +266,24 @@
   ],
   "testPresets": [
     {
+      "name": "host-debug",
+      "configurePreset": "host-debug",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
+    },
+    {
+      "name": "host-release",
+      "configurePreset": "host-release",
+      "output": {
+        "outputOnFailure": true,
+        "verbosity": "extra",
+        "debug": true
+      }
+    },
+    {
       "name": "host-gcc-debug-coverage",
       "configurePreset": "host-gcc-debug-coverage",
       "output": {
@@ -247,8 +293,8 @@
       }
     },
     {
-      "name": "host-llvm-release",
-      "configurePreset": "host-llvm-release",
+      "name": "linux-llvm-release",
+      "configurePreset": "linux-llvm-release",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -256,8 +302,8 @@
       }
     },
     {
-      "name": "host-llvm-debug",
-      "configurePreset": "host-llvm-debug",
+      "name": "linux-llvm-debug",
+      "configurePreset": "linux-llvm-debug",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -265,8 +311,8 @@
       }
     },
     {
-      "name": "cross-windows-release",
-      "configurePreset": "cross-windows-release",
+      "name": "windows-x86_64-w64-mingw32-release",
+      "configurePreset": "windows-x86_64-w64-mingw32-release",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -274,8 +320,8 @@
       }
     },
     {
-      "name": "cross-windows-debug",
-      "configurePreset": "cross-windows-debug",
+      "name": "windows-x86_64-w64-mingw32-debug",
+      "configurePreset": "windows-x86_64-w64-mingw32-debug",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -303,23 +349,33 @@
   ],
   "packagePresets": [
     {
-      "name": "host-llvm-release",
-      "configurePreset": "host-llvm-release",
+      "name": "host-debug",
+      "configurePreset": "host-debug",
+      "generators": ["TGZ"]
+    },
+    {
+      "name": "host-release",
+      "configurePreset": "host-release",
+      "generators": ["TGZ"]
+    },
+    {
+      "name": "linux-llvm-release",
+      "configurePreset": "linux-llvm-release",
       "generators": ["TGZ", "DEB", "RPM"]
     },
     {
-      "name": "host-llvm-debug",
-      "configurePreset": "host-llvm-debug",
+      "name": "linux-llvm-debug",
+      "configurePreset": "linux-llvm-debug",
       "generators": ["TGZ", "DEB", "RPM"]
     },
     {
-      "name": "cross-windows-release",
-      "configurePreset": "cross-windows-release",
+      "name": "windows-x86_64-w64-mingw32-release",
+      "configurePreset": "windows-x86_64-w64-mingw32-release",
       "generators": ["ZIP", "NSIS"]
     },
     {
-      "name": "cross-windows-debug",
-      "configurePreset": "cross-windows-debug",
+      "name": "windows-x86_64-w64-mingw32-debug",
+      "configurePreset": "windows-x86_64-w64-mingw32-debug",
       "generators": ["ZIP", "NSIS"]
     },
     {
@@ -334,6 +390,48 @@
     }
   ],
   "workflowPresets": [
+    {
+      "name": "host-debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "host-debug"
+        },
+        {
+          "type": "build",
+          "name": "host-debug"
+        },
+        {
+          "type": "test",
+          "name": "host-debug"
+        },
+        {
+          "type": "package",
+          "name": "host-debug"
+        }
+      ]
+    },
+    {
+      "name": "host-release",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "host-release"
+        },
+        {
+          "type": "build",
+          "name": "host-release"
+        },
+        {
+          "type": "test",
+          "name": "host-release"
+        },
+        {
+          "type": "package",
+          "name": "host-release"
+        }
+      ]
+    },
     {
       "name": "host-gcc-debug-coverage",
       "steps": [
@@ -352,86 +450,86 @@
       ]
     },
     {
-      "name": "host-llvm-debug",
+      "name": "linux-llvm-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "host-llvm-debug"
+          "name": "linux-llvm-debug"
         },
         {
           "type": "build",
-          "name": "host-llvm-debug"
+          "name": "linux-llvm-debug"
         },
         {
           "type": "test",
-          "name": "host-llvm-debug"
+          "name": "linux-llvm-debug"
         },
         {
           "type": "package",
-          "name": "host-llvm-debug"
+          "name": "linux-llvm-debug"
         }
       ]
     },
     {
-      "name": "host-llvm-release",
+      "name": "linux-llvm-release",
       "steps": [
         {
           "type": "configure",
-          "name": "host-llvm-release"
+          "name": "linux-llvm-release"
         },
         {
           "type": "build",
-          "name": "host-llvm-release"
+          "name": "linux-llvm-release"
         },
         {
           "type": "test",
-          "name": "host-llvm-release"
+          "name": "linux-llvm-release"
         },
         {
           "type": "package",
-          "name": "host-llvm-release"
+          "name": "linux-llvm-release"
         }
       ]
     },
     {
-      "name": "cross-windows-debug",
+      "name": "windows-x86_64-w64-mingw32-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "cross-windows-debug"
+          "name": "windows-x86_64-w64-mingw32-debug"
         },
         {
           "type": "build",
-          "name": "cross-windows-debug"
+          "name": "windows-x86_64-w64-mingw32-debug"
         },
         {
           "type": "test",
-          "name": "cross-windows-debug"
+          "name": "windows-x86_64-w64-mingw32-debug"
         },
         {
           "type": "package",
-          "name": "cross-windows-debug"
+          "name": "windows-x86_64-w64-mingw32-debug"
         }
       ]
     },
     {
-      "name": "cross-windows-release",
+      "name": "windows-x86_64-w64-mingw32-release",
       "steps": [
         {
           "type": "configure",
-          "name": "cross-windows-release"
+          "name": "windows-x86_64-w64-mingw32-release"
         },
         {
           "type": "build",
-          "name": "cross-windows-release"
+          "name": "windows-x86_64-w64-mingw32-release"
         },
         {
           "type": "test",
-          "name": "cross-windows-release"
+          "name": "windows-x86_64-w64-mingw32-release"
         },
         {
           "type": "package",
-          "name": "cross-windows-release"
+          "name": "windows-x86_64-w64-mingw32-release"
         }
       ]
     },
