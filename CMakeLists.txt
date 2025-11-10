@@ -101,6 +101,7 @@ set(
     egpoc_debug.h
     egpoc_memory.h
     egpoc_network.h
+    egpoc_power.h
     egpoc_window.h
     egpoc_system.h
 )
@@ -112,6 +113,7 @@ set(
     egpoc_debug.c
     egpoc_memory.c
     egpoc_network.c
+    egpoc_power.c
     egpoc_window.c
     egpoc_system.c
 )
@@ -162,6 +164,7 @@ add_executable(egpoc_testing)
 target_sources(egpoc_testing PRIVATE egpoc_testing.c)
 target_sources(egpoc_testing PRIVATE egpoc_testing_main.c)
 target_sources(egpoc_testing PRIVATE egpoc_memory_unittest.c)
+target_sources(egpoc_testing PRIVATE egpoc_power_unittest.c)
 target_link_libraries(egpoc_testing PRIVATE egpoc::egpoc_static)
 target_link_libraries(egpoc_testing PRIVATE egpoc::egpoc_warnings)
 
