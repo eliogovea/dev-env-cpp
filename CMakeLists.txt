@@ -147,6 +147,8 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     target_compile_definitions(egpoc_static PRIVATE _DARWIN_C_SOURCE)
     target_link_libraries(egpoc_static PRIVATE "-framework Cocoa")
 else()
+    message(WARNING "CMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME} is not supported")
+    message(WARNING "CMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME} will use stub sources")
     target_sources(egpoc_static PRIVATE egpoc_system_none.c)
     target_sources(egpoc_static PRIVATE egpoc_window_none.c)
 endif()
@@ -168,10 +170,16 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
     target_link_options(egpoc_testing PRIVATE "-s WASM=1")
     target_link_options(egpoc_testing PRIVATE "-s ENVIRONMENT=node")
     target_link_options(egpoc_testing PRIVATE "-s EXIT_RUNTIME=1")
-    add_test(NAME egpoc_testing COMMAND node ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.js)
+    find_program(EGPOC_EXECUTABLE_NODE node REQUIRED)
+    add_test(NAME egpoc_testing COMMAND ${EGPOC_EXECUTABLE_NODE} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.js)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
-    add_test(NAME egpoc_testing COMMAND wine ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
-elseif(MAKE_SYSTEM_NAME STREQUAL "Linux")
+    if(CMAKE_CROSSCOMPILING)
+        find_program(EGPOC_EXECUTABLE_WINE wine REQUIRED)
+        add_test(NAME egpoc_testing COMMAND ${EGPOC_EXECUTABLE_WINE} ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
+    else()
+        add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
+    endif()
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing)
@@ -386,17 +394,15 @@ set(CPACK_NSIS_MENU_LINKS                      "")
 include(CPack)
 
 # ------------------------------------------------------------------------------
-# clangd compile_commands.json symlink
+# compile_commands.json to root directory (for clangd)
 # ------------------------------------------------------------------------------
-
-get_filename_component(COMPILE_COMMAND_JSON_DIR ${PROJECT_BINARY_DIR} NAME)
-
 add_custom_target(
-    clangd_compile_commands ALL
-    COMMAND ${CMAKE_COMMAND} -E create_symlink
-            "${COMPILE_COMMAND_JSON_DIR}/compile_commands.json"
-            "compile_commands.json"
-    WORKING_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/build"
+    compile_commands
+    ALL
+    BYPRODUCTS "${CMAKE_CURRENT_LIST_DIR}/compile_commands.json"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json"
+        "${CMAKE_CURRENT_LIST_DIR}/compile_commands.json"
     VERBATIM
-    COMMENT "Linking compile_commands.json for clangd"
+    COMMENT "Copying compile_commands.json for clangd"
 )
