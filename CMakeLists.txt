@@ -26,6 +26,72 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR
 # ------------------------------------------------------------------------------
 
 # ------------------------------------------------------------------------------
+# Libraries: egpoc_warnings
+# ------------------------------------------------------------------------------
+
+add_library(egpoc_warnings INTERFACE)
+add_library(egpoc::egpoc_warnings ALIAS egpoc_warnings)
+
+if(MSVC)
+    target_compile_options(egpoc_warnings INTERFACE /W4)
+    # TODO: add warnings ...
+elseif(CMAKE_C_COMPILER_ID MATCHES "Clang|AppleClang")
+    # https://clang.llvm.org/docs/DiagnosticsReference.html
+    target_compile_options(egpoc_warnings INTERFACE -Wall)
+    target_compile_options(egpoc_warnings INTERFACE -Wextra)
+    target_compile_options(egpoc_warnings INTERFACE -Wpedantic)
+    target_compile_options(egpoc_warnings INTERFACE -Wshadow)
+    target_compile_options(egpoc_warnings INTERFACE -Wconversion)
+    target_compile_options(egpoc_warnings INTERFACE -Wsign-conversion)
+    target_compile_options(egpoc_warnings INTERFACE -Wfloat-equal)
+    target_compile_options(egpoc_warnings INTERFACE -Wcast-align)
+    target_compile_options(egpoc_warnings INTERFACE -Wstrict-prototypes)
+    target_compile_options(egpoc_warnings INTERFACE -Wmissing-prototypes)
+    target_compile_options(egpoc_warnings INTERFACE -Wmissing-declarations)
+    target_compile_options(egpoc_warnings INTERFACE -Wmissing-variable-declarations)
+    target_compile_options(egpoc_warnings INTERFACE -Wunreachable-code)
+    target_compile_options(egpoc_warnings INTERFACE -Wformat=2)
+    target_compile_options(egpoc_warnings INTERFACE -Wpointer-arith)
+    target_compile_options(egpoc_warnings INTERFACE -Wundef)
+    target_compile_options(egpoc_warnings INTERFACE -Wbad-function-cast)
+    target_compile_options(egpoc_warnings INTERFACE -Wnested-externs)
+    target_compile_options(egpoc_warnings INTERFACE -Wwrite-strings)
+    target_compile_options(egpoc_warnings INTERFACE -Waggregate-return)
+    target_compile_options(egpoc_warnings INTERFACE -Wnull-dereference)
+    target_compile_options(egpoc_warnings INTERFACE -Wimplicit-fallthrough)
+    target_compile_options(egpoc_warnings INTERFACE -Wdouble-promotion)
+elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    # https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+    target_compile_options(egpoc_warnings INTERFACE -Wall)
+    target_compile_options(egpoc_warnings INTERFACE -Wextra)
+    target_compile_options(egpoc_warnings INTERFACE -Wpedantic)
+    target_compile_options(egpoc_warnings INTERFACE -Wshadow)
+    target_compile_options(egpoc_warnings INTERFACE -Wconversion)
+    target_compile_options(egpoc_warnings INTERFACE -Wsign-conversion)
+    target_compile_options(egpoc_warnings INTERFACE -Wfloat-equal)
+    target_compile_options(egpoc_warnings INTERFACE -Wcast-align)
+    target_compile_options(egpoc_warnings INTERFACE -Wstrict-prototypes)
+    target_compile_options(egpoc_warnings INTERFACE -Wmissing-prototypes)
+    target_compile_options(egpoc_warnings INTERFACE -Wmissing-declarations)
+    target_compile_options(egpoc_warnings INTERFACE -Wmissing-variable-declarations)
+    target_compile_options(egpoc_warnings INTERFACE -Wunreachable-code)
+    target_compile_options(egpoc_warnings INTERFACE -Wformat=2)
+    target_compile_options(egpoc_warnings INTERFACE -Wpointer-arith)
+    target_compile_options(egpoc_warnings INTERFACE -Wundef)
+    target_compile_options(egpoc_warnings INTERFACE -Wbad-function-cast)
+    target_compile_options(egpoc_warnings INTERFACE -Wnested-externs)
+    target_compile_options(egpoc_warnings INTERFACE -Wwrite-strings)
+    target_compile_options(egpoc_warnings INTERFACE -Waggregate-return)
+    target_compile_options(egpoc_warnings INTERFACE -Wlogical-op)
+    target_compile_options(egpoc_warnings INTERFACE -Wduplicated-cond)
+    target_compile_options(egpoc_warnings INTERFACE -Wnull-dereference)
+    target_compile_options(egpoc_warnings INTERFACE -Wimplicit-fallthrough=5)
+    target_compile_options(egpoc_warnings INTERFACE -Wdouble-promotion)
+else()
+    message(WARNING "Unknown C compiler: ${CMAKE_C_COMPILER_ID}")
+endif()
+
+# ------------------------------------------------------------------------------
 # Libraries: egpoc_static
 # ------------------------------------------------------------------------------
 
@@ -59,6 +125,7 @@ set_target_properties(egpoc_static PROPERTIES PUBLIC_HEADER "${EGPOC_HEADERS}")
 target_compile_features(egpoc_static PRIVATE c_std_11)
 target_include_directories(egpoc_static PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>)
 target_include_directories(egpoc_static PUBLIC $<INSTALL_INTERFACE:include>)
+target_link_libraries(egpoc_static PRIVATE egpoc::egpoc_warnings)
 
 # ------------------------------------------------------------------------------
 # Libraries: egpoc_static (platform-specific configurations)
@@ -79,8 +146,7 @@ elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     target_sources(egpoc_static PRIVATE egpoc_system_posix.c)
     target_sources(egpoc_static PRIVATE egpoc_window_macos.m)
     target_compile_definitions(egpoc_static PRIVATE _DARWIN_C_SOURCE)
-    find_library(COCOA_LIBRARY Cocoa)
-    target_link_libraries(egpoc_static PRIVATE ${COCOA_LIBRARY})
+    target_link_libraries(egpoc_static PRIVATE "-framework Cocoa")
 else()
     target_sources(egpoc_static PRIVATE egpoc_system_none.c)
     target_sources(egpoc_static PRIVATE egpoc_window_none.c)
@@ -96,6 +162,7 @@ target_sources(egpoc_testing PRIVATE egpoc_testing.c)
 target_sources(egpoc_testing PRIVATE egpoc_testing_main.c)
 target_sources(egpoc_testing PRIVATE egpoc_memory_unittest.c)
 target_link_libraries(egpoc_testing PRIVATE egpoc::egpoc_static)
+target_link_libraries(egpoc_testing PRIVATE egpoc::egpoc_warnings)
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
     set_target_properties(egpoc_testing PROPERTIES SUFFIX ".js")
@@ -105,8 +172,12 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
     add_test(NAME egpoc_testing COMMAND node ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.js)
 elseif(CMAKE_SYSTEM_NAME STREQUAL "Windows")
     add_test(NAME egpoc_testing COMMAND wine ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing.exe)
-else(MAKE_SYSTEM_NAME STREQUAL "Linux")
+elseif(MAKE_SYSTEM_NAME STREQUAL "Linux")
     add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing)
+elseif(CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+    add_test(NAME egpoc_testing COMMAND ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/egpoc_testing)
+else()
+    # unknownw ?
 endif()
 
 # ------------------------------------------------------------------------------
@@ -120,6 +191,7 @@ endif()
 add_executable(egpoc_app_example)
 target_sources(egpoc_app_example PRIVATE  egpoc_app_example.c)
 target_link_libraries(egpoc_app_example PRIVATE egpoc::egpoc_static)
+target_link_libraries(egpoc_app_example PRIVATE egpoc::egpoc_warnings)
 
 # ------------------------------------------------------------------------------
 # Applications: egpoc_app_example (platform-specific configurations)
@@ -152,6 +224,7 @@ endif()
 
 install(
     TARGETS                   egpoc_static
+                              egpoc_warnings
                               egpoc_app_example
     EXPORT                    egpocTargets
     COMPONENT                 ${PROJECT_NAME}

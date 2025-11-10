@@ -29,6 +29,8 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          unsigned int           window_height,
                                          egpoc_window_t**       window)
 {
+    (void)memory_release;
+
     @autoreleasepool {
         [NSApplication sharedApplication];
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
@@ -143,7 +145,7 @@ egpoc_system_error_t egpoc_window_events(egpoc_window_t*       window,
                     EGPOC_DEBUG("[Event] ApplicationDefined\n");
                     break;
                 case NSEventTypePressure:
-                    EGPOC_DEBUG("[Event] Pressure = %f\n", event.pressure);
+                    EGPOC_DEBUG("[Event] Pressure = %f\n", (double)event.pressure);
                     break;
                 case NSEventTypeSwipe:
                     EGPOC_DEBUG("[Event] Swipe detected\n");
