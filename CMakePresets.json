@@ -9,159 +9,94 @@
     {
       "name": "host-debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/host-debug",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_FLAGS": "",
-        "CMAKE_CXX_FLAGS": "",
-        "CMAKE_COMPILE_WARNING_AS_ERROR": true
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
     {
       "name": "host-release",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/host-release",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_FLAGS": "",
-        "CMAKE_CXX_FLAGS": "",
-        "CMAKE_COMPILE_WARNING_AS_ERROR": true
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
     {
       "name": "host-gcc-debug-coverage",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/host-gcc-debug-coverage",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_LINKER": "",
+        "CMAKE_C_COMPILER": "gcc",
         "CMAKE_C_FLAGS": "--coverage",
-        "CMAKE_CXX_FLAGS": "--coverage",
-        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
-        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
-        "CMAKE_C_FLAGS_RELEASE": "-O2",
-        "CMAKE_CXX_FLAGS_RELEASE": "-O2",
         "CMAKE_EXE_LINKER_FLAGS": "--coverage",
-        "CMAKE_SHARED_LINKER_FLAGS": "--coverage",
-        "CMAKE_MODULE_LINKER_FLAGS": "--coverage",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
-        "CMAKE_SKIP_RPATH": false
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
     {
       "name": "linux-llvm-release",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/linux-llvm-release",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_LINKER": "",
-        "CMAKE_C_FLAGS": "",
-        "CMAKE_CXX_FLAGS": "",
-        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
-        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
-        "CMAKE_C_FLAGS_RELEASE": "-O2",
-        "CMAKE_CXX_FLAGS_RELEASE": "-O2",
-        "CMAKE_EXE_LINKER_FLAGS": "",
-        "CMAKE_SHARED_LINKER_FLAGS": "",
-        "CMAKE_MODULE_LINKER_FLAGS": "",
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
-        "CMAKE_SKIP_RPATH": false
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
     {
       "name": "linux-llvm-debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/linux-llvm-debug",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_NAME": "Linux",
+        "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_LINKER": "",
-        "CMAKE_C_FLAGS": "",
-        "CMAKE_CXX_FLAGS": "",
-        "CMAKE_C_FLAGS_DEBUG": "-O0 -g",
-        "CMAKE_CXX_FLAGS_DEBUG": "-O0 -g",
-        "CMAKE_C_FLAGS_RELEASE": "-O2",
-        "CMAKE_CXX_FLAGS_RELEASE": "-O2",
-        "CMAKE_EXE_LINKER_FLAGS": "",
-        "CMAKE_SHARED_LINKER_FLAGS": "",
-        "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install",
-        "CMAKE_SKIP_RPATH": false
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
     {
-      "name": "windows-x86_64-w64-mingw32-release",
+      "name": "x86_64-w64-mingw32-release",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/windows-x86_64-w64-mingw32-release",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_NAME": "Windows",
         "CMAKE_SYSTEM_PROCESSOR": "x86_64",
         "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
-        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "x86_64-w64-mingw32-windres",
         "CMAKE_LINKER": "x86_64-w64-mingw32-ld",
-        "CMAKE_C_FLAGS": "",
-        "CMAKE_CXX_FLAGS": "",
-        "CMAKE_C_FLAGS_DEBUG": "",
-        "CMAKE_CXX_FLAGS_DEBUG": "",
-        "CMAKE_C_FLAGS_RELEASE": "",
-        "CMAKE_CXX_FLAGS_RELEASE": "",
-        "CMAKE_EXE_LINKER_FLAGS": "",
-        "CMAKE_SHARED_LINKER_FLAGS": "",
-        "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
     {
-      "name": "windows-x86_64-w64-mingw32-debug",
+      "name": "x86_64-w64-mingw32-debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/windows-x86_64-w64-mingw32-debug",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_NAME": "Windows",
         "CMAKE_SYSTEM_PROCESSOR": "x86_64",
         "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
-        "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
         "CMAKE_RC_COMPILER": "x86_64-w64-mingw32-windres",
         "CMAKE_LINKER": "x86_64-w64-mingw32-ld",
-        "CMAKE_C_FLAGS": "",
-        "CMAKE_CXX_FLAGS": "",
-        "CMAKE_C_FLAGS_DEBUG": "",
-        "CMAKE_CXX_FLAGS_DEBUG": "",
-        "CMAKE_C_FLAGS_RELEASE": "",
-        "CMAKE_CXX_FLAGS_RELEASE": "",
-        "CMAKE_EXE_LINKER_FLAGS": "",
-        "CMAKE_SHARED_LINKER_FLAGS": "",
-        "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
     },
     {
-      "name": "cross-wasm-release",
+      "name": "wasm-release",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/cross-wasm-release",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Release",
         "CMAKE_SYSTEM_NAME": "Emscripten",
@@ -171,27 +106,18 @@
         "CMAKE_LINKER": "emcc",
         "CMAKE_C_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
         "CMAKE_CXX_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
-        "CMAKE_C_FLAGS_DEBUG": "",
-        "CMAKE_CXX_FLAGS_DEBUG": "",
-        "CMAKE_C_FLAGS_RELEASE": "",
-        "CMAKE_CXX_FLAGS_RELEASE": "",
-        "CMAKE_EXE_LINKER_FLAGS": "",
-        "CMAKE_SHARED_LINKER_FLAGS": "",
-        "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_TOOLCHAIN_FILE": "$env{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
+        "CMAKE_TOOLCHAIN_FILE": "$env{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"
       },
       "environment": {
         "EMSDK": "$penv{EMSDK}"
       }
     },
     {
-      "name": "cross-wasm-debug",
+      "name": "wasm-debug",
       "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/cross-wasm-debug",
+      "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_SYSTEM_NAME": "Emscripten",
@@ -201,18 +127,9 @@
         "CMAKE_LINKER": "emcc",
         "CMAKE_C_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
         "CMAKE_CXX_FLAGS": "-isystem $penv{EMSDK}/upstream/emscripten/cache/sysroot/include",
-        "CMAKE_C_FLAGS_DEBUG": "",
-        "CMAKE_CXX_FLAGS_DEBUG": "",
-        "CMAKE_C_FLAGS_RELEASE": "",
-        "CMAKE_CXX_FLAGS_RELEASE": "",
-        "CMAKE_EXE_LINKER_FLAGS": "",
-        "CMAKE_SHARED_LINKER_FLAGS": "",
-        "CMAKE_MODULE_LINKER_FLAGS": "",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true,
-        "CMAKE_POSITION_INDEPENDENT_CODE": true,
-        "CMAKE_TOOLCHAIN_FILE": "$penv{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake",
-        "CMAKE_INSTALL_PREFIX": "${sourceDir}/install"
+        "CMAKE_TOOLCHAIN_FILE": "$penv{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake"
       },
       "environment": {
         "EMSDK": "$penv{EMSDK}"
@@ -246,23 +163,23 @@
       "targets": "all"
     },
     {
-      "name": "windows-x86_64-w64-mingw32-release",
-      "configurePreset": "windows-x86_64-w64-mingw32-release",
+      "name": "x86_64-w64-mingw32-release",
+      "configurePreset": "x86_64-w64-mingw32-release",
       "targets": "all"
     },
     {
-      "name": "windows-x86_64-w64-mingw32-debug",
-      "configurePreset": "windows-x86_64-w64-mingw32-debug",
+      "name": "x86_64-w64-mingw32-debug",
+      "configurePreset": "x86_64-w64-mingw32-debug",
       "targets": "all"
     },
     {
-      "name": "cross-wasm-release",
-      "configurePreset": "cross-wasm-release",
+      "name": "wasm-release",
+      "configurePreset": "wasm-release",
       "targets": "all"
     },
     {
-      "name": "cross-wasm-debug",
-      "configurePreset": "cross-wasm-debug",
+      "name": "wasm-debug",
+      "configurePreset": "wasm-debug",
       "targets": "all"
     }
   ],
@@ -313,8 +230,8 @@
       }
     },
     {
-      "name": "windows-x86_64-w64-mingw32-release",
-      "configurePreset": "windows-x86_64-w64-mingw32-release",
+      "name": "x86_64-w64-mingw32-release",
+      "configurePreset": "x86_64-w64-mingw32-release",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -322,8 +239,8 @@
       }
     },
     {
-      "name": "windows-x86_64-w64-mingw32-debug",
-      "configurePreset": "windows-x86_64-w64-mingw32-debug",
+      "name": "x86_64-w64-mingw32-debug",
+      "configurePreset": "x86_64-w64-mingw32-debug",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -331,8 +248,8 @@
       }
     },
     {
-      "name": "cross-wasm-release",
-      "configurePreset": "cross-wasm-release",
+      "name": "wasm-release",
+      "configurePreset": "wasm-release",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -340,8 +257,8 @@
       }
     },
     {
-      "name": "cross-wasm-debug",
-      "configurePreset": "cross-wasm-debug",
+      "name": "wasm-debug",
+      "configurePreset": "wasm-debug",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -371,23 +288,23 @@
       "generators": ["TGZ", "DEB", "RPM"]
     },
     {
-      "name": "windows-x86_64-w64-mingw32-release",
-      "configurePreset": "windows-x86_64-w64-mingw32-release",
+      "name": "x86_64-w64-mingw32-release",
+      "configurePreset": "x86_64-w64-mingw32-release",
       "generators": ["ZIP", "NSIS"]
     },
     {
-      "name": "windows-x86_64-w64-mingw32-debug",
-      "configurePreset": "windows-x86_64-w64-mingw32-debug",
+      "name": "x86_64-w64-mingw32-debug",
+      "configurePreset": "x86_64-w64-mingw32-debug",
       "generators": ["ZIP", "NSIS"]
     },
     {
-      "name": "cross-wasm-release",
-      "configurePreset": "cross-wasm-release",
+      "name": "wasm-release",
+      "configurePreset": "wasm-release",
       "generators": ["TGZ"]
     },
     {
-      "name": "cross-wasm-debug",
-      "configurePreset": "cross-wasm-debug",
+      "name": "wasm-debug",
+      "configurePreset": "wasm-debug",
       "generators": ["TGZ"]
     }
   ],
@@ -494,86 +411,86 @@
       ]
     },
     {
-      "name": "windows-x86_64-w64-mingw32-debug",
+      "name": "x86_64-w64-mingw32-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "windows-x86_64-w64-mingw32-debug"
+          "name": "x86_64-w64-mingw32-debug"
         },
         {
           "type": "build",
-          "name": "windows-x86_64-w64-mingw32-debug"
+          "name": "x86_64-w64-mingw32-debug"
         },
         {
           "type": "test",
-          "name": "windows-x86_64-w64-mingw32-debug"
+          "name": "x86_64-w64-mingw32-debug"
         },
         {
           "type": "package",
-          "name": "windows-x86_64-w64-mingw32-debug"
+          "name": "x86_64-w64-mingw32-debug"
         }
       ]
     },
     {
-      "name": "windows-x86_64-w64-mingw32-release",
+      "name": "x86_64-w64-mingw32-release",
       "steps": [
         {
           "type": "configure",
-          "name": "windows-x86_64-w64-mingw32-release"
+          "name": "x86_64-w64-mingw32-release"
         },
         {
           "type": "build",
-          "name": "windows-x86_64-w64-mingw32-release"
+          "name": "x86_64-w64-mingw32-release"
         },
         {
           "type": "test",
-          "name": "windows-x86_64-w64-mingw32-release"
+          "name": "x86_64-w64-mingw32-release"
         },
         {
           "type": "package",
-          "name": "windows-x86_64-w64-mingw32-release"
+          "name": "x86_64-w64-mingw32-release"
         }
       ]
     },
     {
-      "name": "cross-wasm-debug",
+      "name": "wasm-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "cross-wasm-debug"
+          "name": "wasm-debug"
         },
         {
           "type": "build",
-          "name": "cross-wasm-debug"
+          "name": "wasm-debug"
         },
         {
           "type": "test",
-          "name": "cross-wasm-debug"
+          "name": "wasm-debug"
         },
         {
           "type": "package",
-          "name": "cross-wasm-debug"
+          "name": "wasm-debug"
         }
       ]
     },
     {
-      "name": "cross-wasm-release",
+      "name": "wasm-release",
       "steps": [
         {
           "type": "configure",
-          "name": "cross-wasm-release"
+          "name": "wasm-release"
         },
         {
           "type": "build",
-          "name": "cross-wasm-release"
+          "name": "wasm-release"
         },
         {
           "type": "test",
-          "name": "cross-wasm-release"
+          "name": "wasm-release"
         },
         {
           "type": "package",
-          "name": "cross-wasm-release"
+          "name": "wasm-release"
         }
       ]
     }
