@@ -1,3 +1,4 @@
+#include "egpoc_system.h"
 #include "egpoc_window.h"
 
 #include <emscripten/emscripten.h>
@@ -7,17 +8,28 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "egpoc_system.h"
+
 typedef struct egpoc_window_t {
+    egpoc_system_error_t error;
 } egpoc_window_t;
 
-static void egpoc_console_printf(char const* fmt, ...)
+
+static inline void egpoc_console_printf(char const* format, ...) __attribute__((format(printf, 1, 2)));
+
+static inline void egpoc_console_printf(char const* format, ...)
 {
     char    buffer[512];
     va_list args;
-    va_start(args, fmt);
-    vsnprintf(buffer, sizeof(buffer), fmt, args);
+    va_start(args, format);
+    vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
+
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+    #pragma clang diagnostic ignored "-Wvariadic-macro-arguments-omitted"
     EM_ASM({ console.log(UTF8ToString($0)); }, buffer);
+    #pragma clang diagnostic pop
 }
 
 /* ------------------------------------------------------------------------- */
@@ -25,6 +37,8 @@ static void egpoc_console_printf(char const* fmt, ...)
 /* ------------------------------------------------------------------------- */
 static EM_BOOL egpoc_on_event_key(int type, EmscriptenKeyboardEvent const* e, void* userData)
 {
+    (void)userData;
+
     switch (type) {
     case EMSCRIPTEN_EVENT_KEYDOWN: {
         egpoc_console_printf("[Key] keydown:"
@@ -104,6 +118,8 @@ static EM_BOOL egpoc_on_event_key(int type, EmscriptenKeyboardEvent const* e, vo
 /* ------------------------------------------------------------------------- */
 static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, void* userData)
 {
+    (void)userData;
+
     switch (type) {
     case EMSCRIPTEN_EVENT_CLICK: {
         egpoc_console_printf("[Mouse] click:"
@@ -319,6 +335,8 @@ static EM_BOOL egpoc_on_event_mouse(int type, EmscriptenMouseEvent const* e, voi
 /* ------------------------------------------------------------------------- */
 static EM_BOOL egpoc_on_event_wheel(int type, EmscriptenWheelEvent const* e, void* userData)
 {
+    (void)userData;
+
     switch (type) {
     case EMSCRIPTEN_EVENT_WHEEL: {
         egpoc_console_printf(
@@ -336,6 +354,8 @@ static EM_BOOL egpoc_on_event_wheel(int type, EmscriptenWheelEvent const* e, voi
 /* ------------------------------------------------------------------------- */
 static EM_BOOL egpoc_on_event_touch(int type, EmscriptenTouchEvent const* e, void* userData)
 {
+    (void)userData;
+
     switch (type) {
     case EMSCRIPTEN_EVENT_TOUCHSTART: {
         egpoc_console_printf("[Touch] touchstart:"
@@ -453,6 +473,8 @@ static EM_BOOL egpoc_on_event_touch(int type, EmscriptenTouchEvent const* e, voi
 /* ------------------------------------------------------------------------- */
 static EM_BOOL egpoc_on_event_focus(int type, EmscriptenFocusEvent const* e, void* userData)
 {
+    (void)userData;
+
     switch (type) {
     case EMSCRIPTEN_EVENT_BLUR: {
         egpoc_console_printf("[Focus] blur:"
@@ -498,6 +520,8 @@ static EM_BOOL egpoc_on_event_focus(int type, EmscriptenFocusEvent const* e, voi
 /* ------------------------------------------------------------------------- */
 static EM_BOOL egpoc_on_event_ui(int type, EmscriptenUiEvent const* e, void* userData)
 {
+    (void)userData;
+
     switch (type) {
     case EMSCRIPTEN_EVENT_RESIZE: {
         egpoc_console_printf("[UI] resize:"
@@ -544,115 +568,123 @@ static EM_BOOL egpoc_on_event_ui(int type, EmscriptenUiEvent const* e, void* use
 /* ------------------------------------------------------------------------- */
 /* Device orientation                                                        */
 /* ------------------------------------------------------------------------- */
-static EM_BOOL egpoc_on_event_deviceorientation(int type, EmscriptenDeviceOrientationEvent const* e, void* userData)
-{
-    switch (type) {
-    case EMSCRIPTEN_EVENT_DEVICEORIENTATION: {
-        egpoc_console_printf(
-            "[DeviceOrientation] alpha=%lf beta=%lf gamma=%lf abs=%d", e->alpha, e->beta, e->gamma, e->absolute);
-        // TODO: update egpoc_window_event_t
-    } break;
-    default:
-        break;
-    }
-    return EM_TRUE;
-}
+// static EM_BOOL egpoc_on_event_deviceorientation(int type, EmscriptenDeviceOrientationEvent const* e, void* userData)
+// {
+//     (void)userData;
+
+//     switch (type) {
+//     case EMSCRIPTEN_EVENT_DEVICEORIENTATION: {
+//         egpoc_console_printf(
+//             "[DeviceOrientation] alpha=%lf beta=%lf gamma=%lf abs=%d", e->alpha, e->beta, e->gamma, e->absolute);
+//         // TODO: update egpoc_window_event_t
+//     } break;
+//     default:
+//         break;
+//     }
+//     return EM_TRUE;
+// }
 
 /* ------------------------------------------------------------------------- */
 /* Device motion                                                             */
 /* ------------------------------------------------------------------------- */
-static EM_BOOL egpoc_on_event_devicemotion(int type, EmscriptenDeviceMotionEvent const* e, void* userData)
-{
-    switch (type) {
-    case EMSCRIPTEN_EVENT_DEVICEMOTION: {
-        egpoc_console_printf("[DeviceMotion] acc=(%.3f, %.3f, %.3f) accG=(%.3f, %.3f, %.3f)"
-                             " rotation=(%.3f, %.3f, %.3f) supportedFields=0x%x",
-                             e->accelerationX,
-                             e->accelerationY,
-                             e->accelerationZ,
-                             e->accelerationIncludingGravityX,
-                             e->accelerationIncludingGravityY,
-                             e->accelerationIncludingGravityZ,
-                             e->rotationRateAlpha,
-                             e->rotationRateBeta,
-                             e->rotationRateGamma,
-                             e->supportedFields);
-        // TODO: update egpoc_window_event_t
-    } break;
+// static EM_BOOL egpoc_on_event_devicemotion(int type, EmscriptenDeviceMotionEvent const* e, void* userData)
+// {
+//     (void)userData;
 
-    default:
-        break;
-    }
+//     switch (type) {
+//     case EMSCRIPTEN_EVENT_DEVICEMOTION: {
+//         egpoc_console_printf("[DeviceMotion] acc=(%.3f, %.3f, %.3f) accG=(%.3f, %.3f, %.3f)"
+//                              " rotation=(%.3f, %.3f, %.3f) supportedFields=0x%x",
+//                              e->accelerationX,
+//                              e->accelerationY,
+//                              e->accelerationZ,
+//                              e->accelerationIncludingGravityX,
+//                              e->accelerationIncludingGravityY,
+//                              e->accelerationIncludingGravityZ,
+//                              e->rotationRateAlpha,
+//                              e->rotationRateBeta,
+//                              e->rotationRateGamma,
+//                              e->supportedFields);
+//         // TODO: update egpoc_window_event_t
+//     } break;
 
-    return EM_TRUE;
-}
+//     default:
+//         break;
+//     }
+
+//     return EM_TRUE;
+// }
 
 /* ------------------------------------------------------------------------- */
 /* Visibility events                                                         */
 /* ------------------------------------------------------------------------- */
-static EM_BOOL egpoc_on_event_visibility(int type, EmscriptenVisibilityChangeEvent const* e, void* userData)
-{
-    switch (type) {
-    case EMSCRIPTEN_EVENT_VISIBILITYCHANGE: {
-        egpoc_console_printf("[Visibility] hidden=%d visibilityState=%d", e->hidden, e->visibilityState);
-        // TODO: update egpoc_window_event_t
-    } break;
+// static EM_BOOL egpoc_on_event_visibility(int type, EmscriptenVisibilityChangeEvent const* e, void* userData)
+// {
+//     (void)userData;
 
-    default:
-        break;
-    }
+//     switch (type) {
+//     case EMSCRIPTEN_EVENT_VISIBILITYCHANGE: {
+//         egpoc_console_printf("[Visibility] hidden=%d visibilityState=%d", e->hidden, e->visibilityState);
+//         // TODO: update egpoc_window_event_t
+//     } break;
 
-    return EM_TRUE;
-}
+//     default:
+//         break;
+//     }
+
+//     return EM_TRUE;
+// }
 
 /* ------------------------------------------------------------------------- */
 /* Gamepad events                                                            */
 /* ------------------------------------------------------------------------- */
-static EM_BOOL egpoc_on_event_gamepad(int type, EmscriptenGamepadEvent const* e, void* userData)
-{
-    switch (type) {
-    case EMSCRIPTEN_EVENT_GAMEPADCONNECTED: {
-        egpoc_console_printf("[Gamepad] connected:"
-                             " time=%.3f index=%d id=%s mapping=%s"
-                             " axes=%d buttons=%d connected=%d",
-                             e->timestamp,
-                             e->index,
-                             e->id,
-                             e->mapping,
-                             e->numAxes,
-                             e->numButtons,
-                             e->connected);
+// static EM_BOOL egpoc_on_event_gamepad(int type, EmscriptenGamepadEvent const* e, void* userData)
+// {
+//     (void)userData;
 
-        // Print axis values (up to 64)
-        for (int i = 0; i < e->numAxes && i < 64; ++i) {
-            egpoc_console_printf("   axis[%d] = %.3f", i, e->axis[i]);
-        }
+//     switch (type) {
+//     case EMSCRIPTEN_EVENT_GAMEPADCONNECTED: {
+//         egpoc_console_printf("[Gamepad] connected:"
+//                              " time=%.3f index=%d id=%s mapping=%s"
+//                              " axes=%d buttons=%d connected=%d",
+//                              e->timestamp,
+//                              e->index,
+//                              e->id,
+//                              e->mapping,
+//                              e->numAxes,
+//                              e->numButtons,
+//                              e->connected);
 
-        // Print button values (up to 64)
-        for (int i = 0; i < e->numButtons && i < 64; ++i) {
-            egpoc_console_printf("   button[%d] = %.3f (digital=%d)", i, e->analogButton[i], e->digitalButton[i]);
-        }
+//         // Print axis values (up to 64)
+//         for (int i = 0; i < e->numAxes && i < 64; ++i) {
+//             egpoc_console_printf("   axis[%d] = %.3f", i, e->axis[i]);
+//         }
 
-        // TODO: update egpoc_window_event_t
-    } break;
+//         // Print button values (up to 64)
+//         for (int i = 0; i < e->numButtons && i < 64; ++i) {
+//             egpoc_console_printf("   button[%d] = %.3f (digital=%d)", i, e->analogButton[i], e->digitalButton[i]);
+//         }
 
-    case EMSCRIPTEN_EVENT_GAMEPADDISCONNECTED: {
-        egpoc_console_printf("[Gamepad] disconnected:"
-                             " time=%.3f index=%d id=%s mapping=%s connected=%d",
-                             e->timestamp,
-                             e->index,
-                             e->id,
-                             e->mapping,
-                             e->connected);
-        // TODO: update egpoc_window_event_t
-    } break;
+//         // TODO: update egpoc_window_event_t
+//     } break;
 
-    default:
-        break;
-    }
+//     case EMSCRIPTEN_EVENT_GAMEPADDISCONNECTED: {
+//         egpoc_console_printf("[Gamepad] disconnected:"
+//                              " time=%.3f index=%d id=%s mapping=%s connected=%d",
+//                              e->timestamp,
+//                              e->index,
+//                              e->id,
+//                              e->mapping,
+//                              e->connected);
+//         // TODO: update egpoc_window_event_t
+//     } break;
 
-    return EM_TRUE;
-}
+//     default:
+//         break;
+//     }
+
+//     return EM_TRUE;
+// }
 
 EMSCRIPTEN_KEEPALIVE
 egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
@@ -729,6 +761,8 @@ egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
                                          size_t                events_count_limit,
                                          size_t*               events_count)
 {
+    (void)events_count_limit;
+
     egpoc_window_t* platform_wasm = (egpoc_window_t*)platform;
 
     if (!platform_wasm) {

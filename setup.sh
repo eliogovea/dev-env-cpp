@@ -12,6 +12,7 @@ sudo apt-get install -y --no-install-recommends \
     ca-certificates \
     cmake \
     curl \
+    file \
     git \
     gnupg \
     ninja-build \
@@ -30,6 +31,7 @@ sudo apt-get install -y --no-install-recommends \
     nsis \
     pkg-config \
     rpm \
+    software-properties-common \
     sudo \
     vulkan-tools \
     vulkan-validationlayers-dev \
