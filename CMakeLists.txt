@@ -273,8 +273,26 @@ install(
 # Packaging: generators
 # ---------------------------------------
 
-set(CPACK_GENERATOR        "TGZ" CACHE STRING "Package generator (TGZ by default)")
-set(CPACK_SOURCE_GENERATOR "TGZ" CACHE STRING "CPACK_SOURCE_GENERATOR: TGZ by default")
+if (NOT DEFINED CPACK_GENERATOR)
+    set(CPACK_GENERATOR "TGZ")
+    if (CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        list(APPEND CPACK_GENERATOR "DEB")
+        list(APPEND CPACK_GENERATOR "RPM")
+    endif ()
+
+    if (CMAKE_SYSTEM_NAME STREQUAL "Windows")
+        list(APPEND CPACK_GENERATOR "ZIP")
+        list(APPEND CPACK_GENERATOR "NSIS")
+    endif ()
+
+    if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
+        # TODO
+    endif ()
+endif ()
+
+if (NOT DEFINED CPACK_SOURCE_GENERATOR)
+    set(CPACK_SOURCE_GENERATOR "TGZ")
+endif ()
 
 # ---------------------------------------
 # Packaging: names

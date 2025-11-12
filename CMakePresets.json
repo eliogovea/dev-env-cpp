@@ -7,7 +7,7 @@
   },
   "configurePresets": [
     {
-      "name": "host-debug",
+      "name": "clang-debug",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
@@ -17,24 +17,11 @@
       }
     },
     {
-      "name": "host-release",
+      "name": "clang-release",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true
-      }
-    },
-    {
-      "name": "host-gcc-debug-coverage",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/${presetName}",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_C_FLAGS": "--coverage",
-        "CMAKE_EXE_LINKER_FLAGS": "--coverage",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
@@ -51,25 +38,14 @@
       }
     },
     {
-      "name": "linux-llvm-release",
+      "name": "gcc-debug-coverage",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
       "cacheVariables": {
-        "CMAKE_SYSTEM_NAME": "Linux",
-        "CMAKE_BUILD_TYPE": "Release",
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
-        "CMAKE_EXPORT_COMPILE_COMMANDS": true
-      }
-    },
-    {
-      "name": "linux-llvm-debug",
-      "generator": "Ninja",
-      "binaryDir": "${sourceDir}/build/${presetName}",
-      "cacheVariables": {
-        "CMAKE_SYSTEM_NAME": "Linux",
         "CMAKE_BUILD_TYPE": "Debug",
-        "CMAKE_C_COMPILER": "clang",
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_C_FLAGS": "--coverage",
+        "CMAKE_EXE_LINKER_FLAGS": "--coverage",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
@@ -145,13 +121,13 @@
   ],
   "buildPresets": [
     {
-      "name": "host-debug",
-      "configurePreset": "host-debug",
+      "name": "clang-debug",
+      "configurePreset": "clang-debug",
       "targets": "all"
     },
     {
-      "name": "host-release",
-      "configurePreset": "host-release",
+      "name": "clang-release",
+      "configurePreset": "clang-release",
       "targets": "all"
     },
     {
@@ -160,18 +136,8 @@
       "targets": "all"
     },
     {
-      "name": "host-gcc-debug-coverage",
-      "configurePreset": "host-gcc-debug-coverage",
-      "targets": "all"
-    },
-    {
-      "name": "linux-llvm-release",
-      "configurePreset": "linux-llvm-release",
-      "targets": "all"
-    },
-    {
-      "name": "linux-llvm-debug",
-      "configurePreset": "linux-llvm-debug",
+      "name": "gcc-debug-coverage",
+      "configurePreset": "gcc-debug-coverage",
       "targets": "all"
     },
     {
@@ -197,8 +163,8 @@
   ],
   "testPresets": [
     {
-      "name": "host-debug",
-      "configurePreset": "host-debug",
+      "name": "clang-debug",
+      "configurePreset": "clang-debug",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -206,8 +172,8 @@
       }
     },
     {
-      "name": "host-release",
-      "configurePreset": "host-release",
+      "name": "clang-release",
+      "configurePreset": "clang-release",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -215,26 +181,8 @@
       }
     },
     {
-      "name": "host-gcc-debug-coverage",
-      "configurePreset": "host-gcc-debug-coverage",
-      "output": {
-        "outputOnFailure": true,
-        "verbosity": "extra",
-        "debug": true
-      }
-    },
-    {
-      "name": "linux-llvm-release",
-      "configurePreset": "linux-llvm-release",
-      "output": {
-        "outputOnFailure": true,
-        "verbosity": "extra",
-        "debug": true
-      }
-    },
-    {
-      "name": "linux-llvm-debug",
-      "configurePreset": "linux-llvm-debug",
+      "name": "gcc-debug-coverage",
+      "configurePreset": "gcc-debug-coverage",
       "output": {
         "outputOnFailure": true,
         "verbosity": "extra",
@@ -280,86 +228,70 @@
   ],
   "packagePresets": [
     {
-      "name": "host-debug",
-      "configurePreset": "host-debug",
-      "generators": ["TGZ"]
+      "name": "clang-debug",
+      "configurePreset": "clang-debug"
     },
     {
-      "name": "host-release",
-      "configurePreset": "host-release",
-      "generators": ["TGZ"]
-    },
-    {
-      "name": "linux-llvm-release",
-      "configurePreset": "linux-llvm-release",
-      "generators": ["TGZ", "DEB", "RPM"]
-    },
-    {
-      "name": "linux-llvm-debug",
-      "configurePreset": "linux-llvm-debug",
-      "generators": ["TGZ", "DEB", "RPM"]
+      "name": "clang-release",
+      "configurePreset": "clang-release"
     },
     {
       "name": "x86_64-w64-mingw32-release",
-      "configurePreset": "x86_64-w64-mingw32-release",
-      "generators": ["ZIP", "NSIS"]
+      "configurePreset": "x86_64-w64-mingw32-release"
     },
     {
       "name": "x86_64-w64-mingw32-debug",
-      "configurePreset": "x86_64-w64-mingw32-debug",
-      "generators": ["ZIP", "NSIS"]
+      "configurePreset": "x86_64-w64-mingw32-debug"
     },
     {
       "name": "wasm-release",
-      "configurePreset": "wasm-release",
-      "generators": ["TGZ"]
+      "configurePreset": "wasm-release"
     },
     {
       "name": "wasm-debug",
-      "configurePreset": "wasm-debug",
-      "generators": ["TGZ"]
+      "configurePreset": "wasm-debug"
     }
   ],
   "workflowPresets": [
     {
-      "name": "host-debug",
+      "name": "clang-debug",
       "steps": [
         {
           "type": "configure",
-          "name": "host-debug"
+          "name": "clang-debug"
         },
         {
           "type": "build",
-          "name": "host-debug"
+          "name": "clang-debug"
         },
         {
           "type": "test",
-          "name": "host-debug"
+          "name": "clang-debug"
         },
         {
           "type": "package",
-          "name": "host-debug"
+          "name": "clang-debug"
         }
       ]
     },
     {
-      "name": "host-release",
+      "name": "clang-release",
       "steps": [
         {
           "type": "configure",
-          "name": "host-release"
+          "name": "clang-release"
         },
         {
           "type": "build",
-          "name": "host-release"
+          "name": "clang-release"
         },
         {
           "type": "test",
-          "name": "host-release"
+          "name": "clang-release"
         },
         {
           "type": "package",
-          "name": "host-release"
+          "name": "clang-release"
         }
       ]
     },
@@ -377,61 +309,19 @@
       ]
     },
     {
-      "name": "host-gcc-debug-coverage",
+      "name": "gcc-debug-coverage",
       "steps": [
         {
           "type": "configure",
-          "name": "host-gcc-debug-coverage"
+          "name": "gcc-debug-coverage"
         },
         {
           "type": "build",
-          "name": "host-gcc-debug-coverage"
+          "name": "gcc-debug-coverage"
         },
         {
           "type": "test",
-          "name": "host-gcc-debug-coverage"
-        }
-      ]
-    },
-    {
-      "name": "linux-llvm-debug",
-      "steps": [
-        {
-          "type": "configure",
-          "name": "linux-llvm-debug"
-        },
-        {
-          "type": "build",
-          "name": "linux-llvm-debug"
-        },
-        {
-          "type": "test",
-          "name": "linux-llvm-debug"
-        },
-        {
-          "type": "package",
-          "name": "linux-llvm-debug"
-        }
-      ]
-    },
-    {
-      "name": "linux-llvm-release",
-      "steps": [
-        {
-          "type": "configure",
-          "name": "linux-llvm-release"
-        },
-        {
-          "type": "build",
-          "name": "linux-llvm-release"
-        },
-        {
-          "type": "test",
-          "name": "linux-llvm-release"
-        },
-        {
-          "type": "package",
-          "name": "linux-llvm-release"
+          "name": "gcc-debug-coverage"
         }
       ]
     },
