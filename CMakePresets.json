@@ -40,6 +40,17 @@
       }
     },
     {
+      "name": "clang-tidy",
+      "hidden": false,
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "generator": "Ninja",
+      "cacheVariables": {
+        "CMAKE_C_CLANG_TIDY": "clang-tidy",
+        "CMAKE_COMPILE_WARNING_AS_ERROR": true,
+        "CMAKE_EXPORT_COMPILE_COMMANDS": true
+      }
+    },
+    {
       "name": "linux-llvm-release",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build/${presetName}",
@@ -141,6 +152,11 @@
     {
       "name": "host-release",
       "configurePreset": "host-release",
+      "targets": "all"
+    },
+    {
+      "name": "clang-tidy",
+      "configurePreset": "clang-tidy",
       "targets": "all"
     },
     {
@@ -344,6 +360,19 @@
         {
           "type": "package",
           "name": "host-release"
+        }
+      ]
+    },
+    {
+      "name": "clang-tidy",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "clang-tidy"
+        },
+        {
+          "type": "build",
+          "name": "clang-tidy"
         }
       ]
     },
