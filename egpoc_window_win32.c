@@ -95,7 +95,7 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          char const*            window_title,
                                          unsigned int           window_width,
                                          unsigned int           window_height,
-                                         egpoc_window_t**       platform)
+                                         egpoc_window_t**       window)
 {
     egpoc_window_t* platform_win32 = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
 
@@ -138,19 +138,19 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
 
     // SetWindowLongPtr(hwnd, GWLP_USERDATA, (LONG_PTR)platform);
 
-    *platform = platform_win32;
+    *window = platform_win32;
 
     return egpoc_system_error_none;
 }
 
-egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
-                                         egpoc_window_event_t* events,
-                                         size_t                events_count_limit,
-                                         size_t*               events_count)
+egpoc_system_error_t egpoc_window_events(egpoc_window_t*       window,
+                                         egpoc_window_event_t* window_events,
+                                         size_t                window_events_capacity,
+                                         size_t*               window_events_count)
 {
-    (void)events;
+    (void)window_events;
 
-    egpoc_window_t* platform_win32 = (egpoc_window_t*)platform;
+    egpoc_window_t* platform_win32 = (egpoc_window_t*)window;
 
     HWND hwnd = platform_win32->hwnd;
 
@@ -159,7 +159,7 @@ egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
 
     size_t events_count_ = 0;
 
-    while (events_count_ < events_count_limit) {
+    while (events_count_ < window_events_capacity) {
         if (!PeekMessage(&msg, hwnd, 0, 0, PM_REMOVE)) {
             break;
         }
@@ -171,7 +171,7 @@ egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
         events_count_++;
     }
 
-    *events_count = events_count_;
+    *window_events_count = events_count_;
 
     return egpoc_system_error_none;
 }

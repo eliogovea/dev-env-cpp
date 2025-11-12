@@ -22,11 +22,11 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          char const*            window_title,
                                          unsigned int           window_width,
                                          unsigned int           window_height,
-                                         egpoc_window_t**       platform);
+                                         egpoc_window_t**       window);
 
-egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
-                                         egpoc_window_event_t* events,
-                                         size_t                events_count_limit,
-                                         size_t*               events_count);
+egpoc_system_error_t egpoc_window_events(egpoc_window_t*       window,
+                                         egpoc_window_event_t* window_events,
+                                         size_t                window_events_capacity,
+                                         size_t*               window_events_count);
 
 #endif  // EGPOC_PLATFORM_H_

@@ -22,29 +22,29 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          char const*            window_title,
                                          unsigned int           window_width,
                                          unsigned int           window_height,
-                                         egpoc_window_t**       platform)
+                                         egpoc_window_t**       window)
 {
-    Display* display;
-    int      screen;
-    Window   window;
+    Display* x_display;
+    int      x_screen;
+    Window   x_window;
 
-    egpoc_window_t* platform_x11 = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
+    egpoc_window_t* window_x11 = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
 
-    if (!platform_x11) {
-        platform_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_x11);
+    if (!window_x11) {
+        window_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), window_x11);
         return egpoc_system_error_unknown;
     }
 
-    display = XOpenDisplay(NULL);
+    x_display = XOpenDisplay(NULL);
 
-    if (!display) {
-        platform_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), platform_x11);
+    if (!x_display) {
+        window_x11 = memory_release(memory_owner, sizeof(egpoc_window_t), window_x11);
         return egpoc_system_error_unknown;
     }
 
-    screen = DefaultScreen(display);
+    x_screen = DefaultScreen(x_display);
 
-    Window root = RootWindow(display, screen);
+    Window x_window_root = RootWindow(x_display, x_screen);
 
     XSetWindowAttributes windowAttributes;
     memset(&windowAttributes, 0, sizeof(windowAttributes));
@@ -64,47 +64,47 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                 | VisibilityChangeMask  //
                                 | SubstructureNotifyMask;
 
-    window = XCreateWindow(display,
-                           root,
-                           0,
-                           0,
-                           window_width,
-                           window_height,
-                           0,
-                           CopyFromParent,
-                           InputOutput,
-                           CopyFromParent,
-                           CWEventMask,
-                           &windowAttributes);
+    x_window = XCreateWindow(x_display,
+                             x_window_root,
+                             0,
+                             0,
+                             window_width,
+                             window_height,
+                             0,
+                             CopyFromParent,
+                             InputOutput,
+                             CopyFromParent,
+                             CWEventMask,
+                             &windowAttributes);
 
-    XStoreName(display, window, window_title);
-    XMapWindow(display, window);
-    XFlush(display);
+    XStoreName(x_display, x_window, window_title);
+    XMapWindow(x_display, x_window);
+    XFlush(x_display);
 
-    platform_x11->display = display;
-    platform_x11->window  = window;
+    window_x11->display = x_display;
+    window_x11->window  = x_window;
 
-    *platform = (void*)platform_x11;
+    *window = (void*)window_x11;
     return egpoc_system_error_none;
 }
 
-egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
-                                         egpoc_window_event_t* events,
-                                         size_t                events_count_limit,
-                                         size_t*               events_count)
+egpoc_system_error_t egpoc_window_events(egpoc_window_t*       window,
+                                         egpoc_window_event_t* window_events,
+                                         size_t                window_events_capacity,
+                                         size_t*               window_events_count)
 {
     // TODO
-    (void)events;
+    (void)window_events;
 
-    egpoc_window_t* platform_x11 = (egpoc_window_t*)platform;
+    egpoc_window_t* window_x11 = (egpoc_window_t*)window;
 
-    Display* display = platform_x11->display;
+    Display* display = window_x11->display;
     XEvent   event   = {.type = 0};
 
     size_t events_queued = (size_t)XEventsQueued(display, QueuedAfterReading);
-    size_t events_count_ = (events_queued < events_count_limit) ? events_queued : events_count_limit;
+    size_t events_count  = (events_queued < window_events_capacity) ? events_queued : window_events_capacity;
 
-    for (size_t i = 0; i < events_count_; i++) {
+    for (size_t i = 0; i < events_count; i++) {
         XNextEvent(display, &event);
 
         // TODO: save events
@@ -343,7 +343,7 @@ egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
         }
     }
 
-    *events_count = events_count_;
+    *window_events_count = events_count;
 
     return egpoc_system_error_none;
 }

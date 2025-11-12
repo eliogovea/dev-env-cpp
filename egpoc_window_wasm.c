@@ -692,16 +692,9 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
                                          char const*            window_title,
                                          unsigned int           window_width,
                                          unsigned int           window_height,
-                                         egpoc_window_t**       platform)
+                                         egpoc_window_t**       window)
 {
-    egpoc_window_t* platform_wasm = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
-
-    if (!platform_wasm) {
-        platform_wasm = memory_release(memory_owner, sizeof(egpoc_window_t), (void*)platform_wasm);
-        return egpoc_system_error_unknown;
-    }
-
-    memset(platform_wasm, 0, sizeof(*platform_wasm));
+    (void)memory_release;
 
     char js[512];
 
@@ -749,34 +742,40 @@ egpoc_system_error_t egpoc_window_create(egpoc_memory_owner_t*  memory_owner,
     emscripten_set_resize_callback("#egpoc_canvas", NULL, EM_TRUE, egpoc_on_event_ui);
     emscripten_set_scroll_callback("#egpoc_canvas", NULL, EM_TRUE, egpoc_on_event_ui);
 
-    *platform = (egpoc_window_t*)platform_wasm;
+    egpoc_window_t* window_wasm = (egpoc_window_t*)memory_acquire(memory_owner, sizeof(egpoc_window_t));
+
+    if (!window_wasm) {
+        return egpoc_system_error_unknown;
+    }
+
+    window_wasm->error = egpoc_system_error_none;
+
+    *window = window_wasm;
 
     return egpoc_system_error_none;
 }
 
 EMSCRIPTEN_KEEPALIVE
-egpoc_system_error_t egpoc_window_events(egpoc_window_t*       platform,
-                                         egpoc_window_event_t* events,
-                                         size_t                events_count_limit,
-                                         size_t*               events_count)
+egpoc_system_error_t egpoc_window_events(egpoc_window_t*       window,
+                                         egpoc_window_event_t* window_events,
+                                         size_t                window_events_capacity,
+                                         size_t*               window_events_count)
 {
-    (void)events_count_limit;
+    (void)window_events_capacity;
 
-    egpoc_window_t* platform_wasm = (egpoc_window_t*)platform;
+    if (!window) {
+        return egpoc_system_error_none;
+    }
 
-    if (!platform_wasm) {
+    if (!window_events) {
         return egpoc_system_error_unknown;
     }
 
-    if (!events) {
+    if (!window_events_count) {
         return egpoc_system_error_unknown;
     }
 
-    if (!events_count) {
-        return egpoc_system_error_unknown;
-    }
-
-    *events_count = 0;
+    *window_events_count = 0;
 
     return egpoc_system_error_none;
 }
