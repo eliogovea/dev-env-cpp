@@ -292,3 +292,5 @@ WhitespaceSensitiveMacros:
   - PP_STRINGIZE
   - STRINGIZE
 ---
+Language: ObjC
+---

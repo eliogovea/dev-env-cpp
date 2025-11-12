@@ -4,10 +4,9 @@
 #define EGPOC_DEBUG_H_
 
 #if defined(__clang__) || defined(__GNUC__)
-    #define EGPOC_ATTRIBUTE_FORMAT(index_format, index_args) \
-        __attribute__((format(printf, index_format, index_args)))
+#define EGPOC_ATTRIBUTE_FORMAT(index_format, index_args) __attribute__((format(printf, index_format, index_args)))
 #else
-    #define EGPOC_ATTRIBUTE_FORMAT(index_format, index_args)
+#define EGPOC_ATTRIBUTE_FORMAT(index_format, index_args)
 #endif
 
 void egpoc_debug(char const* file, int line, char const* format, ...) EGPOC_ATTRIBUTE_FORMAT(3, 4);

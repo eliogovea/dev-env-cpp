@@ -14,7 +14,6 @@ typedef struct egpoc_window_t {
     egpoc_system_error_t error;
 } egpoc_window_t;
 
-
 static inline void egpoc_console_printf(char const* format, ...) __attribute__((format(printf, 1, 2)));
 
 static inline void egpoc_console_printf(char const* format, ...)
@@ -25,11 +24,11 @@ static inline void egpoc_console_printf(char const* format, ...)
     vsnprintf(buffer, sizeof(buffer), format, args);
     va_end(args);
 
-    #pragma clang diagnostic push
-    #pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
-    #pragma clang diagnostic ignored "-Wvariadic-macro-arguments-omitted"
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdollar-in-identifier-extension"
+#pragma clang diagnostic ignored "-Wvariadic-macro-arguments-omitted"
     EM_ASM({ console.log(UTF8ToString($0)); }, buffer);
-    #pragma clang diagnostic pop
+#pragma clang diagnostic pop
 }
 
 /* ------------------------------------------------------------------------- */
