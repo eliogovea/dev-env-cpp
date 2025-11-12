@@ -94,33 +94,26 @@ endif()
 # Libraries: egpoc_static
 # ------------------------------------------------------------------------------
 
-set(
-    EGPOC_HEADERS
-    egpoc_bytes.h
-    egpoc_chars.h
-    egpoc_debug.h
-    egpoc_memory.h
-    egpoc_network.h
-    egpoc_power.h
-    egpoc_window.h
-    egpoc_system.h
-)
-
-set(
-    EGPOC_SOURCES
-    egpoc_bytes.c
-    egpoc_chars.c
-    egpoc_debug.c
-    egpoc_memory.c
-    egpoc_network.c
-    egpoc_power.c
-    egpoc_window.c
-    egpoc_system.c
-)
+set(EGPOC_HEADERS)
+list(APPEND EGPOC_HEADERS egpoc_bytes.h)
+list(APPEND EGPOC_HEADERS egpoc_chars.h)
+list(APPEND EGPOC_HEADERS egpoc_debug.h)
+list(APPEND EGPOC_HEADERS egpoc_memory.h)
+list(APPEND EGPOC_HEADERS egpoc_network.h)
+list(APPEND EGPOC_HEADERS egpoc_power.h)
+list(APPEND EGPOC_HEADERS egpoc_window.h)
+list(APPEND EGPOC_HEADERS egpoc_system.h)
 
 add_library(egpoc_static STATIC)
 add_library(egpoc::egpoc_static ALIAS egpoc_static)
-target_sources(egpoc_static PRIVATE "${EGPOC_SOURCES}")
+target_sources(egpoc_static PRIVATE egpoc_bytes.c)
+target_sources(egpoc_static PRIVATE egpoc_chars.c)
+target_sources(egpoc_static PRIVATE egpoc_debug.c)
+target_sources(egpoc_static PRIVATE egpoc_memory.c)
+target_sources(egpoc_static PRIVATE egpoc_network.c)
+target_sources(egpoc_static PRIVATE egpoc_power.c)
+target_sources(egpoc_static PRIVATE egpoc_window.c)
+target_sources(egpoc_static PRIVATE egpoc_system.c)
 set_target_properties(egpoc_static PROPERTIES OUTPUT_NAME egpoc)
 set_target_properties(egpoc_static PROPERTIES PUBLIC_HEADER "${EGPOC_HEADERS}")
 target_compile_features(egpoc_static PRIVATE c_std_11)
