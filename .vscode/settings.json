@@ -38,7 +38,7 @@
     "**/build/**": true,
     "**/.git/**": true
   },
-
+  "terminal.integrated.fontSize": 14,
   "terminal.integrated.profiles.linux": {
     "bash": {
       "path": "bash",
