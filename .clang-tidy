@@ -3,6 +3,7 @@ Checks: >
   *,
   -altera-unroll-loops,
   -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-avoid-non-const-global-variables,
   -llvmlibc-restrict-system-libc-headers,
   -readability-magic-numbers
 WarningsAsErrors: "*"

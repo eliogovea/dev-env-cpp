@@ -223,6 +223,15 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Emscripten")
 endif()
 
 # ------------------------------------------------------------------------------
+# Applications: egpoc_executor
+# ------------------------------------------------------------------------------
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    add_executable(egpoc_executor)
+    target_sources(egpoc_executor PRIVATE egpoc_executor.c)
+endif ()
+
+# ------------------------------------------------------------------------------
 # Install
 # ------------------------------------------------------------------------------
 

@@ -24,7 +24,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "clang",
-        "CMAKE_C_FLAGS": "-fsanitize=address -fno-omit-frame-pointer",
+        "CMAKE_C_FLAGS": "-fsanitize=address -fno-omit-frame-pointer -fsanitize-address-use-after-return=always -fsanitize-address-use-after-scope",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
@@ -61,7 +61,7 @@
       "cacheVariables": {
         "CMAKE_BUILD_TYPE": "Debug",
         "CMAKE_C_COMPILER": "clang",
-        "CMAKE_C_FLAGS": "-fsanitize=undefined -fno-omit-frame-pointer",
+        "CMAKE_C_FLAGS": "-fsanitize=undefined -fno-omit-frame-pointer -fno-sanitize-merge",
         "CMAKE_COMPILE_WARNING_AS_ERROR": true,
         "CMAKE_EXPORT_COMPILE_COMMANDS": true
       }
@@ -226,7 +226,6 @@
       "name": "clang-debug",
       "configurePreset": "clang-debug",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       }
     },
@@ -234,18 +233,16 @@
       "name": "clang-debug-sanitize-address",
       "configurePreset": "clang-debug-sanitize-address",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       },
       "environment": {
-        "ASAN_OPTIONS": "debug=1:verbosity=2"
+        "ASAN_OPTIONS": "debug=1:verbosity=2:detect_stack_use_after_return=1"
       }
     },
     {
       "name": "clang-debug-sanitize-memory",
       "configurePreset": "clang-debug-sanitize-memory",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       },
       "environment": {
@@ -256,7 +253,6 @@
       "name": "clang-debug-sanitize-thread",
       "configurePreset": "clang-debug-sanitize-thread",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       },
       "environment": {
@@ -267,7 +263,6 @@
       "name": "clang-debug-sanitize-undefined",
       "configurePreset": "clang-debug-sanitize-undefined",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       },
       "environment": {
@@ -278,7 +273,6 @@
       "name": "clang-release",
       "configurePreset": "clang-release",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       }
     },
@@ -286,7 +280,6 @@
       "name": "gcc-debug-coverage",
       "configurePreset": "gcc-debug-coverage",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       }
     },
@@ -294,7 +287,6 @@
       "name": "x86_64-w64-mingw32-release",
       "configurePreset": "x86_64-w64-mingw32-release",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       }
     },
@@ -302,7 +294,6 @@
       "name": "x86_64-w64-mingw32-debug",
       "configurePreset": "x86_64-w64-mingw32-debug",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       }
     },
@@ -310,7 +301,6 @@
       "name": "wasm-release",
       "configurePreset": "wasm-release",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       }
     },
@@ -318,7 +308,6 @@
       "name": "wasm-debug",
       "configurePreset": "wasm-debug",
       "output": {
-        "outputOnFailure": true,
         "verbosity": "extra"
       }
     }
