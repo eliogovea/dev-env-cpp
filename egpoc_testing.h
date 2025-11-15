@@ -1,7 +1,7 @@
 #ifndef EGPOC_TESTING_H_
 #define EGPOC_TESTING_H_
 
-#include <stdio.h>
+#include "egpoc_debug.h"
 
 /// @brief Error codes returned by tests.
 typedef enum {
@@ -40,12 +40,12 @@ egpoc_testing_error_t egpoc_testing_run(void);
 /// ```c
 /// EGPOC_EXPECT(x == 10);
 /// ```
-#define EGPOC_EXPECT(expr)                                                              \
-    do {                                                                                \
-        if (!(expr)) {                                                                  \
-            printf("  Expectation failed: %s (at %s:%d)\n", #expr, __FILE__, __LINE__); \
-            return (int)egpoc_testing_error_expect;                                     \
-        }                                                                               \
+#define EGPOC_EXPECT(expr)                                                        \
+    do {                                                                          \
+        if (!(expr)) {                                                            \
+            egpoc_debug(__FILE__, __LINE__, "  Expectation failed: %s\n", #expr); \
+            return (int)egpoc_testing_error_expect;                               \
+        }                                                                         \
     } while (0)
 
 /// @brief Defines and registers a new test.

@@ -132,4 +132,12 @@ static inline bool egpoc_network_ipv6_address_to_bytes(egpoc_network_ipv6_addres
     return true;
 }
 
+int egpoc_dns_name_skip(uint8_t const* message, int message_size);
+
+int egpoc_dns_name_read(uint8_t const* message,  //
+                        int            message_size,
+                        int            message_index,
+                        uint8_t*       name,
+                        int            name_capacity);
+
 #endif  // EGPOC_NETWORK_H_

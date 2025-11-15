@@ -1,7 +1,10 @@
 ---
 Checks: >
   *,
-  -llvmlibc-restrict-system-libc-headers
+  -altera-unroll-loops,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -llvmlibc-restrict-system-libc-headers,
+  -readability-magic-numbers
 WarningsAsErrors: "*"
 HeaderFileExtensions:
   - ""
