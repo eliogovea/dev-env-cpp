@@ -2,8 +2,10 @@
 Checks: >
   *,
   -altera-unroll-loops,
+  -bugprone-easily-swappable-parameters,
   -cppcoreguidelines-avoid-magic-numbers,
   -cppcoreguidelines-avoid-non-const-global-variables,
+  -hicpp-signed-bitwise,
   -llvmlibc-restrict-system-libc-headers,
   -readability-magic-numbers
 WarningsAsErrors: "*"

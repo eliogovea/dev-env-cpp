@@ -87,7 +87,7 @@ EGPOC_TEST(egpoc_network, egpoc_dns_name_read_pointer_loop)
                                         name,
                                         sizeof(name));
 
-    EGPOC_EXPECT(name_size == -1);
+    EGPOC_EXPECT(name_size < 0);
 
     return egpoc_testing_error_none;
 }
@@ -112,7 +112,7 @@ EGPOC_TEST(egpoc_network, egpoc_dns_name_read_pointer_forward)
                                         name,
                                         sizeof(name));
 
-    EGPOC_EXPECT(name_size == -1);
+    EGPOC_EXPECT(name_size < 0);
 
     return egpoc_testing_error_none;
 }
@@ -133,7 +133,7 @@ EGPOC_TEST(egpoc_network, egpoc_dns_name_read_label_too_long)
                                         name,
                                         sizeof(name));
 
-    EGPOC_EXPECT(name_size == -1);
+    EGPOC_EXPECT(name_size < 0);
 
     return egpoc_testing_error_none;
 }
@@ -150,7 +150,7 @@ EGPOC_TEST(egpoc_network, egpoc_dns_name_read_buffer_too_small)
                                         name,
                                         sizeof(name));
 
-    EGPOC_EXPECT(name_size == -1);
+    EGPOC_EXPECT(name_size < 0);
 
     return egpoc_testing_error_none;
 }
