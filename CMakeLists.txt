@@ -231,6 +231,16 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
     target_sources(egpoc_executor PRIVATE egpoc_executor.c)
 endif ()
 
+
+# ------------------------------------------------------------------------------
+# Applications: egpoc_executor
+# ------------------------------------------------------------------------------
+
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    add_executable(egpoc_duplicates_finder)
+    target_sources(egpoc_duplicates_finder PRIVATE egpoc_duplicates_finder.c)
+endif ()
+
 # ------------------------------------------------------------------------------
 # Install
 # ------------------------------------------------------------------------------
